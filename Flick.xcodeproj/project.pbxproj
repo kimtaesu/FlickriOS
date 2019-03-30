@@ -27,6 +27,9 @@
 		BDBEF91C224EF26500829E82 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF91B224EF26500829E82 /* L10n.swift */; };
 		BDBEF91E224EF29000829E82 /* FlickrApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF91D224EF29000829E82 /* FlickrApi.swift */; };
 		BDBEF922224EF3D600829E82 /* color.txt in Resources */ = {isa = PBXBuildFile; fileRef = BDBEF921224EF3D600829E82 /* color.txt */; };
+		BDBEF927224EF96400829E82 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDBEF926224EF96400829E82 /* Moya.framework */; };
+		BDBEF929224EF9DA00829E82 /* FkrSearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF928224EF9DA00829E82 /* FkrSearchRequest.swift */; };
+		BDBEF92B224EFDEC00829E82 /* DictionarySerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF92A224EFDEC00829E82 /* DictionarySerializable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		BDBEF91B224EF26500829E82 /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		BDBEF91D224EF29000829E82 /* FlickrApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrApi.swift; sourceTree = "<group>"; };
 		BDBEF921224EF3D600829E82 /* color.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = color.txt; sourceTree = "<group>"; };
+		BDBEF926224EF96400829E82 /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = Carthage/Build/iOS/Moya.framework; sourceTree = "<group>"; };
+		BDBEF928224EF9DA00829E82 /* FkrSearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FkrSearchRequest.swift; sourceTree = "<group>"; };
+		BDBEF92A224EFDEC00829E82 /* DictionarySerializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionarySerializable.swift; sourceTree = "<group>"; };
 		D4012C9C4A2515B3963C7316 /* Pods-FlickUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickUITests.release.xcconfig"; path = "Target Support Files/Pods-FlickUITests/Pods-FlickUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F0A73F165E91AF3212FC65A5 /* Pods_Flick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80088DEEEFF629FC2A9531F /* Pods-Flick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flick.release.xcconfig"; path = "Target Support Files/Pods-Flick/Pods-Flick.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDBEF927224EF96400829E82 /* Moya.framework in Frameworks */,
 				B5DD2AF016F712DBDB4C173E /* Pods_Flick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +146,8 @@
 		BDBEF8D4224EEE1A00829E82 /* Flick */ = {
 			isa = PBXGroup;
 			children = (
+				BDBEF925224EF52A00829E82 /* Model */,
+				BDBEF923224EF50B00829E82 /* Network */,
 				BDBEF91F224EF3B500829E82 /* Resources */,
 				BDBEF916224EEFE500829E82 /* Config */,
 				BDBEF911224EEF9E00829E82 /* Localizable.strings */,
@@ -149,7 +158,6 @@
 				BDBEF8E1224EEE1B00829E82 /* LaunchScreen.storyboard */,
 				BDBEF8E4224EEE1B00829E82 /* Info.plist */,
 				BDBEF8DC224EEE1A00829E82 /* Flick.xcdatamodeld */,
-				BDBEF91D224EF29000829E82 /* FlickrApi.swift */,
 			);
 			path = Flick;
 			sourceTree = "<group>";
@@ -204,6 +212,23 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		BDBEF923224EF50B00829E82 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BDBEF91D224EF29000829E82 /* FlickrApi.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BDBEF925224EF52A00829E82 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BDBEF928224EF9DA00829E82 /* FkrSearchRequest.swift */,
+				BDBEF92A224EFDEC00829E82 /* DictionarySerializable.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CD949B182E2989BB8CDA09C6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +245,7 @@
 		FE27D743491EE86A51AF231A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDBEF926224EF96400829E82 /* Moya.framework */,
 				F0A73F165E91AF3212FC65A5 /* Pods_Flick.framework */,
 				5B707D83732520D03DFAEA1F /* Pods_FlickTests.framework */,
 				FC34A3988E471EE468E70D74 /* Pods_FlickUITests.framework */,
@@ -534,6 +560,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Swinject.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxOptional.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxMoya.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
 			);
 			name = "[CP] Copy Carthage Resources";
 			outputFileListPaths = (
@@ -575,9 +603,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDBEF929224EF9DA00829E82 /* FkrSearchRequest.swift in Sources */,
 				BDBEF8D8224EEE1A00829E82 /* ViewController.swift in Sources */,
 				BDBEF8D6224EEE1A00829E82 /* AppDelegate.swift in Sources */,
 				BDBEF915224EEFDF00829E82 /* Envoriment.swift in Sources */,
+				BDBEF92B224EFDEC00829E82 /* DictionarySerializable.swift in Sources */,
 				BDBEF8DE224EEE1A00829E82 /* Flick.xcdatamodeld in Sources */,
 				BDBEF91C224EF26500829E82 /* L10n.swift in Sources */,
 				BDBEF91E224EF29000829E82 /* FlickrApi.swift in Sources */,
@@ -766,6 +796,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 576T8HK6X4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Flick/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -786,6 +820,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 576T8HK6X4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Flick/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
