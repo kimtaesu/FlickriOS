@@ -1,0 +1,9 @@
+github "SnapKit/SnapKit" ~> 4.0.1
+github "ReactiveX/RxSwift" ~> 4.0
+github "RxSwiftCommunity/RxOptional" ~> 3.5.0
+github "Swinject/Swinject" ~> 2.5.0
+binary "https://github.com/kawoou/ReactorKit-Carthage/raw/master/ReactorKit"
+github "Instagram/IGListKit" ~> 3.0
+github "HeroTransitions/Hero"
+github "Moya/Moya" ~> 11.0.2
+github "RxSwiftCommunity/RxDataSources" ~> 3.0
