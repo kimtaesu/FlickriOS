@@ -8,6 +8,7 @@
 
 import ReactorKit
 import RxSwift
+import IGListKit
 
 class CategoryReactor: Reactor {
     
@@ -19,26 +20,26 @@ class CategoryReactor: Reactor {
         self.repository = repository
     }
     enum Action {
-        case search(String)
+        case fetchData
     }
     
     struct State {
         var initLoading: Bool?
-        var searchResults: [ThumbnailSection]?
+        var items: [RecentItem]?
         var error: Error?
     }
     
     enum Mutation {
         case setInitLoading(Bool)
-        case setSearchedResults(Resources<PhotoResponse>)
+        case setRecentResults(Resources<PhotoResponse>)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .search(let keyword):
+        case .fetchData:
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
-                self.repository.search(keyword, page: 1).asObservable().map { Mutation.setSearchedResults($0) },
+                self.repository.recent().asObservable().map { Mutation.setRecentResults($0) },
                 Observable.just(Mutation.setInitLoading(false))
                 ])
         }
@@ -46,9 +47,9 @@ class CategoryReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case .setSearchedResults(let result):
+        case .setRecentResults(let result):
             if let thumbnails = result.data?.mapThumbnail(width: 400) {
-                newState.searchResults = [ThumbnailSection(header: "Thumbnails", items: thumbnails)]
+                newState.items = [RecentItem(items: thumbnails)]
             }
             newState.error = result.error
         case .setInitLoading(let loading):

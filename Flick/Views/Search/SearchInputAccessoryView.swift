@@ -28,7 +28,8 @@ class SearchInputAccessoryView: UIView {
                 make.trailing.equalToSuperview().inset(20)
                 make.centerY.equalToSuperview()
             })
-            $0.setImage(Asset.icHideKeyboard.image, for: .normal)
+            $0.setImage(Asset.icHideKeyboard.image.withRenderingMode(.alwaysTemplate), for: .normal)
+            $0.tintColor = ColorName.colorAccent
         }
     }
 }
