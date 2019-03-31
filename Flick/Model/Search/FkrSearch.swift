@@ -56,7 +56,7 @@ struct FkrSearchRequest {
     }
 }
 
-extension FkrSearchRequest: DictionarySerializable {
+extension FkrSearchRequest: Codable {
     enum CodingKeys: String, CodingKey, CaseIterable {
         case text
         case page
@@ -68,33 +68,8 @@ extension FkrSearchRequest: DictionarySerializable {
         case contentType
         case nojsoncallback
     }
-    
-    var properties: [String] {
-        return CodingKeys.allCases.map { $0.rawValue }
-    }
-    
-    func valueForKey(key: String) -> Any? {
-        switch key {
-        case CodingKeys.text.rawValue:
-            return text
-        case CodingKeys.page.rawValue:
-            return page
-        case CodingKeys.perPage.rawValue:
-            return perPage
-        case CodingKeys.extras.rawValue:
-            return extras
-        case CodingKeys.method.rawValue:
-            return method
-        case CodingKeys.format.rawValue:
-            return format
-        case CodingKeys.sort.rawValue:
-            return sort
-        case CodingKeys.contentType.rawValue:
-            return contentType
-        case CodingKeys.nojsoncallback.rawValue:
-            return nojsoncallback
-        default:
-            return nil
-        }
-    }
+}
+
+struct FkrSearchResponse: Decodable {
+    let photos: [PhotoContext]
 }
