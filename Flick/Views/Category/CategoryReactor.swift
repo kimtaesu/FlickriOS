@@ -9,36 +9,36 @@
 import ReactorKit
 import RxSwift
 
-class HomeReactor: Reactor {
-
+class CategoryReactor: Reactor {
+    
     let initialState = State()
-
-    private let repository: FlickrRepositoryType
-
-    init(_ repository: FlickrRepositoryType) {
+    
+    private let repository: FlickrPhotoRepositoryType
+    
+    init(_ repository: FlickrPhotoRepositoryType) {
         self.repository = repository
     }
     enum Action {
         case search(String)
     }
-
+    
     struct State {
         var initLoading: Bool?
-        var reponse: FkrSearchResponse?
+        var searchResults: [ThumbnailSection]?
         var error: Error?
     }
-
+    
     enum Mutation {
         case setInitLoading(Bool)
-        case setSearchResults(Resources<FkrSearchResponse>)
+        case setSearchedResults(Resources<PhotoResponse>)
     }
-
+    
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .search(let keyword):
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
-                self.repository.search(keyword).asObservable().map { Mutation.setSearchResults($0) },
+                self.repository.search(keyword, page: 1).asObservable().map { Mutation.setSearchedResults($0) },
                 Observable.just(Mutation.setInitLoading(false))
                 ])
         }
@@ -46,8 +46,10 @@ class HomeReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
-        case .setSearchResults(let result):
-            newState.reponse = result.data
+        case .setSearchedResults(let result):
+            if let thumbnails = result.data?.mapThumbnail(width: 400) {
+                newState.searchResults = [ThumbnailSection(header: "Thumbnails", items: thumbnails)]
+            }
             newState.error = result.error
         case .setInitLoading(let loading):
             newState.initLoading = loading

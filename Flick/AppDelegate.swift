@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow().then {
-            $0.rootViewController = HomeViewController()
+            $0.rootViewController = UINavigationController(rootViewController: HomeViewContoller())
+            $0.backgroundColor = UIColor.white
             $0.makeKeyAndVisible()
         }
         return true

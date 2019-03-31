@@ -11,14 +11,17 @@ import Moya
 
 enum FlickrApi {
     case search(FkrSearchRequest)
+    case recent(FkrRecentRequest)
+    case getComments(FkrCommentRequest)
 }
 
+// swiftlint:disable force_try
 extension FlickrApi: TargetType {
     var baseURL: URL { return URL(string: Enviroment.FLICKR_BASE_URL)! }
 
     var path: String {
         switch self {
-        case .search:
+        default:
             return "services/rest"
         }
     }
@@ -31,19 +34,30 @@ extension FlickrApi: TargetType {
 
     var parameterEncoding: Moya.ParameterEncoding {
         switch self {
-        case .search:
+        default:
             return URLEncoding.default
         }
     }
 
     var task: Task {
-        var parameters: [String: Any]
+        var parameters = [String: Any]()
         switch self {
+        case .getComments(let req):
+            parameters = try! req.tryAsDictionary()
+            parameters.updateValue(Method.recent.rawValue, forKey: Method.key)
+        case .recent(let req):
+            parameters = try! req.tryAsDictionary()
+            parameters.updateValue(Method.recent.rawValue, forKey: Method.key)
+            parameters.updateValue(Extras.allAttrs, forKey: Extras.key)
         case .search(let req):
             // TODO catchs try syntax
             // // swiftlint:disable force_try
             parameters = try! req.tryAsDictionary()
+            parameters.updateValue(Method.search.rawValue, forKey: Method.key)
+            parameters.updateValue(Extras.allAttrs, forKey: Extras.key)
         }
+        parameters.updateValue("json", forKey: "format")
+        parameters.updateValue("?", forKey: "nojsoncallback")
         parameters.updateValue(Enviroment.FLICKR_API_KEY, forKey: "api_key")
         return .requestParameters(parameters: parameters, encoding: parameterEncoding)
     }

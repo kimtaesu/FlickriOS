@@ -1,1 +1,6 @@
 
+colorPrimary: f48fb1
+colorLight: ffc1e3
+colorDark: bf5f82
+
+colorAccent: 3949ab

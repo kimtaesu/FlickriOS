@@ -7,3 +7,4 @@ github "Instagram/IGListKit" ~> 3.0
 github "HeroTransitions/Hero"
 github "Moya/Moya" ~> 11.0.2
 github "RxSwiftCommunity/RxDataSources" ~> 3.0
+github "onevcat/Kingfisher" ~> 5.0

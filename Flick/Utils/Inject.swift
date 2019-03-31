@@ -26,8 +26,8 @@ let rootContainer: Container = {
     
     let container = Container()
     
-    container.register(FlickrRepositoryType.self) { r in
-        FlickrRepository(iroboProvider)
+    container.register(FlickrPhotoRepositoryType.self) { r in
+        FlickrPhotoRepository(iroboProvider)
     }.inObjectScope(.container)
     return container
 }()

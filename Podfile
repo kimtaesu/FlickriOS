@@ -7,6 +7,7 @@ target 'Flick' do
   pod 'SwiftLint', '~> 0.27'
   pod 'Then', '~> 2.4.0'
   pod 'SwiftGen'
+  pod 'SwiftyBeaver'
   # Pods for Flick
 
   def testing_pods

@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct PhotoResponse: Decodable {
+    let photos: PhotoContext
+}
+
 struct PhotoContext: Decodable {
     let page: Int
     let pages: Int
