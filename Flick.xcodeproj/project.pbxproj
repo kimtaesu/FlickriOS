@@ -69,9 +69,9 @@
 		BDBEF9FD2250E05A00829E82 /* SearchInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF9FC2250E05A00829E82 /* SearchInputAccessoryView.swift */; };
 		BDBEF9FF2250E62B00829E82 /* SearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF9FE2250E62B00829E82 /* SearchReactor.swift */; };
 		BDBEFA012250EC9D00829E82 /* RecentThumbnailSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA002250EC9D00829E82 /* RecentThumbnailSectionController.swift */; };
-		BDBEFA062250F06400829E82 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA052250F06400829E82 /* CategoryDataSource.swift */; };
 		BDBEFA0A2250F0F800829E82 /* RxListAdapterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA092250F0F800829E82 /* RxListAdapterDataSource.swift */; };
 		BDBEFA152250FA3F00829E82 /* RecentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA142250FA3F00829E82 /* RecentItem.swift */; };
+		BDF60146225198AE0040D48A /* ListSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF60145225198AE0040D48A /* ListSectionDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,9 +162,9 @@
 		BDBEF9FC2250E05A00829E82 /* SearchInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputAccessoryView.swift; sourceTree = "<group>"; };
 		BDBEF9FE2250E62B00829E82 /* SearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReactor.swift; sourceTree = "<group>"; };
 		BDBEFA002250EC9D00829E82 /* RecentThumbnailSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentThumbnailSectionController.swift; sourceTree = "<group>"; };
-		BDBEFA052250F06400829E82 /* CategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataSource.swift; sourceTree = "<group>"; };
 		BDBEFA092250F0F800829E82 /* RxListAdapterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxListAdapterDataSource.swift; sourceTree = "<group>"; };
 		BDBEFA142250FA3F00829E82 /* RecentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentItem.swift; sourceTree = "<group>"; };
+		BDF60145225198AE0040D48A /* ListSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionDelegate.swift; sourceTree = "<group>"; };
 		D4012C9C4A2515B3963C7316 /* Pods-FlickUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickUITests.release.xcconfig"; path = "Target Support Files/Pods-FlickUITests/Pods-FlickUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F0A73F165E91AF3212FC65A5 /* Pods_Flick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80088DEEEFF629FC2A9531F /* Pods-Flick.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flick.release.xcconfig"; path = "Target Support Files/Pods-Flick/Pods-Flick.release.xcconfig"; sourceTree = "<group>"; };
@@ -351,6 +351,7 @@
 				BDBEF96922506B0F00829E82 /* Logger.swift */,
 				BDBEF975225086E200829E82 /* SwiftNameIdentifier.swift */,
 				BDBEFA092250F0F800829E82 /* RxListAdapterDataSource.swift */,
+				BDF60145225198AE0040D48A /* ListSectionDelegate.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -418,7 +419,6 @@
 			children = (
 				BDBEFA042250EDFC00829E82 /* Recent */,
 				BDBEF9EB2250CA0800829E82 /* CategoryViewController.swift */,
-				BDBEFA052250F06400829E82 /* CategoryDataSource.swift */,
 				BDBEF9F52250CC1C00829E82 /* CategoryReactor.swift */,
 			);
 			path = Category;
@@ -828,6 +828,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDF60146225198AE0040D48A /* ListSectionDelegate.swift in Sources */,
 				BDBEF9722250843800829E82 /* RecentThumbnailCell.swift in Sources */,
 				BDBEF976225086E200829E82 /* SwiftNameIdentifier.swift in Sources */,
 				BDBEF9D222509DAE00829E82 /* HasContentType.swift in Sources */,
@@ -863,7 +864,6 @@
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
 				BDBEF9E42250B0FF00829E82 /* UserDefaults+.swift in Sources */,
 				BDBEF9D922509DAE00829E82 /* Photo.swift in Sources */,
-				BDBEFA062250F06400829E82 /* CategoryDataSource.swift in Sources */,
 				BDBEF9E122509DAE00829E82 /* PhotoResponse.swift in Sources */,
 				BDBEF9F32250CB7400829E82 /* Assets.swift in Sources */,
 				BDBEF91C224EF26500829E82 /* L10n.swift in Sources */,

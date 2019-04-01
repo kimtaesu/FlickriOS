@@ -9,8 +9,10 @@
 import Foundation
 import IGListKit
 import ReactorKit
+import RxCocoa
 import RxDataSources
 import RxOptional
+import RxSwift
 import UIKit
 
 class CategoryViewController: UIViewController {
@@ -22,6 +24,8 @@ class CategoryViewController: UIViewController {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let dataSource = CategoryDataSource()
     
+    private var aaa: ListSectionDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -31,6 +35,9 @@ class CategoryViewController: UIViewController {
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
+        }
+        dataSource.do {
+            $0.setDelegate(self)
         }
         adapter.do {
             $0.rx.setDataSource(dataSource).disposed(by: disposeBag)
@@ -52,9 +59,44 @@ extension CategoryViewController: View, HasDisposeBag {
     }
 }
 
-extension CategoryViewController {
+extension CategoryViewController: ListSectionDelegate {
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         reactor = CategoryReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!)
+    }
+    func didSelectItem<T>(at index: Int, item: T) {
+    }
+}
+
+final class CategoryDataSource: NSObject, ListAdapterDataSource, RxListAdapterDataSource {
+    typealias Element = [RecentItem]
+    
+    var elements: Element = []
+    weak var delegate: ListSectionDelegate?
+    
+    func setDelegate(_ delegate: ListSectionDelegate) {
+        self.delegate = delegate
+    }
+    func listAdapter(_ adapter: ListAdapter, observedEvent: Event<[RecentItem]>) {
+        if case .next(let items) = observedEvent {
+            elements = items
+            adapter.performUpdates(animated: true)
+        }
+    }
+    
+    func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
+        return elements
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
+        return RecentThumbnailSectionController().then {
+            if let delegate = self.delegate {
+                $0.setDelegate(delegate)
+            }
+        }
+    }
+    
+    func emptyView(for listAdapter: ListAdapter) -> UIView? {
+        return nil
     }
 }
