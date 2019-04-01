@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Hero
 import IGListKit
 import ReactorKit
 import RxCocoa
@@ -20,17 +21,18 @@ class CategoryViewController: UIViewController {
     lazy private var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 4)
     }()
-    
+
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let dataSource = CategoryDataSource()
-    
-    private var aaa: ListSectionDelegate?
-    
+
+    private let favoriteView = UIView()
+    // TODO Favorite
+    // TODO Gallary
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         collectionView.do {
-            $0.register(RecentThumbnailCell.self, forCellWithReuseIdentifier: RecentThumbnailCell.swiftIdentifier)
+            $0.backgroundColor = .white
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
@@ -48,12 +50,11 @@ class CategoryViewController: UIViewController {
 
 extension CategoryViewController: View, HasDisposeBag {
     func bind(reactor: CategoryReactor) {
-        reactor.action.onNext(.fetchData)
+        reactor.action.onNext(.fetchRecent)
+        reactor.action.onNext(.fetchInteresting)
 
         reactor.state.map { $0.items }
-            .filterNil()
             .filterEmpty()
-            .distinctUntilChanged()
             .bind(to: adapter.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
@@ -64,30 +65,47 @@ extension CategoryViewController: ListSectionDelegate {
         self.init(nibName: nil, bundle: nil)
         reactor = CategoryReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!)
     }
-    func didSelectItem<T>(at index: Int, item: T) {
+
+    func didSelectItem(at index: Int, item: Any, cell: UICollectionViewCell) {
+        logger.info("didSelectItem: \(item)")
+        guard let photo = item as? Photo else { return }
+
+        if let cell = cell as? RecentThumbnailCell {
+            cell.do {
+                $0.thumbnailView.hero.isEnabled = true
+            }
+            let photoVC = PhotoDetailViewController(photo).then {
+                $0.hero.isEnabled = true
+                $0.originalImageView.hero.id = "image_\(index)"
+            }
+            let vc = UINavigationController(rootViewController: photoVC).then {
+                $0.hero.isEnabled = true
+            }
+            self.present(vc, animated: true)
+        }
     }
 }
 
 final class CategoryDataSource: NSObject, ListAdapterDataSource, RxListAdapterDataSource {
-    typealias Element = [RecentItem]
-    
+    typealias Element = [ListDiffable]
+
     var elements: Element = []
     weak var delegate: ListSectionDelegate?
-    
+
     func setDelegate(_ delegate: ListSectionDelegate) {
         self.delegate = delegate
     }
-    func listAdapter(_ adapter: ListAdapter, observedEvent: Event<[RecentItem]>) {
+    func listAdapter(_ adapter: ListAdapter, observedEvent: Event<[ListDiffable]>) {
         if case .next(let items) = observedEvent {
             elements = items
             adapter.performUpdates(animated: true)
         }
     }
-    
+
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return elements
     }
-    
+
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         return RecentThumbnailSectionController().then {
             if let delegate = self.delegate {
@@ -95,7 +113,7 @@ final class CategoryDataSource: NSObject, ListAdapterDataSource, RxListAdapterDa
             }
         }
     }
-    
+
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }

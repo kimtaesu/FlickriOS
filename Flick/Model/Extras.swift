@@ -9,6 +9,8 @@
 import Foundation
 
 enum Extras: String, CaseIterable {
+    case description
+    case license 
     case date_upload
     case date_taken
     case owner_name

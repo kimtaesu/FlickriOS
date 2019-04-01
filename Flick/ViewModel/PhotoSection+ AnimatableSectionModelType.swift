@@ -7,14 +7,14 @@
 //
 import RxDataSources
 
-extension ThumbnailSection: AnimatableSectionModelType {
-    typealias Item = Thumbnail
+extension PhotoSection: AnimatableSectionModelType {
+    typealias Item = Photo
     
     var identity: String {
         return header
     }
     
-    init(original: ThumbnailSection, items: [Item]) {
+    init(original: PhotoSection, items: [Item]) {
         self = original
         self.items = items
     }

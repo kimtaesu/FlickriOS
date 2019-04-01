@@ -8,8 +8,8 @@
 
 import ReactorKit
 import RxDataSources
-import UIKit
 import RxSwift
+import UIKit
 
 class SearchViewController: UIViewController {
 
@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
         return collectionView
     }()
 
-    private let dataSources = RxCollectionViewSectionedAnimatedDataSource<ThumbnailSection>(
+    private let dataSources = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
         configureCell: { ds, tv, ip, item in
             guard let cell = tv.dequeueReusableCell(withReuseIdentifier: RecentThumbnailCell.swiftIdentifier, for: ip) as? RecentThumbnailCell else { return UICollectionViewCell() }
             cell.configCell(item)

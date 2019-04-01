@@ -12,7 +12,9 @@ import Moya
 enum FlickrApi {
     case search(FkrSearchRequest)
     case recent(FkrRecentRequest)
+    case interestings(FkrRecentRequest)
     case getComments(FkrCommentRequest)
+
 }
 
 // swiftlint:disable force_try
@@ -45,6 +47,10 @@ extension FlickrApi: TargetType {
         case .getComments(let req):
             parameters = try! req.tryAsDictionary()
             parameters.updateValue(Method.recent.rawValue, forKey: Method.key)
+        case .interestings(let req):
+            parameters = try! req.tryAsDictionary()
+            parameters.updateValue(Method.interesting.rawValue, forKey: Method.key)
+            parameters.updateValue(Extras.allAttrs, forKey: Extras.key)
         case .recent(let req):
             parameters = try! req.tryAsDictionary()
             parameters.updateValue(Method.recent.rawValue, forKey: Method.key)

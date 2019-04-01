@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import IGListKit
 
 protocol ListSectionDelegate: class {
-    func didSelectItem<T>(at index: Int, item: T)
+    func didSelectItem(at index: Int, item: Any, cell: UICollectionViewCell)
 }

@@ -32,7 +32,7 @@ class SearchReactor: Reactor {
         
         var showKeyboard: Bool?
         var initLoading: Bool?
-        var thumbnails: [ThumbnailSection]?
+        var thumbnails: [PhotoSection]?
         var error: Error?
     }
     
@@ -65,8 +65,8 @@ class SearchReactor: Reactor {
         case .setText(let text):
             newState.text = text
         case .setSearchResults(let result):
-            if let thumbnails = result.data?.mapThumbnail(width: 400) {
-                newState.thumbnails = [ThumbnailSection(header: "Thumbnails", items: thumbnails)]
+            if let photos = result.data?.photos.photo {
+                newState.thumbnails = [PhotoSection(header: "Thumbnails", items: photos)]
             }
             newState.error = result.error
             newState.showKeyboard = false

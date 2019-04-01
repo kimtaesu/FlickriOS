@@ -8,8 +8,10 @@
 
 import Foundation
 
-struct Photo: Decodable {
+struct Photo: Decodable, Equatable, Thumbnailable {
     let id: String
+    let description: [String: String]
+    let license: String
     let owner: String
     let secret: String
     let title: String
@@ -38,6 +40,8 @@ extension Photo {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try values.decode(String.self, forKey: .id)
+        description = try values.decode([String: String].self, forKey: .description)
+        license = try values.decode(String.self, forKey: .license)
         owner = try values.decode(String.self, forKey: .owner)
         secret = try values.decode(String.self, forKey: .secret)
         title = try values.decode(String.self, forKey: .title)
@@ -121,12 +125,13 @@ extension Photo {
 }
 
 extension Photo {
+
     func findResolutionByWidth(width: Int) -> ImageSource? {
         return imageSources.min { image1, image2 in
             let distance1 = abs(width - image1.width)
             let distance2 = abs(width - image2.width)
 
             return distance1 < distance2
-            }
+        }
     }
 }

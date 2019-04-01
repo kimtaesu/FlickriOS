@@ -6,52 +6,87 @@
 //  Copyright © 2019 hucet. All rights reserved.
 //
 
+import IGListKit
 import ReactorKit
 import RxSwift
-import IGListKit
 
 class CategoryReactor: Reactor {
-    
-    let initialState = State()
-    
+
+    let initialState = State(items: [
+        InterestingSection(header: "Interestings", items: LoadingThumbnailViewModel.generateThumbnails(5)),
+        RecentSection(header: "Recent", items: LoadingThumbnailViewModel.generateThumbnails(5))
+        ])
+
     private let repository: FlickrPhotoRepositoryType
-    
+
     init(_ repository: FlickrPhotoRepositoryType) {
         self.repository = repository
     }
     enum Action {
-        case fetchData
+        case fetchRecent
+        case fetchInteresting
     }
-    
+
     struct State {
+        var items: [ListDiffable]
+
+        public init(items: [ListDiffable]) {
+            self.items = items
+        }
+
         var initLoading: Bool?
-        var items: [RecentItem]?
-        var error: Error?
+
+        var recentError: Error?
+        var interestingError: Error?
     }
-    
+
     enum Mutation {
         case setInitLoading(Bool)
-        case setRecentResults(Resources<PhotoResponse>)
+        case setResults(String, Resources<PhotoResponse>)
     }
-    
+
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .fetchData:
+        case .fetchInteresting:
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
-                self.repository.recent().asObservable().map { Mutation.setRecentResults($0) },
+                self.repository.interestings().asObservable().map { Mutation.setResults("Interestings", $0) },
+                Observable.just(Mutation.setInitLoading(false))
+                ])
+        case .fetchRecent:
+            return Observable.concat([
+                Observable.just(Mutation.setInitLoading(true)),
+                self.repository.recent().asObservable().map { Mutation.setResults("Recent", $0) },
                 Observable.just(Mutation.setInitLoading(false))
                 ])
         }
     }
     func reduce(state: State, mutation: Mutation) -> State {
-        var newState = state
+        var newState = State(items: state.items)
         switch mutation {
-        case .setRecentResults(let result):
-            if let thumbnails = result.data?.mapThumbnail(width: 400) {
-                newState.items = [RecentItem(items: thumbnails)]
+        case let .setResults(header, result):
+            switch header {
+            case "Interestings":
+                let interestingSection = newState.items.first { section in
+                    section is InterestingSection
+                }
+                if let interestingSection = interestingSection as? InterestingSection,
+                    let data = result.data?.photos.photo {
+                    interestingSection.items = data
+                }
+                newState.interestingError = result.error
+            case "Recent":
+                let interestingSection = newState.items.first { section in
+                    section is RecentSection
+                }
+                if let interestingSection = interestingSection as? InterestingSection,
+                    let data = result.data?.photos.photo {
+                    interestingSection.items = data
+                }
+                newState.recentError = result.error
+            default:
+                break
             }
-            newState.error = result.error
         case .setInitLoading(let loading):
             newState.initLoading = loading
         }

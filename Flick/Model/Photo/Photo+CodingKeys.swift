@@ -13,6 +13,8 @@ extension Photo {
         typealias RawValue = String
         case id
         case owner
+        case description
+        case license 
         case secret
         case title
         case ispublic

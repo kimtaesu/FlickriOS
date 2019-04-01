@@ -12,7 +12,7 @@ import UIKit
 
 class RecentThumbnailCell: UICollectionViewCell, SwiftNameIdentifier {
 
-    private let thumbnailView = UIImageView()
+    let thumbnailView = UIImageView()
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -34,18 +34,20 @@ class RecentThumbnailCell: UICollectionViewCell, SwiftNameIdentifier {
 }
 
 extension RecentThumbnailCell {
-    func configCell(_ thumbnail: Thumbnail) {
-        thumbnailView.kf.setImage(
-            with: URL(string: thumbnail.thumbnail.imageUrl),
-            placeholder: nil,
-            options: [.transition(.fade(1))],
-            progressBlock: { receivedSize, totalSize in
-                logger.info("progressBlock: \(thumbnail)")
-            },
-            completionHandler: { result in
-                logger.info(result)
-                logger.info("completionHandler: \(thumbnail): Finished")
-            }
-        )
+    func configCell(_ photo: Photo) {
+        if let thumbnail = photo.findResolutionByWidth(width: 400) {
+            thumbnailView.kf.setImage(
+                with: URL(string: thumbnail.imageUrl),
+                placeholder: nil,
+                options: [],
+                progressBlock: { receivedSize, totalSize in
+                    logger.info("progressBlock: \(photo)")
+                },
+                completionHandler: { result in
+                    logger.info(result)
+                    logger.info("completionHandler: \(thumbnail): Finished")
+                }
+            )
+        }
     }
 }

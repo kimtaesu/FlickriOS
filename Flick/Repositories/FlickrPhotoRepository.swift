@@ -15,25 +15,31 @@ import RxSwift
 protocol FlickrPhotoRepositoryType {
     func search(_ keyword: String, page: Int) -> Single<Resources<PhotoResponse>>
     func recent() -> Single<Resources<PhotoResponse>>
-    func getComments(photoId: String) -> Single<Resources<PhotoResponse>>
+    func interestings() -> Single<Resources<PhotoResponse>>
+    func getComments(photoId: String) -> Single<Resources<CommentResponse>>
+    
 }
 
 class FlickrPhotoRepository: FlickrPhotoRepositoryType {
+    
     private let provider: MoyaProvider<FlickrApi>
 
     init(_ provider: MoyaProvider<FlickrApi>) {
         self.provider = provider
     }
 
+    func interestings() -> Single<Resources<PhotoResponse>> {
+        return self.provider.rx.request(.interestings(FkrRecentRequest(page: 1))).network()
+    }
+    func recent() -> Single<Resources<PhotoResponse>> {
+        return self.provider.rx.request(.recent(FkrRecentRequest(page: 1))).network()
+    }
     func search(_ keyword: String, page: Int) -> Single<Resources<PhotoResponse>> {
         return self.provider.rx.request(.search(FkrSearchRequest(text: keyword, page: page))).network()
     }
     
-    func getComments(photoId: String) -> Single<Resources<PhotoResponse>> {
+    func getComments(photoId: String) -> Single<Resources<CommentResponse>> {
         return self.provider.rx.request(.getComments(FkrCommentRequest(photo_id: photoId))).network()
-    }
-    func recent() -> Single<Resources<PhotoResponse>> {
-        return self.provider.rx.request(.recent(FkrRecentRequest(page: 1))).network()
     }
 }
 
