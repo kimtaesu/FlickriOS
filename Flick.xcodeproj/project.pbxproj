@@ -69,7 +69,7 @@
 		BDBEF9FD2250E05A00829E82 /* SearchInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF9FC2250E05A00829E82 /* SearchInputAccessoryView.swift */; };
 		BDBEF9FF2250E62B00829E82 /* SearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF9FE2250E62B00829E82 /* SearchReactor.swift */; };
 		BDBEFA012250EC9D00829E82 /* RecentThumbnailSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA002250EC9D00829E82 /* RecentThumbnailSectionController.swift */; };
-		BDBEFA062250F06400829E82 /* CategoryViewController+ListAdapterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA052250F06400829E82 /* CategoryViewController+ListAdapterDataSource.swift */; };
+		BDBEFA062250F06400829E82 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA052250F06400829E82 /* CategoryDataSource.swift */; };
 		BDBEFA0A2250F0F800829E82 /* RxListAdapterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA092250F0F800829E82 /* RxListAdapterDataSource.swift */; };
 		BDBEFA152250FA3F00829E82 /* RecentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEFA142250FA3F00829E82 /* RecentItem.swift */; };
 /* End PBXBuildFile section */
@@ -162,7 +162,7 @@
 		BDBEF9FC2250E05A00829E82 /* SearchInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputAccessoryView.swift; sourceTree = "<group>"; };
 		BDBEF9FE2250E62B00829E82 /* SearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReactor.swift; sourceTree = "<group>"; };
 		BDBEFA002250EC9D00829E82 /* RecentThumbnailSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentThumbnailSectionController.swift; sourceTree = "<group>"; };
-		BDBEFA052250F06400829E82 /* CategoryViewController+ListAdapterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+ListAdapterDataSource.swift"; sourceTree = "<group>"; };
+		BDBEFA052250F06400829E82 /* CategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataSource.swift; sourceTree = "<group>"; };
 		BDBEFA092250F0F800829E82 /* RxListAdapterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxListAdapterDataSource.swift; sourceTree = "<group>"; };
 		BDBEFA142250FA3F00829E82 /* RecentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentItem.swift; sourceTree = "<group>"; };
 		D4012C9C4A2515B3963C7316 /* Pods-FlickUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickUITests.release.xcconfig"; path = "Target Support Files/Pods-FlickUITests/Pods-FlickUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -418,7 +418,7 @@
 			children = (
 				BDBEFA042250EDFC00829E82 /* Recent */,
 				BDBEF9EB2250CA0800829E82 /* CategoryViewController.swift */,
-				BDBEFA052250F06400829E82 /* CategoryViewController+ListAdapterDataSource.swift */,
+				BDBEFA052250F06400829E82 /* CategoryDataSource.swift */,
 				BDBEF9F52250CC1C00829E82 /* CategoryReactor.swift */,
 			);
 			path = Category;
@@ -863,7 +863,7 @@
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
 				BDBEF9E42250B0FF00829E82 /* UserDefaults+.swift in Sources */,
 				BDBEF9D922509DAE00829E82 /* Photo.swift in Sources */,
-				BDBEFA062250F06400829E82 /* CategoryViewController+ListAdapterDataSource.swift in Sources */,
+				BDBEFA062250F06400829E82 /* CategoryDataSource.swift in Sources */,
 				BDBEF9E122509DAE00829E82 /* PhotoResponse.swift in Sources */,
 				BDBEF9F32250CB7400829E82 /* Assets.swift in Sources */,
 				BDBEF91C224EF26500829E82 /* L10n.swift in Sources */,

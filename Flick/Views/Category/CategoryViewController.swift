@@ -15,13 +15,13 @@ import UIKit
 
 class CategoryViewController: UIViewController {
 
-    lazy var adapter: ListAdapter = {
-        return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
+    lazy private var adapter: ListAdapter = {
+        return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 4)
     }()
+    
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-
-    var data: [ListDiffable] = []
-
+    private let dataSource = CategoryDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -33,8 +33,8 @@ class CategoryViewController: UIViewController {
             })
         }
         adapter.do {
+            $0.rx.setDataSource(dataSource).disposed(by: disposeBag)
             $0.collectionView = collectionView
-            $0.dataSource = self
         }
     }
 }
@@ -44,14 +44,10 @@ extension CategoryViewController: View, HasDisposeBag {
         reactor.action.onNext(.fetchData)
 
         reactor.state.map { $0.items }
-            .asDriver(onErrorJustReturn: nil)
             .filterNil()
             .filterEmpty()
             .distinctUntilChanged()
-            .drive(onNext: { items in
-                self.data = items
-                self.adapter.performUpdates(animated: true)
-            })
+            .bind(to: adapter.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
 }
