@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
 
     private let dataSources = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
         configureCell: { ds, tv, ip, item in
-            guard let cell = tv.dequeueReusableCell(withReuseIdentifier: RecentThumbnailCell.swiftIdentifier, for: ip) as? RecentThumbnailCell else { return UICollectionViewCell() }
+            guard let cell = tv.dequeueReusableCell(withReuseIdentifier: CategoryThumbnailCell.swiftIdentifier, for: ip) as? CategoryThumbnailCell else { return UICollectionViewCell() }
             cell.configCell(item)
             return cell
         }
@@ -46,7 +46,7 @@ class SearchViewController: UIViewController {
         }
         collectionView.do {
             $0.backgroundColor = UIColor.white
-            $0.register(RecentThumbnailCell.self, forCellWithReuseIdentifier: RecentThumbnailCell.swiftIdentifier)
+            $0.register(CategoryThumbnailCell.self, forCellWithReuseIdentifier: CategoryThumbnailCell.swiftIdentifier)
             $0.dataSource = dataSources
             view.addSubview($0)
             $0.snp.makeConstraints({ make in

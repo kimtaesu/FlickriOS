@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Photo: Decodable, Equatable, Thumbnailable {
+struct Photo: Decodable, Equatable, ViewModelProtocol {
     let id: String
     let description: [String: String]
     let license: String

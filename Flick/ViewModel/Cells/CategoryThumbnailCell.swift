@@ -10,7 +10,7 @@ import Kingfisher
 import SnapKit
 import UIKit
 
-class RecentThumbnailCell: UICollectionViewCell, SwiftNameIdentifier {
+class CategoryThumbnailCell: UICollectionViewCell, SwiftNameIdentifier {
 
     let thumbnailView = UIImageView()
 
@@ -33,7 +33,7 @@ class RecentThumbnailCell: UICollectionViewCell, SwiftNameIdentifier {
     }
 }
 
-extension RecentThumbnailCell {
+extension CategoryThumbnailCell {
     func configCell(_ photo: Photo) {
         if let thumbnail = photo.findResolutionByWidth(width: 400) {
             thumbnailView.kf.setImage(

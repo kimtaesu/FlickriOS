@@ -34,6 +34,7 @@ class CategoryViewController: UIViewController {
         collectionView.do {
             $0.backgroundColor = .white
             view.addSubview($0)
+            $0.register(CategoryHeaderCell.self, forCellWithReuseIdentifier: CategoryHeaderCell.swiftIdentifier)
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
@@ -70,7 +71,7 @@ extension CategoryViewController: ListSectionDelegate {
         logger.info("didSelectItem: \(item)")
         guard let photo = item as? Photo else { return }
 
-        if let cell = cell as? RecentThumbnailCell {
+        if let cell = cell as? CategoryThumbnailCell {
             cell.do {
                 $0.thumbnailView.hero.isEnabled = true
             }
@@ -107,10 +108,15 @@ final class CategoryDataSource: NSObject, ListAdapterDataSource, RxListAdapterDa
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return RecentThumbnailSectionController().then {
-            if let delegate = self.delegate {
-                $0.setDelegate(delegate)
+        switch object {
+        case is CategoryPhotoSection:
+            return CategoryPhotoSectionController().then {
+                if let delegate = self.delegate {
+                    $0.setDelegate(delegate)
+                }
             }
+        default:
+            return ListSectionController()
         }
     }
 

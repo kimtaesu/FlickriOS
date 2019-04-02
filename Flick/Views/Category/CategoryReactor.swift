@@ -13,8 +13,8 @@ import RxSwift
 class CategoryReactor: Reactor {
 
     let initialState = State(items: [
-        InterestingSection(header: "Interestings", items: LoadingThumbnailViewModel.generateThumbnails(5)),
-        RecentSection(header: "Recent", items: LoadingThumbnailViewModel.generateThumbnails(5))
+        CategoryPhotoSection(header: "Interestings", items: LoadingViewModel.generateThumbnails(5)),
+        CategoryPhotoSection(header: "Recents", items: LoadingViewModel.generateThumbnails(5))
         ])
 
     private let repository: FlickrPhotoRepositoryType
@@ -42,7 +42,7 @@ class CategoryReactor: Reactor {
 
     enum Mutation {
         case setInitLoading(Bool)
-        case setResults(String, Resources<PhotoResponse>)
+        case setResults([ListDiffable])
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
@@ -50,43 +50,18 @@ class CategoryReactor: Reactor {
         case .fetchInteresting:
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
-                self.repository.interestings().asObservable().map { Mutation.setResults("Interestings", $0) },
+                self.repository.categories().asObservable().map { Mutation.setResults($0) },
                 Observable.just(Mutation.setInitLoading(false))
                 ])
         case .fetchRecent:
-            return Observable.concat([
-                Observable.just(Mutation.setInitLoading(true)),
-                self.repository.recent().asObservable().map { Mutation.setResults("Recent", $0) },
-                Observable.just(Mutation.setInitLoading(false))
-                ])
+            return .empty()
         }
     }
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = State(items: state.items)
         switch mutation {
-        case let .setResults(header, result):
-            switch header {
-            case "Interestings":
-                let interestingSection = newState.items.first { section in
-                    section is InterestingSection
-                }
-                if let interestingSection = interestingSection as? InterestingSection,
-                    let data = result.data?.photos.photo {
-                    interestingSection.items = data
-                }
-                newState.interestingError = result.error
-            case "Recent":
-                let interestingSection = newState.items.first { section in
-                    section is RecentSection
-                }
-                if let interestingSection = interestingSection as? InterestingSection,
-                    let data = result.data?.photos.photo {
-                    interestingSection.items = data
-                }
-                newState.recentError = result.error
-            default:
-                break
-            }
+        case let .setResults(results):
+            newState.items = results
         case .setInitLoading(let loading):
             newState.initLoading = loading
         }

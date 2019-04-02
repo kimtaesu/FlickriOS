@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UserDefaults.standard.userDefaultRegister()
         window = UIWindow().then {
             $0.rootViewController = UINavigationController(rootViewController: HomeViewContoller())
             $0.backgroundColor = UIColor.white

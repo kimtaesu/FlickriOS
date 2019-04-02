@@ -9,11 +9,9 @@
 import Foundation
 import IGListKit
 
-protocol Thumbnailable { }
+class LoadingViewModel: NSObject, ViewModelProtocol { }
 
-class LoadingThumbnailViewModel: NSObject, Thumbnailable { }
-
-extension LoadingThumbnailViewModel: ListDiffable {
+extension LoadingViewModel: ListDiffable {
     func diffIdentifier() -> NSObjectProtocol {
         return self
     }
@@ -23,10 +21,12 @@ extension LoadingThumbnailViewModel: ListDiffable {
     }
 }
 
-extension LoadingThumbnailViewModel {
-    class func generateThumbnails(_ count: Int) -> [LoadingThumbnailViewModel] {
-        return [0..<count].enumerated().map { i, c in
-            LoadingThumbnailViewModel()
+extension LoadingViewModel {
+    class func generateThumbnails(_ count: Int) -> [LoadingViewModel] {
+        var items: [LoadingViewModel] = []
+        for _ in 0..<count {
+            items.append(LoadingViewModel())
         }
+        return items
     }
 }
