@@ -13,8 +13,8 @@ import RxSwift
 class CategoryReactor: Reactor {
 
     let initialState = State(items: [
-        CategoryPhotoSection(header: "Interestings", items: LoadingViewModel.generateThumbnails(5)),
-        CategoryPhotoSection(header: "Recents", items: LoadingViewModel.generateThumbnails(5))
+        CategoryPhotoSection(header: L10n.interestingSectionHeader, items: LoadingViewModel.generateThumbnails(5)),
+        CategoryPhotoSection(header: L10n.recentSectionHeader, items: LoadingViewModel.generateThumbnails(5))
         ])
 
     private let repository: FlickrPhotoRepositoryType

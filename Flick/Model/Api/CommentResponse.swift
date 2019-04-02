@@ -14,7 +14,7 @@ struct CommentResponse: Decodable {
 
 struct CommentContext: Decodable {
     let photoId: String
-    let comment: [Comment]
+    let comment: [Comment]?
 }
 extension CommentContext {
     enum CodingKeys: String, CodingKey {

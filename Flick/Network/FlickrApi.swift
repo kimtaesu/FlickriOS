@@ -46,7 +46,7 @@ extension FlickrApi: TargetType {
         switch self {
         case .getComments(let req):
             parameters = try! req.tryAsDictionary()
-            parameters.updateValue(Method.recent.rawValue, forKey: Method.key)
+            parameters.updateValue(Method.comment.rawValue, forKey: Method.key)
         case .interestings(let req):
             parameters = try! req.tryAsDictionary()
             parameters.updateValue(Method.interesting.rawValue, forKey: Method.key)

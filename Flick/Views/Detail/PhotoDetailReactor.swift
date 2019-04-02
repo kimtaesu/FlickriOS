@@ -72,8 +72,8 @@ class PhotoDetailReactor: Reactor {
         case .setCommentResults(let result):
             newState.comments = result.data?.comments.comment
             newState.commentError = result.error
-        case .setImageUrl(let image):
-            newState.detailImage = image
+        case .setImageUrl(let url):
+            newState.detailImage = url
         case .setInitView:
             newState.title = photo.title
             newState.desc = photo.description.first?.value

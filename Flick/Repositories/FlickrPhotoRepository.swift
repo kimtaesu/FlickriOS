@@ -33,14 +33,14 @@ class FlickrPhotoRepository: FlickrPhotoRepositoryType {
             var sections: [ListDiffable] = []
             
             let count: Int = UserDefaults.standard.value(forKey: UserDefaultKeys.categoryCount)
-            let interestingTitle = "Interesings"
+            let interestingTitle = L10n.interestingSectionHeader
             interesting.unwrap(do: { response in
                 sections.append(CategoryPhotoSection(header: interestingTitle, items: Array(response.photos.photo.prefix(count))))
             }, error: { error in
                 sections.append(CategoryPhotoSection(header: interestingTitle, items: [RetryViewModel()]))
             })
             
-            let recentTitle = "Recents"
+            let recentTitle = L10n.recentSectionHeader
             recent.unwrap(do: { response in
                 sections.append(CategoryPhotoSection(header: recentTitle, items: Array(response.photos.photo.prefix(count))))
             }, error: { error in
