@@ -31,7 +31,7 @@ class FlickrPhotoRepository: FlickrPhotoRepositoryType {
     func categories() -> Single<[ListDiffable]> {
         return Single.zip(interestings(), recent()) { interesting, recent in
             var sections: [ListDiffable] = []
-            
+
             let count: Int = UserDefaults.standard.value(forKey: UserDefaultKeys.categoryCount)
             let interestingTitle = L10n.interestingSectionHeader
             interesting.unwrap(do: { response in
@@ -39,7 +39,7 @@ class FlickrPhotoRepository: FlickrPhotoRepositoryType {
             }, error: { error in
                 sections.append(CategoryPhotoSection(header: interestingTitle, items: [RetryViewModel()]))
             })
-            
+
             let recentTitle = L10n.recentSectionHeader
             recent.unwrap(do: { response in
                 sections.append(CategoryPhotoSection(header: recentTitle, items: Array(response.photos.photo.prefix(count))))

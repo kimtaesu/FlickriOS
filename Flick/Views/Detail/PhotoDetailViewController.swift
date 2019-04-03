@@ -29,7 +29,7 @@ class PhotoDetailViewController: UIViewController {
     }
     private func initViews() {
         let preferSize = CGSize(width: view.frame.width, height: view.frame.height * 0.4)
-
+        reactor?.action.onNext(.setLoadImageView(preferSize))
         reactor?.action.onNext(.loadComment)
         originalImageView.do {
             view.addSubview($0)
@@ -68,9 +68,9 @@ extension PhotoDetailViewController: View, HasDisposeBag {
             .bind(to: descView.rx.text)
             .disposed(by: disposeBag)
 
-        reactor.state.map { $0.detailImage }
-            .bind(to: originalImageView.kf.rx.image(options: [.transition(.fade(0.2))]))
-            .disposed(by: disposeBag)
+//        reactor.state.map { $0.detailImage }
+//            .bind(to: originalImageView.kf.rx.image(options: [.transition(.fade(0.2))]))
+//            .disposed(by: disposeBag)
     }
 }
 

@@ -70,7 +70,7 @@ extension CategoryViewController: ListSectionDelegate {
     func didSelectItem(at index: Int, item: Any, cell: UICollectionViewCell) {
         logger.info("didSelectItem: \(item)")
         guard let photo = item as? Photo else { return }
-
+        
         if let cell = cell as? CategoryThumbnailCell {
             cell.do {
                 $0.thumbnailView.hero.isEnabled = true

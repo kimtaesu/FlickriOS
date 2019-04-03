@@ -29,11 +29,12 @@ class CategoryReactor: Reactor {
 
     struct State {
         var items: [ListDiffable]
-
+        
         public init(items: [ListDiffable]) {
             self.items = items
         }
-
+        var photos: [Photo]?
+        
         var initLoading: Bool?
 
         var recentError: Error?
@@ -42,6 +43,7 @@ class CategoryReactor: Reactor {
 
     enum Mutation {
         case setInitLoading(Bool)
+        case setPhotoResult(Resources<PhotoResponse>)
         case setResults([ListDiffable])
     }
 
@@ -50,7 +52,7 @@ class CategoryReactor: Reactor {
         case .fetchInteresting:
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
-                self.repository.categories().asObservable().map { Mutation.setResults($0) },
+                self.repository.interestings().asObservable().map { Mutation.setPhotoResult($0) },
                 Observable.just(Mutation.setInitLoading(false))
                 ])
         case .fetchRecent:
@@ -64,6 +66,8 @@ class CategoryReactor: Reactor {
             newState.items = results
         case .setInitLoading(let loading):
             newState.initLoading = loading
+        case .setPhotoResult(let reponse):
+            newState.photos = reponse.data?.photos.photo
         }
         return newState
     }
