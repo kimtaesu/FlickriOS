@@ -7,3 +7,5 @@
 */
 "interesting_section_header" = "Interestings";
 "recent_section_header" = "Recents";
+"hero_image_id" = "image_%d_%d";
+"license_count" = "License: %@";

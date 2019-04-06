@@ -35,7 +35,7 @@ class CategoryThumbnailCell: UICollectionViewCell, SwiftNameIdentifier {
 
 extension CategoryThumbnailCell {
     func configCell(_ photo: Photo) {
-        if let thumbnail = photo.findResolutionByWidth(width: 400) {
+        if let thumbnail = photo.nearHeightByWidth(width: 400) {
             thumbnailView.kf.setImage(
                 with: URL(string: thumbnail.imageUrl),
                 placeholder: nil,

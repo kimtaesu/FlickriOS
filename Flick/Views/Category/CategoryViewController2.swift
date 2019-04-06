@@ -10,16 +10,6 @@ import PinterestLayout
 import ReactorKit
 import UIKit
 
-public struct PinterestItem {
-    public var image: UIImage
-    public var text: String
-
-    public init(image: UIImage, text: String) {
-        self.image = image
-        self.text = text
-    }
-}
-
 class CategoryViewController2: UIViewController {
 
     lazy var collectionView: UICollectionView = {
@@ -30,38 +20,23 @@ class CategoryViewController2: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: pinterestLayout)
     }()
 
-    private var _items: [Photo]?
-    open var items: [Photo] {
-        get {
-            return _items ?? [Photo]()
-        }
-        set {
-            _items = newValue
-        }
-    }
+    private var items: [Photo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view = collectionView
-        setupCollectionViewInsets()
-        setupLayout()
-        collectionView.dataSource = self
-        collectionView.register(
-            PinterestCell.self, forCellWithReuseIdentifier: "PinterestLayout.PinterestCell")
-    }
-
-    private func setupCollectionViewInsets() {
-        collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(
-            top: 15,
-            left: 5,
-            bottom: 5,
-            right: 5
-        )
-    }
-
-    private func setupLayout() {
-
+        collectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(PinterestCell.self, forCellWithReuseIdentifier: PinterestCell.swiftIdentifier)
+            $0.backgroundColor = .clear
+            $0.contentInset = UIEdgeInsets(
+                top: 3,
+                left: 3,
+                bottom: 3,
+                right: 3
+            )
+        }
     }
 }
 
@@ -73,7 +48,8 @@ extension CategoryViewController2: View, HasDisposeBag {
         reactor.state.map { $0.photos }
             .asDriver(onErrorJustReturn: [])
             .filterNil()
-            .drive(onNext: { photos in
+            .drive(onNext: { [weak self] photos in
+                guard let self = self else { return }
                 self.items = photos
                 self.collectionView.reloadData()
             })
@@ -81,21 +57,67 @@ extension CategoryViewController2: View, HasDisposeBag {
     }
 }
 
-extension CategoryViewController2: PinterestLayoutDelegate, UICollectionViewDataSource {
+extension CategoryViewController2: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? PinterestCell else {
+            return
+        }
+        cell.imageView.kf.cancelDownloadTask()
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photo = items[indexPath.row]
+        let photoVC = PhotoDetailViewController(photo).then {
+            $0.imageView.hero.isEnabled = true
+            $0.imageView.hero.id = L10n.heroImageId(indexPath.section, indexPath.row)
+        }
+        let vc = UINavigationController(rootViewController: photoVC).then {
+            $0.hero.isEnabled = true
+        }
+        self.present(vc, animated: true)
+    }
+}
+extension CategoryViewController2: UICollectionViewDataSource {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: PinterestCell.swiftIdentifier,
+            for: indexPath) as? PinterestCell else {
+            return UICollectionViewCell()
+        }
+
+        let item = items[indexPath.item]
+
+        let url = URL(string: item.nearHeightByWidth(width: 400)?.imageUrl ?? "")
+        cell.imageView.do {
+            
+            $0.hero.id = L10n.heroImageId(indexPath.section, indexPath.row)
+            $0.hero.modifiers = [.fade, .scale(0.8)]
+            $0.kf.setImage(
+                with: url,
+                placeholder: nil,
+                options: [],
+                progressBlock: { receivedSize, totalSize in
+                },
+                completionHandler: { result in
+                }
+            )
+        }
+        return cell
+    }
+}
+extension CategoryViewController2: PinterestLayoutDelegate {
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         reactor = CategoryReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!)
-    }
-
-    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
     }
 
     public func collectionView(
         collectionView: UICollectionView,
         heightForImageAtIndexPath indexPath: IndexPath,
         withWidth: CGFloat) -> CGFloat {
-        let height = items[indexPath.item].findResolutionByWidth(width: Int(withWidth))?.height ?? 0
+        let height = items[indexPath.item].nearHeightByWidth(width: Int(withWidth))?.height ?? 0
         return CGFloat(height)
     }
 
@@ -104,27 +126,5 @@ extension CategoryViewController2: PinterestLayoutDelegate, UICollectionViewData
         heightForAnnotationAtIndexPath indexPath: IndexPath,
         withWidth: CGFloat) -> CGFloat {
         return 0
-    }
-
-    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "PinterestLayout.PinterestCell",
-            for: indexPath) as? PinterestCell else {
-            return UICollectionViewCell()
-        }
-
-        let item = items[indexPath.item]
-
-        let url = URL(string: item.findResolutionByWidth(width: 400)?.imageUrl ?? "")
-        cell.imageView.kf.setImage(
-            with: url,
-            placeholder: nil,
-            options: [],
-            progressBlock: { receivedSize, totalSize in
-            },
-            completionHandler: { result in
-            }
-        )
-        return cell
     }
 }

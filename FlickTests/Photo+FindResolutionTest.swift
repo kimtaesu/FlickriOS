@@ -20,7 +20,7 @@ class PhotoFindResolutionTest: QuickSpec {
     override func spec() {
         describe("PhotoFindResolutionTest") {
             it("find resolution", closure: {
-                let actual = self.photo.findResolutionByWidth(width: 122)
+                let actual = self.photo.nearHeightByWidth(width: 122)
                 expect(actual) == ImageSource(imageUrl: "", width: 123, height: 123)
             })
         }

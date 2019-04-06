@@ -9,3 +9,4 @@ github "Moya/Moya" ~> 11.0.2
 github "RxSwiftCommunity/RxDataSources" ~> 3.0
 github "onevcat/Kingfisher" ~> 5.0
 github "RxSwiftCommunity/RxKingfisher"
+github "devxoul/RxViewController"

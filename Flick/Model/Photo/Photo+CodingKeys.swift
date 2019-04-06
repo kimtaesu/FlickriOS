@@ -16,6 +16,8 @@ extension Photo {
         case description
         case license 
         case secret
+        case iconfarm
+        case iconserver
         case title
         case ispublic
         case isfriend
@@ -25,6 +27,8 @@ extension Photo {
         case datetaken
         case ownername
         case views
+        case count_comments
+        case count_faves
         case machine_tags
         case originalsecret
         case originalformat

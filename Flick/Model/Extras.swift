@@ -20,6 +20,8 @@ enum Extras: String, CaseIterable {
     case geo
     case tags
     case machine_tags
+    case count_comments
+    case count_faves
     case o_dims
     case views
     case media

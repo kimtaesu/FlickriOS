@@ -8,6 +8,21 @@
 
 import Foundation
 
+/*
+s    작은 사각형 75x75
+q    large square 150x150
+t    썸네일, 가장 긴 면이 100
+m    소형, 가장 긴 면이 240
+n    small, 320 on longest side
+-    중형, 가장 긴 면이 500
+z    중형(가장 긴 면이 640)
+c    중형 800(가장 긴 면이 800)†
+b    대형(가장 긴 면이 1024)*
+h    대형 1600, 가장 긴 면이 1600†
+k    대형 2048, 가장 긴 면이 2048†
+o    원본 이미지, 소스 형식에 따라 jpg, gif 또는png
+*/
+
 struct Photo: Decodable, Equatable, ViewModelProtocol {
     let id: String
     let description: [String: String]
@@ -18,20 +33,23 @@ struct Photo: Decodable, Equatable, ViewModelProtocol {
     let ispublic: Int
     let isfriend: Int
     let isfamily: Int
+    let iconFarm: Int
+    let countComments: String
+    let countLikes: String
+    let views: String
+    let iconServer: String
     let dateupload: String?
     let lastupdate: String?
     let datetaken: String?
     let ownername: String?
-    let views: String?
     let machine_tags: String?
     let originalsecret: String?
     let originalformat: String?
-    let latitude: Float?
-    let longitude: Float?
+    let latitude: Double?
+    let longitude: Double?
     let accuracy: Int?
     let media: String?
     let media_status: String?
-
     var imageSources: [ImageSource] = []
 }
 
@@ -43,21 +61,25 @@ extension Photo {
         description = try values.decode([String: String].self, forKey: .description)
         license = try values.decode(String.self, forKey: .license)
         owner = try values.decode(String.self, forKey: .owner)
+        iconFarm = try values.decode(Int.self, forKey: .iconfarm)
+        iconServer = try values.decode(String.self, forKey: .iconserver)
         secret = try values.decode(String.self, forKey: .secret)
         title = try values.decode(String.self, forKey: .title)
         ispublic = try values.decode(Int.self, forKey: .ispublic)
         isfriend = try values.decode(Int.self, forKey: .isfriend)
         isfamily = try values.decode(Int.self, forKey: .isfamily)
+        views = try values.decode(String.self, forKey: .views)
+        countComments = try values.decode(String.self, forKey: .count_comments)
+        countLikes = try values.decode(String.self, forKey: .count_faves)
         dateupload = try? values.decode(String.self, forKey: .dateupload)
         lastupdate = try? values.decode(String.self, forKey: .lastupdate)
         datetaken = try? values.decode(String.self, forKey: .datetaken)
         ownername = try? values.decode(String.self, forKey: .ownername)
-        views = try? values.decode(String.self, forKey: .views)
         machine_tags = try? values.decode(String.self, forKey: .machine_tags)
         originalsecret = try? values.decode(String.self, forKey: .originalsecret)
         originalformat = try? values.decode(String.self, forKey: .originalformat)
-        latitude = try? values.decode(Float.self, forKey: .latitude)
-        longitude = try? values.decode(Float.self, forKey: .longitude)
+        latitude = try? values.decode(Double.self, forKey: .latitude)
+        longitude = try? values.decode(Double.self, forKey: .longitude)
         accuracy = try? values.decode(Int.self, forKey: .accuracy)
         media = try? values.decode(String.self, forKey: .media)
         media_status = try? values.decode(String.self, forKey: .media_status)
@@ -126,7 +148,11 @@ extension Photo {
 
 extension Photo {
 
-    func findResolutionByWidth(width: Int) -> ImageSource? {
+    var iconBuddy: String {
+        return "https://farm\(iconFarm).staticflickr.com/\(iconServer)/buddyicons/\(owner).jpg"
+    }
+    
+    func nearHeightByWidth(width: Int) -> ImageSource? {
         return imageSources.min { image1, image2 in
             let distance1 = abs(width - image1.width)
             let distance2 = abs(width - image2.width)

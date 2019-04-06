@@ -30,9 +30,9 @@ class CategoryViewController: UIViewController {
     // TODO Gallary
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         collectionView.do {
-            $0.backgroundColor = .white
+            $0.backgroundColor = .clear
             view.addSubview($0)
             $0.register(CategoryHeaderCell.self, forCellWithReuseIdentifier: CategoryHeaderCell.swiftIdentifier)
             $0.snp.makeConstraints({ make in
@@ -75,14 +75,11 @@ extension CategoryViewController: ListSectionDelegate {
             cell.do {
                 $0.thumbnailView.hero.isEnabled = true
             }
-            let photoVC = PhotoDetailViewController(photo).then {
-                $0.hero.isEnabled = true
-                $0.originalImageView.hero.id = "image_\(index)"
-            }
-            let vc = UINavigationController(rootViewController: photoVC).then {
-                $0.hero.isEnabled = true
-            }
-            self.present(vc, animated: true)
+//            let photoVC = PhotoDetailViewController(self.it, selectedIndex: 1)
+//            let vc = UINavigationController(rootViewController: photoVC).then {
+//                $0.hero.isEnabled = true
+//            }
+//            self.present(vc, animated: true)
         }
     }
 }

@@ -12,7 +12,12 @@
 		B8559D54BB80820D61A2847F /* Pods_FlickUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC34A3988E471EE468E70D74 /* Pods_FlickUITests.framework */; };
 		BD0B218F2253823E00C4A5C2 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B218E2253823E00C4A5C2 /* CategoryHeaderCell.swift */; };
 		BD0B21962254324200C4A5C2 /* CategoryViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B21952254324200C4A5C2 /* CategoryViewController2.swift */; };
-		BD0B21982254353F00C4A5C2 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B21972254353F00C4A5C2 /* CategoryCell.swift */; };
+		BD44CB4522572648007C3B70 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = BD44CB4422572648007C3B70 /* Readme.md */; };
+		BD44CB48225745C4007C3B70 /* PhotoLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB47225745C4007C3B70 /* PhotoLocationViewController.swift */; };
+		BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */; };
+		BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */; };
+		BD44CB5422575A1E007C3B70 /* UIViewController+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */; };
+		BD4D325A2254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4D32592254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift */; };
 		BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D0225226BE006B2F31 /* CommentResponse.swift */; };
 		BD5984D32252293A006B2F31 /* LicenceCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D22252293A006B2F31 /* LicenceCountView.swift */; };
 		BD5984D722522BF0006B2F31 /* CategoryViewController+Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */; };
@@ -110,7 +115,12 @@
 		6EBD8051D21904ADE4DD5606 /* Pods-FlickTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickTests.debug.xcconfig"; path = "Target Support Files/Pods-FlickTests/Pods-FlickTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD0B218E2253823E00C4A5C2 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
 		BD0B21952254324200C4A5C2 /* CategoryViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController2.swift; sourceTree = "<group>"; };
-		BD0B21972254353F00C4A5C2 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		BD44CB4422572648007C3B70 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		BD44CB47225745C4007C3B70 /* PhotoLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLocationViewController.swift; sourceTree = "<group>"; };
+		BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MkMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
+		BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Container.swift"; sourceTree = "<group>"; };
+		BD4D32592254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinterestCell+SwiftNameIdentifier.swift"; sourceTree = "<group>"; };
 		BD5984D0225226BE006B2F31 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		BD5984D22252293A006B2F31 /* LicenceCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceCountView.swift; sourceTree = "<group>"; };
 		BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Hero.swift"; sourceTree = "<group>"; };
@@ -240,6 +250,14 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		BD44CB4622574489007C3B70 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				BD44CB47225745C4007C3B70 /* PhotoLocationViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		BD5984DC2252313A006B2F31 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +283,7 @@
 		BDBEF8C9224EEE1A00829E82 = {
 			isa = PBXGroup;
 			children = (
+				BD44CB4422572648007C3B70 /* Readme.md */,
 				BDBEF90E224EEF0B00829E82 /* Generated */,
 				BDBEF907224EEE5A00829E82 /* .gitignore */,
 				BDBEF908224EEE5A00829E82 /* .swiftlint.yml */,
@@ -421,6 +440,9 @@
 				BDBEF9472250532D00829E82 /* Encodable+Dictionary.swift */,
 				BDBEF96D22507FA300829E82 /* Convert+Int.swift */,
 				BDBEF9F72250CDDB00829E82 /* UIViewController+SafeArea.swift */,
+				BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */,
+				BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */,
+				BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -428,6 +450,7 @@
 		BDBEF968225069CD00829E82 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BD44CB4622574489007C3B70 /* Map */,
 				BD23BD542251B7D900015632 /* Detail */,
 				BDBEF9F92250CFDA00829E82 /* Search */,
 				BDBEF9EA2250CA0100829E82 /* Category */,
@@ -464,7 +487,7 @@
 				BDBEF9F52250CC1C00829E82 /* CategoryReactor.swift */,
 				BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */,
 				BD0B21952254324200C4A5C2 /* CategoryViewController2.swift */,
-				BD0B21972254353F00C4A5C2 /* CategoryCell.swift */,
+				BD4D32592254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -637,6 +660,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD44CB4522572648007C3B70 /* Readme.md in Resources */,
 				BDBEF922224EF3D600829E82 /* color.txt in Resources */,
 				BDBEF90C224EEE5A00829E82 /* .swiftlint.yml in Resources */,
 				BDBEF90D224EEE5A00829E82 /* swiftgen.yml in Resources */,
@@ -838,7 +862,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxMoya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxKingfisher.framework",
 			);
 			name = "[CP] Copy Carthage Resources";
 			outputFileListPaths = (
@@ -885,6 +908,7 @@
 				BDBEF976225086E200829E82 /* SwiftNameIdentifier.swift in Sources */,
 				BDBEF9D222509DAE00829E82 /* HasContentType.swift in Sources */,
 				BDBEF9DB22509DAE00829E82 /* FkrSearch.swift in Sources */,
+				BD4D325A2254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift in Sources */,
 				BD5984F12252E7D2006B2F31 /* PhotoRetryCell.swift in Sources */,
 				BDBEF933224F01C200829E82 /* HasDisposeBag.swift in Sources */,
 				BD5984E0225231D9006B2F31 /* LoadingViewModel.swift in Sources */,
@@ -922,23 +946,26 @@
 				BD0B218F2253823E00C4A5C2 /* CategoryHeaderCell.swift in Sources */,
 				BDBEF9452250492000829E82 /* Resources.swift in Sources */,
 				BD5984E222523313006B2F31 /* HasHeader.swift in Sources */,
+				BD44CB48225745C4007C3B70 /* PhotoLocationViewController.swift in Sources */,
 				BD5984E82252E1D7006B2F31 /* RetryViewModel.swift in Sources */,
 				BDBEF9F42250CB7400829E82 /* Plist.swift in Sources */,
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
 				BDBEF9E42250B0FF00829E82 /* UserDefaults+.swift in Sources */,
 				BDBEF9D922509DAE00829E82 /* Photo.swift in Sources */,
 				BDBEF9E122509DAE00829E82 /* PhotoResponse.swift in Sources */,
+				BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */,
+				BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */,
 				BDBEF9F32250CB7400829E82 /* Assets.swift in Sources */,
 				BDBEF91C224EF26500829E82 /* L10n.swift in Sources */,
 				BDBEF9F22250CB7400829E82 /* Fonts.swift in Sources */,
 				BDBEF9DA22509DAE00829E82 /* ImageSource.swift in Sources */,
 				BDBEF9FB2250CFE200829E82 /* SearchViewController.swift in Sources */,
 				BDBEF9CF22509DAE00829E82 /* HasPhotoId.swift in Sources */,
+				BD44CB5422575A1E007C3B70 /* UIViewController+Container.swift in Sources */,
 				BDBEF9F82250CDDB00829E82 /* UIViewController+SafeArea.swift in Sources */,
 				BDBEF91E224EF29000829E82 /* FlickrApi.swift in Sources */,
 				BDBEF9DD22509DAE00829E82 /* FkrRecent.swift in Sources */,
 				BDBEF9DC22509DAE00829E82 /* FkrComments.swift in Sources */,
-				BD0B21982254353F00C4A5C2 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

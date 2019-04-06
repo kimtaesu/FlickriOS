@@ -6,55 +6,138 @@
 //  Copyright © 2019 hucet. All rights reserved.
 //
 
+import Hero
+import MapKit
 import ReactorKit
-import RxKingfisher
+import RxDataSources
+import RxSwift
 import UIKit
 
 class PhotoDetailViewController: UIViewController {
 
-    let originalImageView = UIImageView()
-    let descView = UILabel()
+    let imageView = UIImageView()
+    let descLabel = UILabel()
     let profileImageView = UIImageView()
-    let viewsCountingView = UIView()
-//    private let commentsTableView = UITableView()
-//    private let tagsCollectionView = UICollectionView()
-    let geoView = UIButton()
-    let licentCountView = UILabel()
+    let views = UIView()
+    let mapView = MKMapView()
+    let licenseView = UILabel()
+//    let mapViewContainer = PhotoLocationViewController.init(latitude: 37, longitude: 127)
 
+    private var uiPanGesture = UIPanGestureRecognizer()
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(_ photo: Photo) {
+        super.init(nibName: nil, bundle: nil)
+        reactor = PhotoDetailReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!, photo: photo)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
-        initViews()
         initNavigationItem()
-    }
-    private func initViews() {
-        let preferSize = CGSize(width: view.frame.width, height: view.frame.height * 0.4)
-        reactor?.action.onNext(.setLoadImageView(preferSize))
-        reactor?.action.onNext(.loadComment)
-        originalImageView.do {
+        view.backgroundColor = .white
+        view.do {
+            $0.addGestureRecognizer(uiPanGesture)
+        }
+        uiPanGesture.do {
+            $0.addTarget(self, action: #selector(panGesture))
+        }
+        let preferHeight = view.frame.height * 0.4
+        let preferSize = CGSize(width: view.frame.width, height: preferHeight)
+        reactor?.action.onNext(.setLoadView(preferSize))
+        profileImageView.do {
+            view.addSubview($0)
+            $0.snp.makeConstraints({ make in
+                let width = 48
+                make.width.equalTo(width)
+                make.height.equalTo(width)
+                make.leading.equalToSuperview()
+                make.top.equalTo(safeAreaTop)
+            })
+        }
+        imageView.do {
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
                 make.leading.equalToSuperview()
                 make.centerX.equalToSuperview()
-                make.top.equalTo(safeAreaTop)
-                make.height.equalTo(view.frame.height * 0.4)
+                make.top.equalTo(profileImageView.snp.bottom)
+                make.height.equalTo(preferHeight)
             })
         }
-        descView.do {
+        mapView.do {
             view.addSubview($0)
-            $0.textColor = UIColor.black
+            $0.setCenterCoordinate(CLLocationCoordinate2D(latitude: 37.5200, longitude: 127.0495), withZoomLevel: 50, animated: true)
             $0.snp.makeConstraints({ make in
-                make.center.equalToSuperview()
+                make.leading.equalToSuperview()
+                make.centerX.equalToSuperview()
+                make.height.equalTo(400)
+                make.top.equalTo(imageView.snp.bottom)
             })
+        }
+        
+//        mapView.do {
+//            $0.isScrollEnabled = false
+//            $0.isZoomEnabled = false
+//            view.addSubview($0)
+//            $0.addGestureRecognizer(UITapGestureRecognizer().then {
+//                    $0.addTarget(self, action: #selector(switchMapView))
+//                })
+//        }
+//        licenseView.do {
+//            view.addSubview($0)
+//            $0.snp.makeConstraints({ make in
+//                make.leading.equalToSuperview()
+//                make.centerX.equalToSuperview()
+//                make.top.equalTo(imageView.snp.bottom)
+//            })
+//        }
+//        descLabel.do {
+//            $0.numberOfLines = 0
+//            $0.lineBreakMode = .byWordWrapping
+//            view.addSubview($0)
+//            $0.snp.makeConstraints({ make in
+//                make.leading.equalToSuperview()
+//                make.centerX.equalToSuperview()
+//                make.top.equalTo(imageView.snp.bottom)
+//            })
+//        }
+    }
+
+    @objc
+    func panGesture() {
+        let translation = uiPanGesture.translation(in: nil)
+        let progress = translation.y / view.bounds.height
+        switch uiPanGesture.state {
+        case .began:
+            hero.dismissViewController()
+        case .changed:
+            Hero.shared.update(progress)
+            let currentPos = CGPoint(x: translation.x + view.center.x, y: translation.y + view.center.y)
+            Hero.shared.apply(modifiers: [.position(currentPos)], to: imageView)
+        default:
+            if progress + uiPanGesture.velocity(in: nil).y / view.bounds.height > 0.3 {
+                Hero.shared.finish()
+            } else {
+                Hero.shared.cancel()
+            }
         }
     }
+
     private func initNavigationItem() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: Asset.icClose.image, style: .plain, target: self, action: #selector(close))
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: Asset.icClose.image, style: .plain, target: self, action: #selector(close))
+        ]
     }
 
     @objc
     func close() {
         hero.dismissViewController()
+    }
+    @objc
+    func switchMapView() {
+
     }
 }
 
@@ -65,18 +148,60 @@ extension PhotoDetailViewController: View, HasDisposeBag {
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.desc }
-            .bind(to: descView.rx.text)
+            .bind(to: descLabel.rx.text)
             .disposed(by: disposeBag)
 
-//        reactor.state.map { $0.detailImage }
-//            .bind(to: originalImageView.kf.rx.image(options: [.transition(.fade(0.2))]))
-//            .disposed(by: disposeBag)
-    }
-}
+        reactor.state.map { $0.licenseCount }
+            .bind(to: licenseView.rx.text)
+            .disposed(by: disposeBag)
 
-extension PhotoDetailViewController {
-    convenience init(_ photo: Photo) {
-        self.init(nibName: nil, bundle: nil)
-        reactor = PhotoDetailReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!, photo: photo)
+        reactor.state.map { $0.detailImage }
+            .distinctUntilChanged()
+            .bind { [weak self] url in
+                guard let self = self else { return }
+                self.imageView.kf.setImage(
+                    with: url,
+                    placeholder: nil,
+                    options: [],
+                    progressBlock: { receivedSize, totalSize in
+                    },
+                    completionHandler: { result in
+                        logger.info(result)
+                    }
+                )
+            }
+            .disposed(by: disposeBag)
+
+        reactor.state.map { $0.buddyIcon }
+            .distinctUntilChanged()
+            .bind { [weak self] url in
+                guard let self = self else { return }
+                self.profileImageView.kf.setImage(
+                    with: url,
+                    placeholder: nil,
+                    options: [],
+                    progressBlock: { receivedSize, totalSize in
+                    },
+                    completionHandler: { result in
+                        logger.info(result)
+                    }
+                )
+            }
+            .disposed(by: disposeBag)
+//            .filterNil()
+//            .drive(onNext: { [weak self] url in
+//                guard let self = self else { return }
+//                self.originalImageView.kf.setImage(
+//                    with: url,
+//                    placeholder: nil,
+//                    options: [],
+//                    progressBlock: { receivedSize, totalSize in
+//                    },
+//                    completionHandler: { result in
+//                        logger.info(result)
+//                    }
+//                )
+//            })
+//
     }
 }
