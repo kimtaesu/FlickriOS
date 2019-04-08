@@ -8,6 +8,8 @@ target 'Flick' do
   pod 'Then', '~> 2.4.0'
   pod 'SwiftGen'
   pod 'SwiftyBeaver'
+  pod 'XMLParsing'
+  
   # Pods for Flick
 
   def testing_pods
