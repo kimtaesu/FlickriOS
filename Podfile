@@ -8,7 +8,6 @@ target 'Flick' do
   pod 'Then', '~> 2.4.0'
   pod 'SwiftGen'
   pod 'SwiftyBeaver'
-  pod 'PinterestLayout', :path => './PinterestLayout'
   pod 'XMLParsing'
   
   # Pods for Flick

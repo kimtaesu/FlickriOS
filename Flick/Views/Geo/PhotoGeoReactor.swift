@@ -11,7 +11,7 @@ import RxSwift
 
 class PhotoGeoReactor: Reactor {
 
-    let initialState = State(photos: [])
+    let initialState = State(text: "", bbox: Enviroment.WORLD_BBOX, photoSections: [])
 
     private let repository: FlickrPhotoRepositoryType
 
@@ -19,42 +19,46 @@ class PhotoGeoReactor: Reactor {
         self.repository = repository
     }
     enum Action {
-        case fetchPhotosGeo(String)
+        case setSearch
     }
 
     struct State {
-        var photos: [Photo]
+        var text: String
+        var bbox: String
+        var photoSections: [PhotoSection]
 
-        public init(photos: [Photo]) {
-            self.photos = photos
+        public init(text: String, bbox: String, photoSections: [PhotoSection]) {
+            self.text = text
+            self.bbox = bbox
+            self.photoSections = photoSections
         }
-
+        
         var initLoading: Bool?
         var initError: Error?
     }
 
     enum Mutation {
         case setInitLoading(Bool)
-        case setPhotoResult(Resources<PhotoResponse>)
+        case setSearchResults(Resources<PhotoResponse>)
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case let .fetchPhotosGeo(text):
+        case .setSearch:
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
-                self.repository.geoSearch(text, page: 1, bbox: "-43.769531,1.230374,47.285156,58.950008").asObservable().map { Mutation.setPhotoResult($0) },
+                self.repository.geoSearch(currentState.text, page: 1, bbox: currentState.bbox).asObservable().map { Mutation.setSearchResults($0) },
                 Observable.just(Mutation.setInitLoading(false))
                 ])
         }
     }
     func reduce(state: State, mutation: Mutation) -> State {
-        var newState = State(photos: state.photos)
+        var newState = State(text: state.text, bbox: state.bbox, photoSections: state.photoSections)
         switch mutation {
         case .setInitLoading(let loading):
             newState.initLoading = loading
-        case .setPhotoResult(let response):
-            newState.photos = response.data?.photos.photo ?? []
+        case .setSearchResults(let response):
+            newState.photoSections = [PhotoSection(header: "photos", items: response.data?.photos.photo ?? [])]
             newState.initError = response.error
         }
         return newState

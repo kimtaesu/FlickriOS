@@ -78,10 +78,10 @@ class PhotoDetailReactor: Reactor {
         case .setLoadingComment(let loading):
             newState.commentLoading = loading
         case .setLoadView(let preferViewSize):
-            if let imageSource = self.photo.nearHeightByWidth(width: Int(preferViewSize.width)),
-                let imageUrl = URL(string: imageSource.imageUrl) {
-                newState.detailImage = imageUrl
-            }
+//            if let imageSource = self.photo.nearHeightByWidth(width: Int(preferViewSize.width)),
+//                let imageUrl = URL(string: imageSource.imageUrl) {
+//                newState.detailImage = imageUrl
+//            }
 
             if let latitude = photo.latitude,
                 let longitude = photo.latitude {

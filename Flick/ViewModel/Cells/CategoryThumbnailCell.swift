@@ -35,19 +35,19 @@ class CategoryThumbnailCell: UICollectionViewCell, SwiftNameIdentifier {
 
 extension CategoryThumbnailCell {
     func configCell(_ photo: Photo) {
-        if let thumbnail = photo.nearHeightByWidth(width: 400) {
-            thumbnailView.kf.setImage(
-                with: URL(string: thumbnail.imageUrl),
-                placeholder: nil,
-                options: [],
-                progressBlock: { receivedSize, totalSize in
-                    logger.info("progressBlock: \(photo)")
-                },
-                completionHandler: { result in
-                    logger.info(result)
-                    logger.info("completionHandler: \(thumbnail): Finished")
-                }
-            )
-        }
+//        if let thumbnail = photo.nearHeightByWidth(width: 400) {
+//            thumbnailView.kf.setImage(
+//                with: URL(string: thumbnail.imageUrl),
+//                placeholder: nil,
+//                options: [],
+//                progressBlock: { receivedSize, totalSize in
+//                    logger.info("progressBlock: \(photo)")
+//                },
+//                completionHandler: { result in
+//                    logger.info(result)
+//                    logger.info("completionHandler: \(thumbnail): Finished")
+//                }
+//            )
+//        }
     }
 }

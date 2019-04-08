@@ -27,7 +27,6 @@
 		BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */; };
 		BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */; };
 		BD44CB5422575A1E007C3B70 /* UIViewController+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */; };
-		BD4D325A2254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4D32592254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift */; };
 		BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D0225226BE006B2F31 /* CommentResponse.swift */; };
 		BD5984D32252293A006B2F31 /* LicenceCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D22252293A006B2F31 /* LicenceCountView.swift */; };
 		BD5984D722522BF0006B2F31 /* CategoryViewController+Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */; };
@@ -101,6 +100,7 @@
 		BDCE9D652251CDD300126DA1 /* Photo+IdentifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE9D642251CDD300126DA1 /* Photo+IdentifiableType.swift */; };
 		BDCE9D6A2251D2FC00126DA1 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */; };
 		BDE507ED225B5BEC00A0BAE5 /* SearchOptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE507EC225B5BEC00A0BAE5 /* SearchOptionProtocol.swift */; };
+		BDE507EF225B6F0A00A0BAE5 /* PhotoGeoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */; };
 		BDF60146225198AE0040D48A /* ListSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF60145225198AE0040D48A /* ListSectionDelegate.swift */; };
 		BDFEC7432258ACD100FFB0E9 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFEC7422258ACD100FFB0E9 /* SortOption.swift */; };
 		BDFEC7472258AE9600FFB0E9 /* FkrGeoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFEC7462258AE9600FFB0E9 /* FkrGeoSearch.swift */; };
@@ -146,7 +146,6 @@
 		BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MkMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Container.swift"; sourceTree = "<group>"; };
-		BD4D32592254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinterestCell+SwiftNameIdentifier.swift"; sourceTree = "<group>"; };
 		BD5984D0225226BE006B2F31 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		BD5984D22252293A006B2F31 /* LicenceCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceCountView.swift; sourceTree = "<group>"; };
 		BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Hero.swift"; sourceTree = "<group>"; };
@@ -226,6 +225,7 @@
 		BDCE9D642251CDD300126DA1 /* Photo+IdentifiableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+IdentifiableType.swift"; sourceTree = "<group>"; };
 		BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		BDE507EC225B5BEC00A0BAE5 /* SearchOptionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionProtocol.swift; sourceTree = "<group>"; };
+		BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGeoCell.swift; sourceTree = "<group>"; };
 		BDF60145225198AE0040D48A /* ListSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionDelegate.swift; sourceTree = "<group>"; };
 		BDFEC7422258ACD100FFB0E9 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
 		BDFEC7462258AE9600FFB0E9 /* FkrGeoSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FkrGeoSearch.swift; sourceTree = "<group>"; };
@@ -269,6 +269,7 @@
 			children = (
 				BD05516F2259CD12000B023B /* PhotoGeoViewController.swift */,
 				BD0551722259CD7E000B023B /* PhotoGeoReactor.swift */,
+				BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */,
 			);
 			path = Geo;
 			sourceTree = "<group>";
@@ -569,7 +570,6 @@
 				BDBEF9F52250CC1C00829E82 /* CategoryReactor.swift */,
 				BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */,
 				BD0B21952254324200C4A5C2 /* CategoryViewController2.swift */,
-				BD4D32592254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -823,7 +823,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Flick/Pods-Flick-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PinterestLayout/PinterestLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 				"${BUILT_PRODUCTS_DIR}/XMLParsing/XMLParsing.framework",
@@ -832,7 +831,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinterestLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMLParsing.framework",
@@ -994,7 +992,6 @@
 				BDBEF9D222509DAE00829E82 /* HasContentType.swift in Sources */,
 				BDBEF9DB22509DAE00829E82 /* FkrSearch.swift in Sources */,
 				BDC03963225AD279006163EC /* LocationSubMapViewController.swift in Sources */,
-				BD4D325A2254E3C000536C48 /* PinterestCell+SwiftNameIdentifier.swift in Sources */,
 				BD0551702259CD12000B023B /* PhotoGeoViewController.swift in Sources */,
 				BDC03961225ACE19006163EC /* LocationSubSection.swift in Sources */,
 				BD5984F12252E7D2006B2F31 /* PhotoRetryCell.swift in Sources */,
@@ -1044,6 +1041,7 @@
 				BDBEF9452250492000829E82 /* Resources.swift in Sources */,
 				BD05518A225AA55F000B023B /* LocationSubSearchViewController.swift in Sources */,
 				BD5984E222523313006B2F31 /* HasHeader.swift in Sources */,
+				BDE507EF225B6F0A00A0BAE5 /* PhotoGeoCell.swift in Sources */,
 				BD5984E82252E1D7006B2F31 /* RetryViewModel.swift in Sources */,
 				BDBEF9F42250CB7400829E82 /* Plist.swift in Sources */,
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
