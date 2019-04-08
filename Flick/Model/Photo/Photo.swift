@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import MapKit
 /*
 s    작은 사각형 75x75
 q    large square 150x150
@@ -78,8 +78,8 @@ extension Photo {
         machine_tags = try? values.decode(String.self, forKey: .machine_tags)
         originalsecret = try? values.decode(String.self, forKey: .originalsecret)
         originalformat = try? values.decode(String.self, forKey: .originalformat)
-        latitude = try? values.decode(Double.self, forKey: .latitude)
-        longitude = try? values.decode(Double.self, forKey: .longitude)
+        latitude = try values.decode(String.self, forKey: .latitude).toDouble
+        longitude = try values.decode(String.self, forKey: .longitude).toDouble
         accuracy = try? values.decode(Int.self, forKey: .accuracy)
         media = try? values.decode(String.self, forKey: .media)
         media_status = try? values.decode(String.self, forKey: .media_status)
@@ -148,6 +148,12 @@ extension Photo {
 
 extension Photo {
 
+    var location: CLLocationCoordinate2D {
+        let location = CLLocationCoordinate2D(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
+        logger.info("location: \(location)")
+        return location
+    }
+    
     var iconBuddy: String {
         return "https://farm\(iconFarm).staticflickr.com/\(iconServer)/buddyicons/\(owner).jpg"
     }

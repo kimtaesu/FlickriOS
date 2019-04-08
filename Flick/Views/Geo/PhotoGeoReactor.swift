@@ -20,6 +20,7 @@ class PhotoGeoReactor: Reactor {
     }
     enum Action {
         case setSearch
+        case tapsPhoto(Int)
     }
 
     struct State {
@@ -32,7 +33,7 @@ class PhotoGeoReactor: Reactor {
             self.bbox = bbox
             self.photoSections = photoSections
         }
-        
+        var selectedPhoto: Photo?
         var initLoading: Bool?
         var initError: Error?
     }
@@ -40,10 +41,13 @@ class PhotoGeoReactor: Reactor {
     enum Mutation {
         case setInitLoading(Bool)
         case setSearchResults(Resources<PhotoResponse>)
+        case tapsPhoto(Photo)
     }
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .tapsPhoto(let index):
+            return Observable.just(Mutation.tapsPhoto(currentState.photoSections[0].items[index]))
         case .setSearch:
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
@@ -55,6 +59,8 @@ class PhotoGeoReactor: Reactor {
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = State(text: state.text, bbox: state.bbox, photoSections: state.photoSections)
         switch mutation {
+        case .tapsPhoto(let photo):
+            newState.selectedPhoto = photo
         case .setInitLoading(let loading):
             newState.initLoading = loading
         case .setSearchResults(let response):

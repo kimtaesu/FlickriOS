@@ -83,10 +83,10 @@ class PhotoDetailReactor: Reactor {
 //                newState.detailImage = imageUrl
 //            }
 
-            if let latitude = photo.latitude,
-                let longitude = photo.latitude {
-                newState.location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            }
+//            if let latitude = photo.latitude,
+//                let longitude = photo.latitude {
+//                newState.location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//            }
             newState.licenseCount = L10n.licenseCount(photo.license ?? "")
             newState.buddyIcon = URL(string: photo.iconBuddy)
             newState.title = photo.title

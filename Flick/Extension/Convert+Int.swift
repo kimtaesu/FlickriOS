@@ -10,23 +10,24 @@ import Foundation
 
 extension Optional where Wrapped == String? {
     var toInt: Int? {
-        do {
-            if let stringInt = self {
-                return try Int(stringInt ?? "")
-            }
-            return nil
-        } catch {
-            return nil
+        if let int = self {
+            return Int(int ?? "")
         }
+        return nil
+    }
+    var toDouble: Double? {
+        if let double = self {
+            return Double(double ?? "")
+        }
+        return nil
     }
 }
 
 extension String {
     var toInt: Int {
-        do {
-            return try Int(self) ?? 0
-        } catch {
-            return 0
-        }
+        return Int(self) ?? 0
+    }
+    var toDouble: Double {
+        return Double(self) ?? 0.0
     }
 }

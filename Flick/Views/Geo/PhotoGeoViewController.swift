@@ -81,6 +81,18 @@ extension PhotoGeoViewController: View, HasDisposeBag {
     func bind(reactor: PhotoGeoReactor) {
         reactor.action.onNext(.setSearch)
 
+        photoCollectionView.rx.itemSelected
+            .map { Reactor.Action.tapsPhoto($0.row) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.selectedPhoto }
+            .filterNil()
+            .bind { [weak self] photo in
+                self?.mapView.setCenterCoordinate(photo.location, withZoomLevel: 18, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         reactor.state.map { $0.photoSections }
             .filterEmpty()
             .bind(to: photoCollectionView.rx.items(dataSource: dataSource))

@@ -537,7 +537,6 @@
 				BD0551712259CD72000B023B /* Geo */,
 				BD23BD542251B7D900015632 /* Detail */,
 				BDBEF9EA2250CA0100829E82 /* Category */,
-				BDBEF9E72250C9AB00829E82 /* Home */,
 				BD5984D22252293A006B2F31 /* LicenceCountView.swift */,
 			);
 			path = Views;
@@ -554,13 +553,6 @@
 				BDFEC7462258AE9600FFB0E9 /* FkrGeoSearch.swift */,
 			);
 			path = Api;
-			sourceTree = "<group>";
-		};
-		BDBEF9E72250C9AB00829E82 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		BDBEF9EA2250CA0100829E82 /* Category */ = {
