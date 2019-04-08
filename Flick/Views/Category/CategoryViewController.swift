@@ -51,8 +51,7 @@ class CategoryViewController: UIViewController {
 
 extension CategoryViewController: View, HasDisposeBag {
     func bind(reactor: CategoryReactor) {
-        reactor.action.onNext(.fetchRecent)
-        reactor.action.onNext(.fetchInteresting)
+        reactor.action.onNext(.fetchGeoSearch)
 
         reactor.state.map { $0.items }
             .filterEmpty()

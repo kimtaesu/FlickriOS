@@ -23,8 +23,8 @@ class CategoryReactor: Reactor {
         self.repository = repository
     }
     enum Action {
-        case fetchRecent
-        case fetchInteresting
+//        case fetchInteresting
+        case fetchGeoSearch
     }
 
     struct State {
@@ -49,14 +49,18 @@ class CategoryReactor: Reactor {
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .fetchInteresting:
+        case .fetchGeoSearch:
             return Observable.concat([
                 Observable.just(Mutation.setInitLoading(true)),
-                self.repository.interestings().asObservable().map { Mutation.setPhotoResult($0) },
+                self.repository.geoSearch("", page: 1, bbox: "-43.769531,1.230374,47.285156,58.950008").asObservable().map { Mutation.setPhotoResult($0) },
                 Observable.just(Mutation.setInitLoading(false))
                 ])
-        case .fetchRecent:
-            return .empty()
+//        case .fetchInteresting:
+//            return Observable.concat([
+//                Observable.just(Mutation.setInitLoading(true)),
+//                self.repository.interestings().asObservable().map { Mutation.setPhotoResult($0) },
+//                Observable.just(Mutation.setInitLoading(false))
+//                ])
         }
     }
     func reduce(state: State, mutation: Mutation) -> State {

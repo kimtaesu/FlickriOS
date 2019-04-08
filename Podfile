@@ -9,6 +9,8 @@ target 'Flick' do
   pod 'SwiftGen'
   pod 'SwiftyBeaver'
   pod 'PinterestLayout', :path => './PinterestLayout'
+  pod 'XMLParsing'
+  
   # Pods for Flick
 
   def testing_pods

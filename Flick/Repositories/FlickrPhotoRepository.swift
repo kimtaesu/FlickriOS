@@ -14,11 +14,12 @@ import RxMoya
 import RxSwift
 
 protocol FlickrPhotoRepositoryType {
-    func search(_ keyword: String, page: Int) -> Single<Resources<PhotoResponse>>
-    func recent() -> Single<Resources<PhotoResponse>>
-    func interestings() -> Single<Resources<PhotoResponse>>
-    func getComments(photoId: String) -> Single<Resources<CommentResponse>>
-    func categories() -> Single<[ListDiffable]>
+//    func search(_ keyword: String, page: Int) -> Single<Resources<PhotoResponse>>
+    func geoSearch(_ keyword: String, page: Int, bbox: String) -> Single<Resources<PhotoResponse>>
+//    func recent() -> Single<Resources<PhotoResponse>>
+//    func interestings() -> Single<Resources<PhotoResponse>>
+//    func getComments(photoId: String) -> Single<Resources<CommentResponse>>
+//    func categories() -> Single<[ListDiffable]>
 }
 
 class FlickrPhotoRepository: FlickrPhotoRepositoryType {
@@ -28,40 +29,45 @@ class FlickrPhotoRepository: FlickrPhotoRepositoryType {
     init(_ provider: MoyaProvider<FlickrApi>) {
         self.provider = provider
     }
-    func categories() -> Single<[ListDiffable]> {
-        return Single.zip(interestings(), recent()) { interesting, recent in
-            var sections: [ListDiffable] = []
 
-            let count: Int = UserDefaults.standard.value(forKey: UserDefaultKeys.categoryCount)
-            let interestingTitle = L10n.interestingSectionHeader
-            interesting.unwrap(do: { response in
-                sections.append(CategoryPhotoSection(header: interestingTitle, items: Array(response.photos.photo.prefix(count))))
-            }, error: { error in
-                sections.append(CategoryPhotoSection(header: interestingTitle, items: [RetryViewModel()]))
-            })
+//    func categories() -> Single<[ListDiffable]> {
+//        return Single.zip(interestings(), recent()) { interesting, recent in
+//            var sections: [ListDiffable] = []
+//
+//            let count: Int = UserDefaults.standard.value(forKey: UserDefaultKeys.categoryCount)
+//            let interestingTitle = L10n.interestingSectionHeader
+//            interesting.unwrap(do: { response in
+//                sections.append(CategoryPhotoSection(header: interestingTitle, items: Array(response.photos.photo.prefix(count))))
+//            }, error: { error in
+//                sections.append(CategoryPhotoSection(header: interestingTitle, items: [RetryViewModel()]))
+//            })
+//
+//            let recentTitle = L10n.recentSectionHeader
+//            recent.unwrap(do: { response in
+//                sections.append(CategoryPhotoSection(header: recentTitle, items: Array(response.photos.photo.prefix(count))))
+//            }, error: { error in
+//                sections.append(CategoryPhotoSection(header: recentTitle, items: [RetryViewModel()]))
+//            })
+//            return sections
+//        }
+//    }
+    func geoSearch(_ keyword: String, page: Int, bbox: String) -> Single<Resources<PhotoResponse>> {
+        return self.provider.rx.request(.geoSearch(FkrGeoSearchReq(text: keyword, page: page, bbox: bbox))).network()
 
-            let recentTitle = L10n.recentSectionHeader
-            recent.unwrap(do: { response in
-                sections.append(CategoryPhotoSection(header: recentTitle, items: Array(response.photos.photo.prefix(count))))
-            }, error: { error in
-                sections.append(CategoryPhotoSection(header: recentTitle, items: [RetryViewModel()]))
-            })
-            return sections
-        }
     }
-    func interestings() -> Single<Resources<PhotoResponse>> {
-        return self.provider.rx.request(.interestings(FkrRecentRequest(page: 1))).network()
-    }
-    func recent() -> Single<Resources<PhotoResponse>> {
-        return self.provider.rx.request(.recent(FkrRecentRequest(page: 1))).network()
-    }
-    func search(_ keyword: String, page: Int) -> Single<Resources<PhotoResponse>> {
-        return self.provider.rx.request(.search(FkrSearchRequest(text: keyword, page: page))).network()
-    }
-
-    func getComments(photoId: String) -> Single<Resources<CommentResponse>> {
-        return self.provider.rx.request(.getComments(FkrCommentRequest(photo_id: photoId))).network()
-    }
+//    func interestings() -> Single<Resources<PhotoResponse>> {
+//        return self.provider.rx.request(.interestings(FkrRecentRequest(page: 1))).network()
+//    }
+//    func recent() -> Single<Resources<PhotoResponse>> {
+//        return self.provider.rx.request(.recent(FkrRecentRequest(page: 1))).network()
+//    }
+//    func search(_ keyword: String, page: Int) -> Single<Resources<PhotoResponse>> {
+//        return self.provider.rx.request(.search(FkrSearchRequest(text: keyword, page: page))).network()
+//    }
+//
+//    func getComments(photoId: String) -> Single<Resources<CommentResponse>> {
+//        return self.provider.rx.request(.getComments(FkrCommentRequest(photo_id: photoId))).network()
+//    }
 }
 
 extension PrimitiveSequence where TraitType == SingleTrait, Element == Response {

@@ -25,8 +25,8 @@ o    원본 이미지, 소스 형식에 따라 jpg, gif 또는png
 
 struct Photo: Decodable, Equatable, ViewModelProtocol {
     let id: String
-    let description: [String: String]
-    let license: String
+    let description: [String: String]?
+    let license: String?
     let owner: String
     let secret: String
     let title: String
@@ -58,8 +58,8 @@ extension Photo {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try values.decode(String.self, forKey: .id)
-        description = try values.decode([String: String].self, forKey: .description)
-        license = try values.decode(String.self, forKey: .license)
+        description = try? values.decode([String: String].self, forKey: .description)
+        license = try? values.decode(String.self, forKey: .license)
         owner = try values.decode(String.self, forKey: .owner)
         iconFarm = try values.decode(Int.self, forKey: .iconfarm)
         iconServer = try values.decode(String.self, forKey: .iconserver)

@@ -9,3 +9,15 @@
 "recent_section_header" = "Recents";
 "hero_image_id" = "image_%d_%d";
 "license_count" = "License: %@";
+
+"geo_search_options_text_title" = "Text";
+"geo_search_options_text_message" = "키워드 검색";
+
+"geo_search_options_location_title" = "Location";
+"geo_search_options_location_message" = "지역, 시, 주, 우편번호";
+
+"geo_search_options_title_hero_id" = "geo_search_options_title_hero_id_%@";
+"geo_search_options_message_hero_id" = "geo_search_options_title_hero_id_%@";
+"geo_search_options_image_hero_id" = "geo_search_options_image_hero_id_%@";
+
+"title_done" = "DONE";

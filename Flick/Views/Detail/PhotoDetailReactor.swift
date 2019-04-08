@@ -6,10 +6,10 @@
 //  Copyright © 2019 hucet. All rights reserved.
 //
 
+import MapKit
 import ReactorKit
 import RxSwift
 import UIKit
-import MapKit
 
 class PhotoDetailReactor: Reactor {
 
@@ -60,7 +60,7 @@ class PhotoDetailReactor: Reactor {
         case .setLoadComments:
             return Observable.concat([
                 Observable.just(Mutation.setLoadingComment(true)),
-                self.repository.getComments(photoId: photo.id).asObservable().map { Mutation.setCommentResults($0) },
+//                self.repository.getComments(photoId: photo.id).asObservable().map { Mutation.setCommentResults($0) },
                 Observable.just(Mutation.setLoadingComment(false))
                 ])
         case .setLoadView(let preferViewSize):
@@ -87,10 +87,10 @@ class PhotoDetailReactor: Reactor {
                 let longitude = photo.latitude {
                 newState.location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             }
-            newState.licenseCount = L10n.licenseCount(photo.license)
+            newState.licenseCount = L10n.licenseCount(photo.license ?? "")
             newState.buddyIcon = URL(string: photo.iconBuddy)
             newState.title = photo.title
-            newState.desc = photo.description.first?.value
+            newState.desc = photo.description?.first?.value
         }
 
         return newState
