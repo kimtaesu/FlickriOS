@@ -67,6 +67,7 @@ class PhotoGeoViewController: UIViewController {
         }
         photoCollectionView.do {
             view.addSubview($0)
+            $0.rx.setDelegate(self).disposed(by: disposeBag)
             $0.snp.makeConstraints({ make in
                 make.leading.equalToSuperview()
                 make.trailing.equalToSuperview()

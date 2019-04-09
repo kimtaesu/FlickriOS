@@ -27,6 +27,8 @@
 		BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */; };
 		BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */; };
 		BD44CB5422575A1E007C3B70 /* UIViewController+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */; };
+		BD49A845225CAAA50023CA9D /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */; };
+		BD49A847225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49A846225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift */; };
 		BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D0225226BE006B2F31 /* CommentResponse.swift */; };
 		BD5984D32252293A006B2F31 /* LicenceCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D22252293A006B2F31 /* LicenceCountView.swift */; };
 		BD5984D722522BF0006B2F31 /* CategoryViewController+Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */; };
@@ -150,6 +152,8 @@
 		BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MkMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Container.swift"; sourceTree = "<group>"; };
+		BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
+		BD49A846225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoGeoViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		BD5984D0225226BE006B2F31 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		BD5984D22252293A006B2F31 /* LicenceCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceCountView.swift; sourceTree = "<group>"; };
 		BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Hero.swift"; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 				BD734E95225B8F83006F7772 /* Annotation */,
 				BD05516F2259CD12000B023B /* PhotoGeoViewController.swift */,
 				BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */,
+				BD49A846225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift */,
 				BD0551722259CD7E000B023B /* PhotoGeoReactor.swift */,
 				BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */,
 			);
@@ -543,6 +548,7 @@
 				BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */,
 				BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */,
 				BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */,
+				BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -997,6 +1003,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDF60146225198AE0040D48A /* ListSectionDelegate.swift in Sources */,
+				BD49A845225CAAA50023CA9D /* UIScrollView+Rx.swift in Sources */,
 				BD05517C2259F329000B023B /* LocationResult.swift in Sources */,
 				BD734E97225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift in Sources */,
 				BDC0395D225AC819006163EC /* LocationSubCell.swift in Sources */,
@@ -1061,6 +1068,7 @@
 				BD5984E82252E1D7006B2F31 /* RetryViewModel.swift in Sources */,
 				BDBEF9F42250CB7400829E82 /* Plist.swift in Sources */,
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
+				BD49A847225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift in Sources */,
 				BDBEF9E42250B0FF00829E82 /* UserDefaults+.swift in Sources */,
 				BD0551762259D12E000B023B /* GeoSearchViewController.swift in Sources */,
 				BDBEF9D922509DAE00829E82 /* Photo.swift in Sources */,
