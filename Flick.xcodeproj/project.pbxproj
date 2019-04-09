@@ -37,6 +37,9 @@
 		BD5984EC2252E323006B2F31 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984EB2252E323006B2F31 /* ViewModelProtocol.swift */; };
 		BD5984EF2252E670006B2F31 /* LoadingThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984EE2252E670006B2F31 /* LoadingThumbnailCell.swift */; };
 		BD5984F12252E7D2006B2F31 /* PhotoRetryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984F02252E7D2006B2F31 /* PhotoRetryCell.swift */; };
+		BD734E94225B8F74006F7772 /* PhotoAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD734E93225B8F74006F7772 /* PhotoAnnotationView.swift */; };
+		BD734E97225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */; };
+		BD9F6EE6225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */; };
 		BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */; };
 		BDAD9DBF225AEDF7000F8577 /* TextSubSearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */; };
 		BDAD9DC1225AEF49000F8577 /* TextSubSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DC0225AEF49000F8577 /* TextSubSection.swift */; };
@@ -101,6 +104,7 @@
 		BDCE9D6A2251D2FC00126DA1 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */; };
 		BDE507ED225B5BEC00A0BAE5 /* SearchOptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE507EC225B5BEC00A0BAE5 /* SearchOptionProtocol.swift */; };
 		BDE507EF225B6F0A00A0BAE5 /* PhotoGeoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */; };
+		BDE507F1225B7A2E00A0BAE5 /* PhotoAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE507F0225B7A2E00A0BAE5 /* PhotoAnnotations.swift */; };
 		BDF60146225198AE0040D48A /* ListSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF60145225198AE0040D48A /* ListSectionDelegate.swift */; };
 		BDFEC7432258ACD100FFB0E9 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFEC7422258ACD100FFB0E9 /* SortOption.swift */; };
 		BDFEC7472258AE9600FFB0E9 /* FkrGeoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFEC7462258AE9600FFB0E9 /* FkrGeoSearch.swift */; };
@@ -156,6 +160,9 @@
 		BD5984EB2252E323006B2F31 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		BD5984EE2252E670006B2F31 /* LoadingThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingThumbnailCell.swift; sourceTree = "<group>"; };
 		BD5984F02252E7D2006B2F31 /* PhotoRetryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRetryCell.swift; sourceTree = "<group>"; };
+		BD734E93225B8F74006F7772 /* PhotoAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotationView.swift; sourceTree = "<group>"; };
+		BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailAnnotationAccessoryView.swift; sourceTree = "<group>"; };
+		BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift"; sourceTree = "<group>"; };
 		BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchViewController.swift; sourceTree = "<group>"; };
 		BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchReactor.swift; sourceTree = "<group>"; };
 		BDAD9DC0225AEF49000F8577 /* TextSubSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSection.swift; sourceTree = "<group>"; };
@@ -226,6 +233,7 @@
 		BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		BDE507EC225B5BEC00A0BAE5 /* SearchOptionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionProtocol.swift; sourceTree = "<group>"; };
 		BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGeoCell.swift; sourceTree = "<group>"; };
+		BDE507F0225B7A2E00A0BAE5 /* PhotoAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotations.swift; sourceTree = "<group>"; };
 		BDF60145225198AE0040D48A /* ListSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionDelegate.swift; sourceTree = "<group>"; };
 		BDFEC7422258ACD100FFB0E9 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
 		BDFEC7462258AE9600FFB0E9 /* FkrGeoSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FkrGeoSearch.swift; sourceTree = "<group>"; };
@@ -267,7 +275,9 @@
 		BD0551712259CD72000B023B /* Geo */ = {
 			isa = PBXGroup;
 			children = (
+				BD734E95225B8F83006F7772 /* Annotation */,
 				BD05516F2259CD12000B023B /* PhotoGeoViewController.swift */,
+				BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */,
 				BD0551722259CD7E000B023B /* PhotoGeoReactor.swift */,
 				BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */,
 			);
@@ -344,6 +354,16 @@
 				BD5984D822522E6D006B2F31 /* CategoryPhotoSection.swift */,
 			);
 			path = IGListKit;
+			sourceTree = "<group>";
+		};
+		BD734E95225B8F83006F7772 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				BDE507F0225B7A2E00A0BAE5 /* PhotoAnnotations.swift */,
+				BD734E93225B8F74006F7772 /* PhotoAnnotationView.swift */,
+				BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */,
+			);
+			path = Annotation;
 			sourceTree = "<group>";
 		};
 		BDAD9DBB225AEBDE000F8577 /* TextSubSearch */ = {
@@ -934,6 +954,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxMoya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxMKMapView.framework",
 			);
 			name = "[CP] Copy Carthage Resources";
 			outputFileListPaths = (
@@ -977,6 +998,7 @@
 			files = (
 				BDF60146225198AE0040D48A /* ListSectionDelegate.swift in Sources */,
 				BD05517C2259F329000B023B /* LocationResult.swift in Sources */,
+				BD734E97225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift in Sources */,
 				BDC0395D225AC819006163EC /* LocationSubCell.swift in Sources */,
 				BDBEF9722250843800829E82 /* CategoryThumbnailCell.swift in Sources */,
 				BDFEC7472258AE9600FFB0E9 /* FkrGeoSearch.swift in Sources */,
@@ -990,6 +1012,7 @@
 				BDBEF933224F01C200829E82 /* HasDisposeBag.swift in Sources */,
 				BD5984E0225231D9006B2F31 /* LoadingViewModel.swift in Sources */,
 				BDBEF9D522509DAE00829E82 /* PhotoSection.swift in Sources */,
+				BD734E94225B8F74006F7772 /* PhotoAnnotationView.swift in Sources */,
 				BD055183225A13B6000B023B /* GeoSearchCell.swift in Sources */,
 				BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */,
 				BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */,
@@ -1013,6 +1036,7 @@
 				BD05517F225A079D000B023B /* LocationResultSet.swift in Sources */,
 				BDBEFA0A2250F0F800829E82 /* RxListAdapterDataSource.swift in Sources */,
 				BDCE9D6A2251D2FC00126DA1 /* PhotoDetailViewController.swift in Sources */,
+				BD9F6EE6225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift in Sources */,
 				BDBEF9482250532D00829E82 /* Encodable+Dictionary.swift in Sources */,
 				BD05517A2259D1DE000B023B /* FlickrGeoRepository.swift in Sources */,
 				BDBEF9E022509DAE00829E82 /* Photo+CodingKeys.swift in Sources */,
@@ -1048,6 +1072,7 @@
 				BDBEF9F22250CB7400829E82 /* Fonts.swift in Sources */,
 				BDBEF9DA22509DAE00829E82 /* ImageSource.swift in Sources */,
 				BDBEF9CF22509DAE00829E82 /* HasPhotoId.swift in Sources */,
+				BDE507F1225B7A2E00A0BAE5 /* PhotoAnnotations.swift in Sources */,
 				BD44CB5422575A1E007C3B70 /* UIViewController+Container.swift in Sources */,
 				BDBEF9F82250CDDB00829E82 /* UIViewController+SafeArea.swift in Sources */,
 				BD0551782259D1A7000B023B /* GeoSearchReactor.swift in Sources */,

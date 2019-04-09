@@ -9,10 +9,11 @@
 import MapKit
 import ReactorKit
 import RxDataSources
+import RxMKMapView
 import UIKit
 
 class PhotoGeoViewController: UIViewController {
-
+    let defaultCenterLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     let mapView = MKMapView()
     let currentLocationView = UIImageView()
     let photoCollectionView: UICollectionView = {
@@ -21,7 +22,7 @@ class PhotoGeoViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.register(PhotoGeoCell.self, forCellWithReuseIdentifier: PhotoGeoCell.swiftIdentifier)
         collectionView.backgroundColor = .clear
-        
+
         return collectionView
     }()
 
@@ -59,6 +60,7 @@ class PhotoGeoViewController: UIViewController {
         }
         mapView.do {
             view.addSubview($0)
+            $0.rx.setDelegate(self).disposed(by: disposeBag)
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
@@ -74,7 +76,6 @@ class PhotoGeoViewController: UIViewController {
         }
         view.bringSubviewToFront(currentLocationView)
     }
-
 }
 
 extension PhotoGeoViewController: View, HasDisposeBag {
@@ -85,17 +86,57 @@ extension PhotoGeoViewController: View, HasDisposeBag {
             .map { Reactor.Action.tapsPhoto($0.row) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+
+//            .map { Reactor.Action.tapsAnnotationView($0.annotation) }
+//            .bind(to: reactor.action)
+//            .disposed(by: disposeBag)
+
+        reactor.state.map { $0.mapAnnotations }
+            .filterEmpty()
+            .bind(to: mapView.rx.annotations)
+            .disposed(by: disposeBag)
+
         reactor.state.map { $0.selectedPhoto }
             .filterNil()
             .bind { [weak self] photo in
                 self?.mapView.setCenterCoordinate(photo.location, withZoomLevel: 18, animated: true)
             }
             .disposed(by: disposeBag)
-        
+
+        reactor.state.map { $0.selectedAnnotation }
+            .filterNil()
+            .bind { [weak self] annotation in
+                guard let self = self else { return }
+                let vc = PhotoDetailViewController(annotation.photo)
+                self.show(vc, sender: self)
+            }
+            .disposed(by: disposeBag)
         reactor.state.map { $0.photoSections }
             .filterEmpty()
             .bind(to: photoCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
+}
+
+extension PhotoGeoViewController: MKMapViewDelegate, PhotoAnnotationDelegate {
+    func tapThumbnailView(_ annotation: MKAnnotation) {
+        if let annotation = annotation as? PhotoAnnotation {
+            self.show(PhotoDetailViewController(annotation.photo), sender: self)
+        }
+    }
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? PhotoAnnotation {
+            return PhotoAnnotationView(annotation: annotation, reuseIdentifier: PhotoAnnotationView.swiftIdentifier).then {
+                let annotationAccessoryView = PhotoDetailAnnotationAccessoryView(annotation: annotation).then { $0.configCell(annotation) }
+                annotationAccessoryView.setDelegate(self)
+                $0.detailCalloutAccessoryView = annotationAccessoryView
+                $0.canShowCallout = true
+                $0.calloutOffset = CGPoint(x: 0, y: -5)
+                registerForPreviewing(with: self, sourceView: $0)
+            }
+        }
+        return nil
+    }
+
 }
