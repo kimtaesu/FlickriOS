@@ -87,3 +87,9 @@ fileprivate extension MKMapView {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
+
+extension MKMapView {
+    var maxZoomSpan: MKCoordinateSpan {
+        return MKCoordinateSpan(latitudeDelta: 135.68020269231502, longitudeDelta: 131.8359359933973)
+    }
+}

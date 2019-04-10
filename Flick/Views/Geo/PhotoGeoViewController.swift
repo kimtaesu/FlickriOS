@@ -55,6 +55,8 @@ class PhotoGeoViewController: UIViewController {
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: mapView.maxZoomSpan)
+            $0.setRegion(region, animated: true)
         }
         self.addViewContainer(photoContainer)
         photoContainer.view.do {
