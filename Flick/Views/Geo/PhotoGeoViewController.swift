@@ -9,7 +9,6 @@
 import MapKit
 import ReactorKit
 import RxDataSources
-import RxMKMapView
 import UIKit
 
 class PhotoGeoViewController: UIViewController {
@@ -52,7 +51,7 @@ class PhotoGeoViewController: UIViewController {
         }
         mapView.do {
             view.addSubview($0)
-            $0.rx.setDelegate(self).disposed(by: disposeBag)
+            $0.delegate = self
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
@@ -72,6 +71,7 @@ class PhotoGeoViewController: UIViewController {
 
 extension PhotoGeoViewController: View, HasDisposeBag {
     func bind(reactor: PhotoGeoReactor) {
+        
         reactor.action.onNext(.setSearch)
 
         photoContainer.leftPagingView.rx.tap
@@ -86,7 +86,12 @@ extension PhotoGeoViewController: View, HasDisposeBag {
         
         reactor.state.map { $0.mapAnnotations }
             .filterEmpty()
-            .bind(to: mapView.rx.annotations)
+            .distinctUntilChanged()
+            .bind { [weak self] annotations in
+                guard let self = self else { return }
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                self.mapView.addAnnotations(annotations)
+            }
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.selectedPhoto }
@@ -138,7 +143,13 @@ extension PhotoGeoViewController: MKMapViewDelegate, PhotoAnnotationDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? PhotoAnnotation {
-            return PhotoAnnotationView(annotation: annotation, reuseIdentifier: PhotoAnnotationView.swiftIdentifier).then {
+            var view: PhotoAnnotationView
+            if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: PhotoAnnotationView.swiftIdentifier) as? PhotoAnnotationView {
+                view = annotationView
+            } else {
+                view = PhotoAnnotationView(annotation: annotation, reuseIdentifier: PhotoAnnotationView.swiftIdentifier)
+            }
+            return view.then {
                 let annotationAccessoryView = PhotoDetailAnnotationAccessoryView(annotation: annotation).then { $0.configCell(annotation) }
                 annotationAccessoryView.setDelegate(self)
                 $0.detailCalloutAccessoryView = annotationAccessoryView

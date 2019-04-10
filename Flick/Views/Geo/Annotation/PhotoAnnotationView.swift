@@ -18,7 +18,6 @@ class PhotoAnnotationView: MKAnnotationView, SwiftNameIdentifier {
 
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        guard let photoAnnotation = self.annotation as? PhotoAnnotation else { return }
-        image = Asset.icHome.image
+        image = Asset.icMarkLocation.image.maskWithColor(color: ColorName.colorAccent)
     }
 }

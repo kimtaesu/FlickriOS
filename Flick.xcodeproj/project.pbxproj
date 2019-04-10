@@ -975,7 +975,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxMoya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Moya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxMKMapView.framework",
 			);
 			name = "[CP] Copy Carthage Resources";
 			outputFileListPaths = (

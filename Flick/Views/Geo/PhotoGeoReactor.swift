@@ -32,13 +32,13 @@ class PhotoGeoReactor: Reactor {
         var text: String
         var bbox: String
         var photos: [Photo]
-        var mapAnnotations: [MKAnnotation]
+        var mapAnnotations: [PhotoAnnotation]
         var nextPage: Int
         var startIndex: Int = 0
         var endIndex: Int = 0
         var isLoadingNextPage: Bool
 
-        public init(text: String, bbox: String, photos: [Photo], mapAnnotations: [MKAnnotation], nextPage: Int, startIndex: Int = 0, endIndex: Int = 0, isLoadingNextPage: Bool) {
+        public init(text: String, bbox: String, photos: [Photo], mapAnnotations: [PhotoAnnotation], nextPage: Int, startIndex: Int = 0, endIndex: Int = 0, isLoadingNextPage: Bool) {
             self.text = text
             self.bbox = bbox
             self.photos = photos
@@ -85,7 +85,7 @@ class PhotoGeoReactor: Reactor {
             guard let annotation = annotation as? PhotoAnnotation else { return .empty() }
             return Observable.just(Mutation.tapsAnnotationView(annotation))
         case .tapsPhoto(let index):
-            return Observable.just(Mutation.tapsPhoto(currentState.photos[index]))
+            return Observable.just(Mutation.tapsPhoto(currentState.photos[currentState.startIndex + index]))
         case .setSearch:
 
             return Observable.concat([
@@ -122,8 +122,9 @@ class PhotoGeoReactor: Reactor {
                 newState.startIndex = newState.endIndex
                 newState.endIndex = min(newState.photos.count, newState.endIndex + newState.stride)
                 let slice = newState.photos[newState.startIndex..<newState.endIndex]
-                newState.mapAnnotations = photos.map { PhotoAnnotation(photo: $0) }
-                newState.photoSections = [PhotoSection(header: "photos", items: slice.compactMap { $0 })]
+                let stagingPhotos = slice.compactMap { $0 }
+                newState.mapAnnotations = stagingPhotos.map { PhotoAnnotation(photo: $0) }
+                newState.photoSections = [PhotoSection(header: "photos", items: stagingPhotos)]
                 newState.nextPage = (response.data?.photos.page ?? 0) + 1
                 newState.enabledRight = !isEndPage(total: response.data?.photos.total ?? 0)
                 newState.enabledLeft = !isFirstPage(startIndex: newState.startIndex)
