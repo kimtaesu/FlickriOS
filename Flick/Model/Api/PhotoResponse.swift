@@ -16,7 +16,7 @@ struct PhotoContext: Decodable {
     let page: Int
     let pages: Int
     let perpage: Int
-//    let total: Int
+    let total: Int
     let photo: [Photo]
 }
 
@@ -25,7 +25,7 @@ extension PhotoContext {
         case page
         case pages
         case perpage
-//        case total
+        case total
         case photo
     }
     init(from decoder: Decoder) throws {
@@ -34,7 +34,7 @@ extension PhotoContext {
         page = try values.decode(Int.self, forKey: .page)
         pages = try values.decode(Int.self, forKey: .pages)
         perpage = try values.decode(Int.self, forKey: .perpage)
-//        total = (try values.decode(String.self, forKey: .total)).toInt
+        total = (try values.decode(String.self, forKey: .total)).toInt
         photo = try values.decode([Photo].self, forKey: .photo)
     }
 }

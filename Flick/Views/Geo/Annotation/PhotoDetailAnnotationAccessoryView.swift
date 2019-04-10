@@ -32,7 +32,7 @@ class PhotoDetailAnnotationAccessoryView: UIView {
             self.addSubview($0)
             $0.isUserInteractionEnabled = true
             $0.snp.makeConstraints({ make in
-                let width = 60
+                let width = 100
                 make.width.equalTo(width)
                 make.height.equalTo(width)
                 make.edges.equalToSuperview()

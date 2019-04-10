@@ -3,7 +3,7 @@ import UIKit
 
 enum UserDefaultKeys: String {
     case resolution
-    case categoryCount
+    case photoStride
 }
 extension UserDefaults {
     func value<T>(forKey key: UserDefaultKeys) -> T {
@@ -15,6 +15,6 @@ extension UserDefaults {
         UserDefaults.standard.set(value, forKey: key.rawValue)
     }
     func userDefaultRegister() {
-        UserDefaults.standard.register(defaults: [UserDefaultKeys.categoryCount.rawValue: 5])
+        UserDefaults.standard.register(defaults: [UserDefaultKeys.photoStride.rawValue: Enviroment.DEFAULT_PER_PAGE])
     }
 }

@@ -15,17 +15,9 @@ import UIKit
 class PhotoGeoViewController: UIViewController {
     let defaultCenterLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     let mapView = MKMapView()
+    let photoContainer = PhotoViewController()
     let currentLocationView = UIImageView()
-    let photoCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.register(PhotoGeoCell.self, forCellWithReuseIdentifier: PhotoGeoCell.swiftIdentifier)
-        collectionView.backgroundColor = .clear
-
-        return collectionView
-    }()
-
+    
     let dataSource = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
         configureCell: { ds, tv, ip, item in
             guard let cell = tv.dequeueReusableCell(withReuseIdentifier: PhotoGeoCell.swiftIdentifier, for: ip) as? PhotoGeoCell else {
@@ -65,9 +57,8 @@ class PhotoGeoViewController: UIViewController {
                 make.edges.equalToSuperview()
             })
         }
-        photoCollectionView.do {
-            view.addSubview($0)
-            $0.rx.setDelegate(self).disposed(by: disposeBag)
+        self.addViewContainer(photoContainer)
+        photoContainer.view.do {
             $0.snp.makeConstraints({ make in
                 make.leading.equalToSuperview()
                 make.trailing.equalToSuperview()
@@ -83,15 +74,16 @@ extension PhotoGeoViewController: View, HasDisposeBag {
     func bind(reactor: PhotoGeoReactor) {
         reactor.action.onNext(.setSearch)
 
-        photoCollectionView.rx.itemSelected
-            .map { Reactor.Action.tapsPhoto($0.row) }
+        photoContainer.leftPagingView.rx.tap
+            .map { Reactor.Action.toLeft }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-
-//            .map { Reactor.Action.tapsAnnotationView($0.annotation) }
-//            .bind(to: reactor.action)
-//            .disposed(by: disposeBag)
-
+        
+        photoContainer.rightPagingView.rx.tap
+            .map { Reactor.Action.toRight }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         reactor.state.map { $0.mapAnnotations }
             .filterEmpty()
             .bind(to: mapView.rx.annotations)
@@ -104,6 +96,18 @@ extension PhotoGeoViewController: View, HasDisposeBag {
             }
             .disposed(by: disposeBag)
 
+        reactor.state.map { $0.enabledLeft }
+            .filterNil()
+            .distinctUntilChanged()
+            .bind(to: photoContainer.leftPagingView.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        reactor.state.map { $0.enabledRight }
+            .filterNil()
+            .distinctUntilChanged()
+            .bind(to: photoContainer.rightPagingView.rx.isEnabled)
+            .disposed(by: disposeBag)
+
         reactor.state.map { $0.selectedAnnotation }
             .filterNil()
             .bind { [weak self] annotation in
@@ -112,9 +116,15 @@ extension PhotoGeoViewController: View, HasDisposeBag {
                 self.show(vc, sender: self)
             }
             .disposed(by: disposeBag)
+        
+        photoContainer.photoCollectionView.rx.itemSelected
+            .map { Reactor.Action.tapsPhoto($0.row) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
         reactor.state.map { $0.photoSections }
-            .filterEmpty()
-            .bind(to: photoCollectionView.rx.items(dataSource: dataSource))
+            .filterNil()
+            .bind(to: photoContainer.photoCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
 }
@@ -139,5 +149,4 @@ extension PhotoGeoViewController: MKMapViewDelegate, PhotoAnnotationDelegate {
         }
         return nil
     }
-
 }

@@ -23,6 +23,12 @@
 		BD05518C225AACC3000B023B /* LocationSubSearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD05518B225AACC3000B023B /* LocationSubSearchReactor.swift */; };
 		BD0B218F2253823E00C4A5C2 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B218E2253823E00C4A5C2 /* CategoryHeaderCell.swift */; };
 		BD0B21962254324200C4A5C2 /* CategoryViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B21952254324200C4A5C2 /* CategoryViewController2.swift */; };
+		BD1CE6E3225DF9E70011C4C4 /* UIImage+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1CE6E2225DF9E70011C4C4 /* UIImage+Transform.swift */; };
+		BD1CE6E5225DFB980011C4C4 /* UIView+Gradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1CE6E4225DFB980011C4C4 /* UIView+Gradients.swift */; };
+		BD1CE6E7225DFC6B0011C4C4 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1CE6E6225DFC6B0011C4C4 /* UIColor+Random.swift */; };
+		BD1CE6E9225E0C1E0011C4C4 /* PhotoAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1CE6E8225E0C1E0011C4C4 /* PhotoAnnotationView.swift */; };
+		BD2A6A3F225D6E1F00B73E6D /* UIView+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2A6A3E225D6E1F00B73E6D /* UIView+Blur.swift */; };
+		BD2A6A84225D748C00B73E6D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2A6A83225D748C00B73E6D /* PhotoViewController.swift */; };
 		BD44CB4522572648007C3B70 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = BD44CB4422572648007C3B70 /* Readme.md */; };
 		BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */; };
 		BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */; };
@@ -39,7 +45,6 @@
 		BD5984EC2252E323006B2F31 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984EB2252E323006B2F31 /* ViewModelProtocol.swift */; };
 		BD5984EF2252E670006B2F31 /* LoadingThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984EE2252E670006B2F31 /* LoadingThumbnailCell.swift */; };
 		BD5984F12252E7D2006B2F31 /* PhotoRetryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984F02252E7D2006B2F31 /* PhotoRetryCell.swift */; };
-		BD734E94225B8F74006F7772 /* PhotoAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD734E93225B8F74006F7772 /* PhotoAnnotationView.swift */; };
 		BD734E97225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */; };
 		BD9F6EE6225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */; };
 		BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */; };
@@ -148,6 +153,12 @@
 		BD05518B225AACC3000B023B /* LocationSubSearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSubSearchReactor.swift; sourceTree = "<group>"; };
 		BD0B218E2253823E00C4A5C2 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
 		BD0B21952254324200C4A5C2 /* CategoryViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController2.swift; sourceTree = "<group>"; };
+		BD1CE6E2225DF9E70011C4C4 /* UIImage+Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Transform.swift"; sourceTree = "<group>"; };
+		BD1CE6E4225DFB980011C4C4 /* UIView+Gradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gradients.swift"; sourceTree = "<group>"; };
+		BD1CE6E6225DFC6B0011C4C4 /* UIColor+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
+		BD1CE6E8225E0C1E0011C4C4 /* PhotoAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAnnotationView.swift; sourceTree = "<group>"; };
+		BD2A6A3E225D6E1F00B73E6D /* UIView+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Blur.swift"; sourceTree = "<group>"; };
+		BD2A6A83225D748C00B73E6D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		BD44CB4422572648007C3B70 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MkMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -164,7 +175,6 @@
 		BD5984EB2252E323006B2F31 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		BD5984EE2252E670006B2F31 /* LoadingThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingThumbnailCell.swift; sourceTree = "<group>"; };
 		BD5984F02252E7D2006B2F31 /* PhotoRetryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRetryCell.swift; sourceTree = "<group>"; };
-		BD734E93225B8F74006F7772 /* PhotoAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotationView.swift; sourceTree = "<group>"; };
 		BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailAnnotationAccessoryView.swift; sourceTree = "<group>"; };
 		BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift"; sourceTree = "<group>"; };
 		BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				BD734E95225B8F83006F7772 /* Annotation */,
+				BD2A6A83225D748C00B73E6D /* PhotoViewController.swift */,
 				BD05516F2259CD12000B023B /* PhotoGeoViewController.swift */,
 				BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */,
 				BD49A846225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift */,
@@ -364,8 +375,8 @@
 		BD734E95225B8F83006F7772 /* Annotation */ = {
 			isa = PBXGroup;
 			children = (
+				BD1CE6E8225E0C1E0011C4C4 /* PhotoAnnotationView.swift */,
 				BDE507F0225B7A2E00A0BAE5 /* PhotoAnnotations.swift */,
-				BD734E93225B8F74006F7772 /* PhotoAnnotationView.swift */,
 				BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */,
 			);
 			path = Annotation;
@@ -549,6 +560,7 @@
 				BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */,
 				BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */,
 				BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */,
+				BD1CE6E2225DF9E70011C4C4 /* UIImage+Transform.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -617,6 +629,9 @@
 			isa = PBXGroup;
 			children = (
 				BDE507EC225B5BEC00A0BAE5 /* SearchOptionProtocol.swift */,
+				BD2A6A3E225D6E1F00B73E6D /* UIView+Blur.swift */,
+				BD1CE6E4225DFB980011C4C4 /* UIView+Gradients.swift */,
+				BD1CE6E6225DFC6B0011C4C4 /* UIColor+Random.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1019,7 +1034,7 @@
 				BDBEF933224F01C200829E82 /* HasDisposeBag.swift in Sources */,
 				BD5984E0225231D9006B2F31 /* LoadingViewModel.swift in Sources */,
 				BDBEF9D522509DAE00829E82 /* PhotoSection.swift in Sources */,
-				BD734E94225B8F74006F7772 /* PhotoAnnotationView.swift in Sources */,
+				BD2A6A3F225D6E1F00B73E6D /* UIView+Blur.swift in Sources */,
 				BD055183225A13B6000B023B /* GeoSearchCell.swift in Sources */,
 				BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */,
 				BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */,
@@ -1035,10 +1050,13 @@
 				BD5984D32252293A006B2F31 /* LicenceCountView.swift in Sources */,
 				BDCE9D612251CA2E00126DA1 /* PhotoDetailReactor.swift in Sources */,
 				BD5984EC2252E323006B2F31 /* ViewModelProtocol.swift in Sources */,
+				BD1CE6E3225DF9E70011C4C4 /* UIImage+Transform.swift in Sources */,
+				BD2A6A84225D748C00B73E6D /* PhotoViewController.swift in Sources */,
 				BDBEF93E225046D100829E82 /* Inject.swift in Sources */,
 				BD05518C225AACC3000B023B /* LocationSubSearchReactor.swift in Sources */,
 				BDAD9DC3225AEFE9000F8577 /* TextSubCell.swift in Sources */,
 				BDBEF9F12250CB7400829E82 /* MyColor.swift in Sources */,
+				BD1CE6E7225DFC6B0011C4C4 /* UIColor+Random.swift in Sources */,
 				BD0551732259CD7E000B023B /* PhotoGeoReactor.swift in Sources */,
 				BD05517F225A079D000B023B /* LocationResultSet.swift in Sources */,
 				BDBEFA0A2250F0F800829E82 /* RxListAdapterDataSource.swift in Sources */,
@@ -1065,6 +1083,7 @@
 				BD05518A225AA55F000B023B /* LocationSubSearchViewController.swift in Sources */,
 				BD5984E222523313006B2F31 /* HasHeader.swift in Sources */,
 				BDE507EF225B6F0A00A0BAE5 /* PhotoGeoCell.swift in Sources */,
+				BD1CE6E5225DFB980011C4C4 /* UIView+Gradients.swift in Sources */,
 				BD5984E82252E1D7006B2F31 /* RetryViewModel.swift in Sources */,
 				BDBEF9F42250CB7400829E82 /* Plist.swift in Sources */,
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
@@ -1076,6 +1095,7 @@
 				BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */,
 				BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */,
 				BDBEF9F32250CB7400829E82 /* Assets.swift in Sources */,
+				BD1CE6E9225E0C1E0011C4C4 /* PhotoAnnotationView.swift in Sources */,
 				BDBEF91C224EF26500829E82 /* L10n.swift in Sources */,
 				BDBEF9F22250CB7400829E82 /* Fonts.swift in Sources */,
 				BDBEF9DA22509DAE00829E82 /* ImageSource.swift in Sources */,

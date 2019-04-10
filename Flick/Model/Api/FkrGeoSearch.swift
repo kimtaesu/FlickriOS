@@ -24,13 +24,12 @@ struct FkrGeoSearchReq: HasPagableProtocol, HasContentType {
         page: Int,
         bbox: String,
         sort: String = SortOption.interesting.rawValue,
-        perPage: Int = Enviroment.DEFAULT_PER_PAGE,
         contentType: Int = ContentType.photoOnly.rawValue,
         accuracy: Int = 1
         ) {
         self.text = text
         self.page = page
-        self.per_page = perPage
+        self.per_page = UserDefaults.standard.value(forKey: UserDefaultKeys.photoStride)
         self.sort = sort
         self.content_type = contentType
         self.bbox = bbox

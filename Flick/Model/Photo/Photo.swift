@@ -51,6 +51,7 @@ struct Photo: Decodable, Equatable, ViewModelProtocol {
     let media: String?
     let media_status: String?
     var imageSources: [ImageSource] = []
+    var alpha: Float?
 }
 
 extension Photo {
