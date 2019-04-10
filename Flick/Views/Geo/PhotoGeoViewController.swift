@@ -16,6 +16,7 @@ class PhotoGeoViewController: UIViewController {
     let mapView = MKMapView()
     let photoContainer = PhotoViewController()
     let currentLocationView = UIImageView()
+    let locationManager = CLLocationManager()
     
     let dataSource = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
         configureCell: { ds, tv, ip, item in
@@ -38,6 +39,8 @@ class PhotoGeoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
         currentLocationView.do {
             view.addSubview($0)
             $0.image = Asset.icCurrentLocation.image
@@ -52,10 +55,12 @@ class PhotoGeoViewController: UIViewController {
         mapView.do {
             view.addSubview($0)
             $0.delegate = self
+            $0.showsUserLocation = true
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: mapView.maxZoomSpan)
+            
+            let region = MKCoordinateRegion(center: locationManager.currentCoordinate, span: mapView.maxZoomSpan)
             $0.setRegion(region, animated: true)
         }
         self.addViewContainer(photoContainer)
@@ -161,5 +166,22 @@ extension PhotoGeoViewController: MKMapViewDelegate, PhotoAnnotationDelegate {
             }
         }
         return nil
+    }
+}
+
+extension PhotoGeoViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            mapView.centerCoordinate = manager.currentCoordinate
+        default:
+            break
+        }
+    }
+}
+
+extension CLLocationManager {
+    var currentCoordinate: CLLocationCoordinate2D {
+        return self.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
 }
