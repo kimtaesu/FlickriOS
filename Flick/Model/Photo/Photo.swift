@@ -51,7 +51,6 @@ struct Photo: Decodable, Equatable, ViewModelProtocol {
     let media: String?
     let media_status: String?
     var imageSources: [ImageSource] = []
-    var alpha: Float?
 }
 
 extension Photo {
@@ -154,11 +153,11 @@ extension Photo {
         logger.info("location: \(location)")
         return location
     }
-    
+
     var iconBuddy: String {
         return "https://farm\(iconFarm).staticflickr.com/\(iconServer)/buddyicons/\(owner).jpg"
     }
-    
+
     func nearHeightByWidth(width: Int) -> ImageSource? {
         return imageSources.min { image1, image2 in
             let distance1 = abs(width - image1.width)

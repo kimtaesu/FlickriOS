@@ -8,7 +8,19 @@
 
 import Foundation
 
-struct Comment: Decodable, Equatable {
+protocol Commentable {
+    var id: String { get }
+    var author: String { get }
+    var authorName: String { get }
+    var authorIsDeleted: Int { get }
+    var iconserver: String { get }
+    var iconfarm: Int { get }
+    var datecreate: String { get }
+    var permalink: String { get }
+    var realname: String { get }
+    var content: String { get }
+}
+struct Comment: Decodable, Equatable, Commentable {
     let id: String
     let author: String
     let authorName: String

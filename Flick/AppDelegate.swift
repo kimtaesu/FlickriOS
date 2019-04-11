@@ -16,9 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.userDefaultRegister()
-        
+        let photo: PhotoResponse = ResourcesLoader.loadJson("photo")
         window = UIWindow().then {
-            $0.rootViewController = PhotoGeoViewController()
+            $0.rootViewController = PhotoDetailViewController(photo.photos.photo[0])
             $0.backgroundColor = UIColor.white
             $0.makeKeyAndVisible()
         }
