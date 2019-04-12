@@ -101,12 +101,13 @@ class PhotoDetailViewController: UIViewController {
         }
         descriptionView.do {
             view.addSubview($0)
+            $0.isEditable = false
             $0.snp.makeConstraints({ make in
                 make.top.equalTo(popularView.snp.bottom).offset(6)
                 make.leading.equalToSuperview().offset(16)
                 make.trailing.equalToSuperview().offset(-16)
                 make.centerX.equalToSuperview()
-                make.bottom.equalTo(safeAreaBottom).offset(16)
+                make.bottom.equalTo(safeAreaBottom).offset(-16)
             })
         }
     }
