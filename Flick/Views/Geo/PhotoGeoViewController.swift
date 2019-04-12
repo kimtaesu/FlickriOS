@@ -10,6 +10,7 @@ import MapKit
 import ReactorKit
 import RxDataSources
 import UIKit
+import Crashlytics
 
 class PhotoGeoViewController: UIViewController {
     let defaultCenterLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)

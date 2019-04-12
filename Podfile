@@ -9,7 +9,8 @@ target 'Flick' do
   pod 'SwiftGen'
   pod 'SwiftyBeaver'
   pod 'XMLParsing'
-  
+  pod 'Fabric'
+  pod 'Crashlytics'
   # Pods for Flick
 
   def testing_pods

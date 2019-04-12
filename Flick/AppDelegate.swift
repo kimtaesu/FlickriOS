@@ -6,6 +6,8 @@
 //  Copyright © 2019 hucet. All rights reserved.
 //
 
+import Crashlytics
+import Fabric
 import Then
 import UIKit
 
@@ -16,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.userDefaultRegister()
+        Fabric.with([Crashlytics.self])
         window = UIWindow().then {
             $0.rootViewController = UINavigationController(rootViewController: PhotoGeoViewController())
             $0.backgroundColor = UIColor.white
