@@ -24,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Uv-aA-0HU">
-                    <rect key="frame" x="0.0" y="0.0" width="657" height="357"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NeI-Ns-bha" customClass="LikeView" customModule="Flick" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="219" height="357"/>
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="647"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="countText" value="12"/>
@@ -38,11 +38,10 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2h7-4V-Ecw" customClass="LikeView" customModule="Flick" customModuleProvider="target">
-                            <rect key="frame" x="219" y="0.0" width="219" height="357"/>
-                            <color key="backgroundColor" red="0.0" green="0.98039215690000003" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="125" y="0.0" width="125" height="647"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIU-Mh-FbO" customClass="LikeView" customModule="Flick" customModuleProvider="target">
-                            <rect key="frame" x="438" y="0.0" width="219" height="357"/>
+                            <rect key="frame" x="250" y="0.0" width="125" height="647"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>

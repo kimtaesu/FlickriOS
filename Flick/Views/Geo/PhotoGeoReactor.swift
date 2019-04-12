@@ -103,8 +103,10 @@ class PhotoGeoReactor: Reactor {
             newState.endIndex = max(newState.stride, newState.startIndex)
             newState.startIndex = max(0, newState.startIndex - newState.stride)
             let slice = newState.photos[newState.startIndex..<newState.endIndex]
-            newState.photoSections = [PhotoSection(header: "photos", items: slice.compactMap { $0 })]
+            let stagingPhotos = slice.compactMap { $0 }
+            newState.photoSections = [PhotoSection(header: "photos", items: stagingPhotos)]
             newState.enabledLeft = !isFirstPage(startIndex: newState.startIndex)
+            newState.mapAnnotations = stagingPhotos.map { PhotoAnnotation(photo: $0) }
         case .tapsAnnotationView(let annotation):
             newState.selectedAnnotation = annotation
         case .tapsPhoto(let photo):

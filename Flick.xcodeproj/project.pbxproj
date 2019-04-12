@@ -36,7 +36,6 @@
 		BD49A845225CAAA50023CA9D /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */; };
 		BD49A847225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49A846225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift */; };
 		BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D0225226BE006B2F31 /* CommentResponse.swift */; };
-		BD5984D32252293A006B2F31 /* LicenceCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D22252293A006B2F31 /* LicenceCountView.swift */; };
 		BD5984D722522BF0006B2F31 /* CategoryViewController+Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */; };
 		BD5984D922522E6D006B2F31 /* CategoryPhotoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984D822522E6D006B2F31 /* CategoryPhotoSection.swift */; };
 		BD5984E0225231D9006B2F31 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984DF225231D9006B2F31 /* LoadingViewModel.swift */; };
@@ -51,6 +50,8 @@
 		BD9086112260509600E0430A /* IconBuddyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9086102260509600E0430A /* IconBuddyFactory.swift */; };
 		BD908617226056E100E0430A /* DetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD908616226056E100E0430A /* DetailReactor.swift */; };
 		BD90861922605C0400E0430A /* CommentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD90861822605C0400E0430A /* CommentSection.swift */; };
+		BD90865A2260A25100E0430A /* ChildStatusBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9086592260A25100E0430A /* ChildStatusBarNavigationController.swift */; };
+		BD9086612260AC8800E0430A /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9086602260AC8800E0430A /* TextSize.swift */; };
 		BD9F6EE6225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */; };
 		BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */; };
 		BDAD9DBF225AEDF7000F8577 /* TextSubSearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */; };
@@ -190,7 +191,6 @@
 		BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
 		BD49A846225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoGeoViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		BD5984D0225226BE006B2F31 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
-		BD5984D22252293A006B2F31 /* LicenceCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenceCountView.swift; sourceTree = "<group>"; };
 		BD5984D622522BF0006B2F31 /* CategoryViewController+Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Hero.swift"; sourceTree = "<group>"; };
 		BD5984D822522E6D006B2F31 /* CategoryPhotoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPhotoSection.swift; sourceTree = "<group>"; };
 		BD5984DF225231D9006B2F31 /* LoadingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
@@ -205,6 +205,8 @@
 		BD9086102260509600E0430A /* IconBuddyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconBuddyFactory.swift; sourceTree = "<group>"; };
 		BD908616226056E100E0430A /* DetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReactor.swift; sourceTree = "<group>"; };
 		BD90861822605C0400E0430A /* CommentSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSection.swift; sourceTree = "<group>"; };
+		BD9086592260A25100E0430A /* ChildStatusBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildStatusBarNavigationController.swift; sourceTree = "<group>"; };
+		BD9086602260AC8800E0430A /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
 		BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift"; sourceTree = "<group>"; };
 		BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchViewController.swift; sourceTree = "<group>"; };
 		BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchReactor.swift; sourceTree = "<group>"; };
@@ -392,9 +394,6 @@
 		BD23BD542251B7D900015632 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				BD90860B22604C7B00E0430A /* Comments */,
-				BDBFEBB0225EC5EA0005DCF1 /* DetailViewModel */,
-				BDBFEBAB225EC40D0005DCF1 /* DetailCell */,
 				BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */,
 				BDCE9D602251CA2E00126DA1 /* PhotoDetailReactor.swift */,
 			);
@@ -445,6 +444,20 @@
 			path = Comments;
 			sourceTree = "<group>";
 		};
+		BD9086582260A19A00E0430A /* NeedImplements */ = {
+			isa = PBXGroup;
+			children = (
+				BDBFEBB0225EC5EA0005DCF1 /* DetailViewModel */,
+				BD90860B22604C7B00E0430A /* Comments */,
+				BDBEF9EA2250CA0100829E82 /* Category */,
+				BD0551742259D10A000B023B /* GeoSearch */,
+				BD055188225AA54F000B023B /* LocationSubSearch */,
+				BDAD9DBB225AEBDE000F8577 /* TextSubSearch */,
+				BD5984DC2252313A006B2F31 /* ViewModel */,
+			);
+			path = NeedImplements;
+			sourceTree = "<group>";
+		};
 		BDAD9DBB225AEBDE000F8577 /* TextSubSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,7 +500,7 @@
 		BDBEF8D4224EEE1A00829E82 /* Flick */ = {
 			isa = PBXGroup;
 			children = (
-				BD5984DC2252313A006B2F31 /* ViewModel */,
+				BD9086582260A19A00E0430A /* NeedImplements */,
 				BDBEF9462250532600829E82 /* Extension */,
 				BDBEF9412250472300829E82 /* Repositories */,
 				BDBEF931224F01B900829E82 /* Utils */,
@@ -628,6 +641,7 @@
 				BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */,
 				BD1CE6E2225DF9E70011C4C4 /* UIImage+Transform.swift */,
 				BDFCCFA42260102B0000842F /* String+DateFormat.swift */,
+				BD9086602260AC8800E0430A /* TextSize.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -637,13 +651,8 @@
 			children = (
 				BDFCCFAF226019930000842F /* Component */,
 				BDE507EB225B5BE000A0BAE5 /* Common */,
-				BDAD9DBB225AEBDE000F8577 /* TextSubSearch */,
-				BD055188225AA54F000B023B /* LocationSubSearch */,
-				BD0551742259D10A000B023B /* GeoSearch */,
 				BD0551712259CD72000B023B /* Geo */,
 				BD23BD542251B7D900015632 /* Detail */,
-				BDBEF9EA2250CA0100829E82 /* Category */,
-				BD5984D22252293A006B2F31 /* LicenceCountView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -724,6 +733,7 @@
 				BD1CE6E4225DFB980011C4C4 /* UIView+Gradients.swift */,
 				BD1CE6E6225DFC6B0011C4C4 /* UIColor+Random.swift */,
 				BD9086102260509600E0430A /* IconBuddyFactory.swift */,
+				BD9086592260A25100E0430A /* ChildStatusBarNavigationController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -741,6 +751,7 @@
 		BDFCCFAF226019930000842F /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				BDBFEBAB225EC40D0005DCF1 /* DetailCell */,
 				BDFCCFB0226019B00000842F /* Popular */,
 				BDFCCFA8226012EC0000842F /* LikeView */,
 			);
@@ -979,7 +990,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Flick/Pods-Flick-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ReadMoreTextView/ReadMoreTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 				"${BUILT_PRODUCTS_DIR}/XMLParsing/XMLParsing.framework",
@@ -988,7 +998,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReadMoreTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMLParsing.framework",
@@ -1149,6 +1158,7 @@
 				BD908617226056E100E0430A /* DetailReactor.swift in Sources */,
 				BDC0395D225AC819006163EC /* LocationSubCell.swift in Sources */,
 				BDBEF9722250843800829E82 /* CategoryThumbnailCell.swift in Sources */,
+				BD90865A2260A25100E0430A /* ChildStatusBarNavigationController.swift in Sources */,
 				BDFEC7472258AE9600FFB0E9 /* FkrGeoSearch.swift in Sources */,
 				BDBFEBAD225EC41D0005DCF1 /* UserCell.swift in Sources */,
 				BDBEF976225086E200829E82 /* SwiftNameIdentifier.swift in Sources */,
@@ -1182,7 +1192,6 @@
 				BDBEF96A22506B0F00829E82 /* Logger.swift in Sources */,
 				BD90860D22604C8F00E0430A /* CommentReactor.swift in Sources */,
 				BDBEF9D022509DAE00829E82 /* Extras.swift in Sources */,
-				BD5984D32252293A006B2F31 /* LicenceCountView.swift in Sources */,
 				BDCE9D612251CA2E00126DA1 /* PhotoDetailReactor.swift in Sources */,
 				BD5984EC2252E323006B2F31 /* ViewModelProtocol.swift in Sources */,
 				BD1CE6E3225DF9E70011C4C4 /* UIImage+Transform.swift in Sources */,
@@ -1227,6 +1236,7 @@
 				BD1CE6E5225DFB980011C4C4 /* UIView+Gradients.swift in Sources */,
 				BD90860A22604A1500E0430A /* CommentViewController.swift in Sources */,
 				BD5984E82252E1D7006B2F31 /* RetryViewModel.swift in Sources */,
+				BD9086612260AC8800E0430A /* TextSize.swift in Sources */,
 				BDBEF9F42250CB7400829E82 /* Plist.swift in Sources */,
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
 				BD49A847225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift in Sources */,
@@ -1452,7 +1462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hucet.Flick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1476,7 +1486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hucet.Flick;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

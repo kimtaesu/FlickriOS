@@ -15,7 +15,6 @@ class PhotoGeoViewController: UIViewController {
     let defaultCenterLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     let mapView = MKMapView()
     let photoContainer = PhotoViewController()
-    let currentLocationView = UIImageView()
     let locationManager = CLLocationManager()
     
     let dataSource = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
@@ -27,7 +26,7 @@ class PhotoGeoViewController: UIViewController {
             return cell
         }
     )
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -39,19 +38,10 @@ class PhotoGeoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+        setNeedsStatusBarAppearanceUpdate()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
-        currentLocationView.do {
-            view.addSubview($0)
-            $0.image = Asset.icCurrentLocation.image
-            $0.snp.makeConstraints({ make in
-                let width = 20
-                make.width.equalTo(width)
-                make.height.equalTo(width)
-                make.leading.equalToSuperview().offset(20)
-                make.top.equalTo(safeAreaTop).offset(20)
-            })
-        }
         mapView.do {
             view.addSubview($0)
             $0.delegate = self
@@ -72,15 +62,20 @@ class PhotoGeoViewController: UIViewController {
                 make.bottom.equalTo(safeAreaBottom).offset(-50)
             })
         }
-        view.bringSubviewToFront(currentLocationView)
+    }
+    func createDetailViewController(_ annotation: PhotoAnnotation) -> UIViewController {
+        let vc = PhotoDetailViewController(annotation.photo).then {
+            $0.imageView.hero.id = "hero_photo_id_\(annotation.photo.id)"
+        }
+        return ChildStatusBarNavigationController(rootViewController: vc).then {
+            $0.hero.isEnabled = true
+        }
     }
 }
 
 extension PhotoGeoViewController: View, HasDisposeBag {
     func bind(reactor: PhotoGeoReactor) {
-        
         reactor.action.onNext(.setSearch)
-
         photoContainer.leftPagingView.rx.tap
             .map { Reactor.Action.toLeft }
             .bind(to: reactor.action)
@@ -144,7 +139,7 @@ extension PhotoGeoViewController: View, HasDisposeBag {
 extension PhotoGeoViewController: MKMapViewDelegate, PhotoAnnotationDelegate {
     func tapThumbnailView(_ annotation: MKAnnotation) {
         if let annotation = annotation as? PhotoAnnotation {
-            self.show(PhotoDetailViewController(annotation.photo), sender: self)
+            self.present(createDetailViewController(annotation), animated: true)
         }
     }
 
@@ -157,7 +152,10 @@ extension PhotoGeoViewController: MKMapViewDelegate, PhotoAnnotationDelegate {
                 view = PhotoAnnotationView(annotation: annotation, reuseIdentifier: PhotoAnnotationView.swiftIdentifier)
             }
             return view.then {
-                let annotationAccessoryView = PhotoDetailAnnotationAccessoryView(annotation: annotation).then { $0.configCell(annotation) }
+                let annotationAccessoryView = PhotoDetailAnnotationAccessoryView(annotation: annotation).then {
+                    $0.configCell(annotation)
+                    $0.thumbnailView.hero.id = "hero_photo_id_\(annotation.photo.id)"
+                }
                 annotationAccessoryView.setDelegate(self)
                 $0.detailCalloutAccessoryView = annotationAccessoryView
                 $0.canShowCallout = true

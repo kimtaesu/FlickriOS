@@ -14,9 +14,15 @@ class LikeView: XibView {
     @IBOutlet weak private var countView: UILabel!
     @IBOutlet weak private var imageView: UIImageView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        countView.textColor = ColorName.colorDark
+        imageView.tintColor = ColorName.colorPrimary
+    }
+    
     func setUp(_ viewModel: LikesViewModel) {
         countView.text = "\(viewModel.count)"
-        imageView.image = viewModel.image
+        imageView.image = viewModel.image.withRenderingMode(.alwaysTemplate)
     }
 }
 

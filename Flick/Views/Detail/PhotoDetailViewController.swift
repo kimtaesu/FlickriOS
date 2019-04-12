@@ -9,15 +9,13 @@
 import Hero
 import MapKit
 import ReactorKit
-import ReadMoreTextView
 import RxDataSources
 import RxSwift
 import UIKit
 
 class PhotoDetailViewController: UIViewController {
-
     let imageView = UIImageView()
-    let descriptionView = ReadMoreTextView()
+    let descriptionView = UITextView()
     let profileImageView = UIImageView()
     let ownerName = UILabel()
     let dateTaken = UILabel()
@@ -27,7 +25,11 @@ class PhotoDetailViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     init(_ photo: Photo) {
         super.init(nibName: nil, bundle: nil)
         reactor = PhotoDetailReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!, photo: photo)
@@ -57,13 +59,13 @@ class PhotoDetailViewController: UIViewController {
             })
         }
         profileImageView.do {
-            let width = 48
+            let width = 36
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
                 make.width.equalTo(width)
                 make.height.equalTo(width)
-                make.leading.equalToSuperview()
-                make.top.equalTo(imageView.snp.bottom)
+                make.leading.equalToSuperview().offset(16)
+                make.top.equalTo(imageView.snp.bottom).offset(8)
             })
             $0.layer.cornerRadius = CGFloat(width / 2)
             $0.clipsToBounds = true
@@ -71,21 +73,23 @@ class PhotoDetailViewController: UIViewController {
         ownerName.do {
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
-                make.leading.equalTo(profileImageView.snp.trailing)
-                make.top.equalTo(profileImageView.snp.top)
+                make.leading.equalTo(profileImageView.snp.trailing).offset(16)
+                make.centerY.equalTo(profileImageView.snp.centerY)
             })
         }
         dateTaken.do {
             view.addSubview($0)
+            $0.setTextSize(13)
+            $0.textColor = UIColor.lightGray
             $0.snp.makeConstraints({ make in
-                make.trailing.equalToSuperview()
-                make.top.equalTo(profileImageView.snp.top)
+                make.trailing.equalToSuperview().offset(-16)
+                make.top.equalTo(profileImageView.snp.bottom)
             })
         }
         popularView.do {
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
-                make.top.equalTo(profileImageView.snp.bottom)
+                make.top.equalTo(dateTaken.snp.bottom).offset(16)
                 make.centerX.equalToSuperview()
                 make.leading.equalToSuperview()
             })
@@ -98,36 +102,20 @@ class PhotoDetailViewController: UIViewController {
         descriptionView.do {
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
-                make.top.equalTo(popularView.snp.bottom)
-                make.leading.equalToSuperview()
+                make.top.equalTo(popularView.snp.bottom).offset(6)
+                make.leading.equalToSuperview().offset(16)
+                make.trailing.equalToSuperview().offset(-16)
                 make.centerX.equalToSuperview()
+                make.bottom.equalTo(safeAreaBottom).offset(16)
             })
-            
-            $0.shouldTrim = true
-            $0.maximumNumberOfLines = 4
-            let readMoreTextAttributes: [NSAttributedString.Key: Any] = [
-                NSAttributedString.Key.foregroundColor: view.tintColor,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
-            ]
-            $0.attributedReadMoreText = NSAttributedString(string: "...Read more", attributes: readMoreTextAttributes)
         }
-        
-//        self.addViewContainer(commentViewController)
-//        commentViewController.view.do {
-//            view.addSubview($0)
-//            $0.snp.makeConstraints({ make in
-//                make.leading.equalToSuperview()
-//                make.centerX.equalToSuperview()
-//                make.top.equalTo(descriptionView.snp.bottom)
-//                make.bottom.equalTo(safeAreaBottom)
-//            })
-//        }
     }
 
     @objc
     func panGesture() {
         let translation = uiPanGesture.translation(in: nil)
         let progress = translation.y / view.bounds.height
+        if progress < 0 { return }
         switch uiPanGesture.state {
         case .began:
             hero.dismissViewController()
@@ -153,10 +141,6 @@ class PhotoDetailViewController: UIViewController {
     @objc
     func close() {
         hero.dismissViewController()
-    }
-    @objc
-    func switchMapView() {
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -188,7 +172,13 @@ extension PhotoDetailViewController: View, HasDisposeBag {
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.desc }
-            .bind(to: descriptionView.rx.text)
+            .filterNil()
+            .bind { [weak self] desc in
+                if let commentData = desc.data(using: String.Encoding.unicode, allowLossyConversion: true),
+                    let attrString = try? NSAttributedString(data: commentData, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+                    self?.descriptionView.attributedText = attrString
+                }
+            }
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.detailImage }

@@ -45,10 +45,10 @@ extension PhotoGeoViewController: UIViewControllerPreviewingDelegate {
             previewingContext.sourceRect = popoverFrame
         }
 
-        return PhotoDetailViewController(annotation.photo)
+        return createDetailViewController(annotation)
     }
 
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        self.show(viewControllerToCommit, sender: self)
+        self.present(viewControllerToCommit, animated: true)
     }
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol CommentableProtocol {
     var id: String { get }
     var author: String { get }

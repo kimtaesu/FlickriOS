@@ -9,7 +9,6 @@ target 'Flick' do
   pod 'SwiftGen'
   pod 'SwiftyBeaver'
   pod 'XMLParsing'
-  pod 'ReadMoreTextView'
   
   # Pods for Flick
 

@@ -16,9 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.userDefaultRegister()
-        let photo: PhotoResponse = ResourcesLoader.loadJson("photo")
         window = UIWindow().then {
-            $0.rootViewController = UINavigationController(rootViewController: CommentViewController(photo.photos.photo[0].id))
+            $0.rootViewController = UINavigationController(rootViewController: PhotoGeoViewController())
             $0.backgroundColor = UIColor.white
             $0.makeKeyAndVisible()
         }

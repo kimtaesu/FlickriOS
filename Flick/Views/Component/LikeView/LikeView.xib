@@ -22,23 +22,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqw-js-9Mq">
-                    <rect key="frame" x="166.5" y="0.0" width="42" height="41"/>
+                    <rect key="frame" x="166.5" y="0.0" width="42" height="58"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z6M-VC-K6s">
-                    <rect key="frame" x="172.5" y="56" width="30" height="30"/>
+                    <rect key="frame" x="177.5" y="66" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="z6M-VC-K6s" secondAttribute="height" multiplier="1:1" id="GHQ-ka-m3x"/>
-                        <constraint firstAttribute="width" constant="30" id="hYq-xr-pn1"/>
+                        <constraint firstAttribute="width" constant="20" id="hYq-xr-pn1"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Sqw-js-9Mq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="0w3-yX-nsY"/>
-                <constraint firstItem="z6M-VC-K6s" firstAttribute="top" secondItem="Sqw-js-9Mq" secondAttribute="bottom" constant="15" id="MIT-KG-Rdi"/>
+                <constraint firstItem="z6M-VC-K6s" firstAttribute="top" secondItem="Sqw-js-9Mq" secondAttribute="bottom" constant="8" id="MIT-KG-Rdi"/>
                 <constraint firstItem="z6M-VC-K6s" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="iPd-8y-vAe"/>
                 <constraint firstItem="Sqw-js-9Mq" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="kzF-ft-s1c"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="z6M-VC-K6s" secondAttribute="bottom" id="v0e-gh-o7b"/>
