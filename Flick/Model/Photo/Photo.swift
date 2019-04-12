@@ -23,7 +23,36 @@ k    대형 2048, 가장 긴 면이 2048†
 o    원본 이미지, 소스 형식에 따라 jpg, gif 또는png
 */
 
-struct Photo: Decodable, Equatable, ViewModelProtocol {
+protocol PhotoType {
+    var id: String { get }
+    var description: [String: String]? { get }
+    var license: String? { get }
+    var owner: String { get }
+    var secret: String { get }
+    var title: String { get }
+    var ispublic: Int { get }
+    var isfriend: Int { get }
+    var isfamily: Int { get }
+    var iconFarm: Int { get }
+    var countComments: String { get }
+    var countLikes: String { get }
+    var views: String { get }
+    var iconServer: String { get }
+    var dateupload: String? { get }
+    var lastupdate: String? { get }
+    var datetaken: String? { get }
+    var ownername: String? { get }
+    var machine_tags: String? { get }
+    var originalsecret: String? { get }
+    var originalformat: String? { get }
+    var latitude: Double? { get }
+    var longitude: Double? { get }
+    var accuracy: Int? { get }
+    var media: String? { get }
+    var media_status: String? { get }
+    var imageSources: [ImageSource] { get }
+}
+struct Photo: PhotoType, Decodable, Equatable, ViewModelProtocol {
     let id: String
     let description: [String: String]?
     let license: String?
@@ -152,10 +181,6 @@ extension Photo {
         let location = CLLocationCoordinate2D(latitude: self.latitude ?? 0, longitude: self.longitude ?? 0)
         logger.info("location: \(location)")
         return location
-    }
-
-    var iconBuddy: String {
-        return "https://farm\(iconFarm).staticflickr.com/\(iconServer)/buddyicons/\(owner).jpg"
     }
 
     func nearHeightByWidth(width: Int) -> ImageSource? {

@@ -9,7 +9,7 @@
 import Foundation
 import IGListKit
 
-class CommentViewModel: Commentable {
+class CommentViewModel: CommentableProtocol {
     let id: String
     let author: String
     let authorName: String
@@ -21,17 +21,17 @@ class CommentViewModel: Commentable {
     let realname: String
     let content: String
 
-    public init(id: String, author: String, authorName: String, authorIsDeleted: Int, iconserver: String, iconfarm: Int, datecreate: String, permalink: String, realname: String, content: String) {
-        self.id = id
-        self.author = author
-        self.authorName = authorName
-        self.authorIsDeleted = authorIsDeleted
-        self.iconserver = iconserver
-        self.iconfarm = iconfarm
-        self.datecreate = datecreate
-        self.permalink = permalink
-        self.realname = realname
-        self.content = content
+    public init(_ commentable: CommentableProtocol) {
+        self.id = commentable.id
+        self.author = commentable.author
+        self.authorName = commentable.authorName
+        self.authorIsDeleted = commentable.authorIsDeleted
+        self.iconserver = commentable.iconserver
+        self.iconfarm = commentable.iconfarm
+        self.datecreate = commentable.datecreate
+        self.permalink = commentable.permalink
+        self.realname = commentable.realname
+        self.content = commentable.content
     }
 }
 

@@ -46,6 +46,11 @@
 		BD5984EF2252E670006B2F31 /* LoadingThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984EE2252E670006B2F31 /* LoadingThumbnailCell.swift */; };
 		BD5984F12252E7D2006B2F31 /* PhotoRetryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5984F02252E7D2006B2F31 /* PhotoRetryCell.swift */; };
 		BD734E97225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */; };
+		BD90860A22604A1500E0430A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD90860922604A1500E0430A /* CommentViewController.swift */; };
+		BD90860D22604C8F00E0430A /* CommentReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD90860C22604C8F00E0430A /* CommentReactor.swift */; };
+		BD9086112260509600E0430A /* IconBuddyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9086102260509600E0430A /* IconBuddyFactory.swift */; };
+		BD908617226056E100E0430A /* DetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD908616226056E100E0430A /* DetailReactor.swift */; };
+		BD90861922605C0400E0430A /* CommentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD90861822605C0400E0430A /* CommentSection.swift */; };
 		BD9F6EE6225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */; };
 		BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */; };
 		BDAD9DBF225AEDF7000F8577 /* TextSubSearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */; };
@@ -123,6 +128,15 @@
 		BDE507EF225B6F0A00A0BAE5 /* PhotoGeoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */; };
 		BDE507F1225B7A2E00A0BAE5 /* PhotoAnnotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE507F0225B7A2E00A0BAE5 /* PhotoAnnotations.swift */; };
 		BDF60146225198AE0040D48A /* ListSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF60145225198AE0040D48A /* ListSectionDelegate.swift */; };
+		BDF8E0FE225EF85D0026CC84 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF8E0FD225EF85D0026CC84 /* PhotoModel.swift */; };
+		BDFCCFA322600DE90000842F /* DateFormatterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFCCFA222600DE90000842F /* DateFormatterTest.swift */; };
+		BDFCCFA52260102B0000842F /* String+DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFCCFA42260102B0000842F /* String+DateFormat.swift */; };
+		BDFCCFA7226012A00000842F /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFCCFA6226012A00000842F /* LikeView.swift */; };
+		BDFCCFAC226015F90000842F /* LikeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDFCCFAB226015F90000842F /* LikeView.xib */; };
+		BDFCCFAE226018CA0000842F /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFCCFAD226018CA0000842F /* XibView.swift */; };
+		BDFCCFB2226019C20000842F /* PopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFCCFB1226019C20000842F /* PopularView.swift */; };
+		BDFCCFB4226019CF0000842F /* PopularView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDFCCFB3226019CF0000842F /* PopularView.xib */; };
+		BDFCCFB622601F1D0000842F /* LikesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFCCFB522601F1D0000842F /* LikesViewModel.swift */; };
 		BDFEC7432258ACD100FFB0E9 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFEC7422258ACD100FFB0E9 /* SortOption.swift */; };
 		BDFEC7472258AE9600FFB0E9 /* FkrGeoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFEC7462258AE9600FFB0E9 /* FkrGeoSearch.swift */; };
 /* End PBXBuildFile section */
@@ -186,6 +200,11 @@
 		BD5984EE2252E670006B2F31 /* LoadingThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingThumbnailCell.swift; sourceTree = "<group>"; };
 		BD5984F02252E7D2006B2F31 /* PhotoRetryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRetryCell.swift; sourceTree = "<group>"; };
 		BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailAnnotationAccessoryView.swift; sourceTree = "<group>"; };
+		BD90860922604A1500E0430A /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		BD90860C22604C8F00E0430A /* CommentReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReactor.swift; sourceTree = "<group>"; };
+		BD9086102260509600E0430A /* IconBuddyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconBuddyFactory.swift; sourceTree = "<group>"; };
+		BD908616226056E100E0430A /* DetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReactor.swift; sourceTree = "<group>"; };
+		BD90861822605C0400E0430A /* CommentSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSection.swift; sourceTree = "<group>"; };
 		BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift"; sourceTree = "<group>"; };
 		BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchViewController.swift; sourceTree = "<group>"; };
 		BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchReactor.swift; sourceTree = "<group>"; };
@@ -269,6 +288,15 @@
 		BDE507EE225B6F0A00A0BAE5 /* PhotoGeoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGeoCell.swift; sourceTree = "<group>"; };
 		BDE507F0225B7A2E00A0BAE5 /* PhotoAnnotations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotations.swift; sourceTree = "<group>"; };
 		BDF60145225198AE0040D48A /* ListSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionDelegate.swift; sourceTree = "<group>"; };
+		BDF8E0FD225EF85D0026CC84 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		BDFCCFA222600DE90000842F /* DateFormatterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTest.swift; sourceTree = "<group>"; };
+		BDFCCFA42260102B0000842F /* String+DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateFormat.swift"; sourceTree = "<group>"; };
+		BDFCCFA6226012A00000842F /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
+		BDFCCFAB226015F90000842F /* LikeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeView.xib; sourceTree = "<group>"; };
+		BDFCCFAD226018CA0000842F /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
+		BDFCCFB1226019C20000842F /* PopularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularView.swift; sourceTree = "<group>"; };
+		BDFCCFB3226019CF0000842F /* PopularView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularView.xib; sourceTree = "<group>"; };
+		BDFCCFB522601F1D0000842F /* LikesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewModel.swift; sourceTree = "<group>"; };
 		BDFEC7422258ACD100FFB0E9 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
 		BDFEC7462258AE9600FFB0E9 /* FkrGeoSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FkrGeoSearch.swift; sourceTree = "<group>"; };
 		D4012C9C4A2515B3963C7316 /* Pods-FlickUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickUITests.release.xcconfig"; path = "Target Support Files/Pods-FlickUITests/Pods-FlickUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -364,6 +392,7 @@
 		BD23BD542251B7D900015632 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				BD90860B22604C7B00E0430A /* Comments */,
 				BDBFEBB0225EC5EA0005DCF1 /* DetailViewModel */,
 				BDBFEBAB225EC40D0005DCF1 /* DetailCell */,
 				BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */,
@@ -377,6 +406,7 @@
 			children = (
 				BD5984E122523313006B2F31 /* HasHeader.swift */,
 				BDBEF9C022509DAD00829E82 /* PhotoSection.swift */,
+				BD90861822605C0400E0430A /* CommentSection.swift */,
 				BDBEFA042250EDFC00829E82 /* Cells */,
 				BD5984ED2252E367006B2F31 /* IGListKit */,
 			);
@@ -402,6 +432,17 @@
 				BD734E96225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift */,
 			);
 			path = Annotation;
+			sourceTree = "<group>";
+		};
+		BD90860B22604C7B00E0430A /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				BDBFEBB3225EC6D30005DCF1 /* CommentCell.swift */,
+				BD90860922604A1500E0430A /* CommentViewController.swift */,
+				BD90860C22604C8F00E0430A /* CommentReactor.swift */,
+				BD908616226056E100E0430A /* DetailReactor.swift */,
+			);
+			path = Comments;
 			sourceTree = "<group>";
 		};
 		BDAD9DBB225AEBDE000F8577 /* TextSubSearch */ = {
@@ -473,6 +514,7 @@
 				BDBEF8EF224EEE1B00829E82 /* Info.plist */,
 				BDBEF96F22507FB600829E82 /* Convert+IntTest.swift */,
 				BDBEF9E52250B69B00829E82 /* Photo+FindResolutionTest.swift */,
+				BDFCCFA222600DE90000842F /* DateFormatterTest.swift */,
 			);
 			path = FlickTests;
 			sourceTree = "<group>";
@@ -585,6 +627,7 @@
 				BD44CB5322575A1E007C3B70 /* UIViewController+Container.swift */,
 				BD49A844225CAAA50023CA9D /* UIScrollView+Rx.swift */,
 				BD1CE6E2225DF9E70011C4C4 /* UIImage+Transform.swift */,
+				BDFCCFA42260102B0000842F /* String+DateFormat.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -592,6 +635,7 @@
 		BDBEF968225069CD00829E82 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BDFCCFAF226019930000842F /* Component */,
 				BDE507EB225B5BE000A0BAE5 /* Common */,
 				BDAD9DBB225AEBDE000F8577 /* TextSubSearch */,
 				BD055188225AA54F000B023B /* LocationSubSearch */,
@@ -642,7 +686,6 @@
 		BDBFEBAB225EC40D0005DCF1 /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
-				BDBFEBB3225EC6D30005DCF1 /* CommentCell.swift */,
 				BDBFEBAC225EC41D0005DCF1 /* UserCell.swift */,
 				BDBFEBAE225EC5540005DCF1 /* PhotoCell.swift */,
 				BDBFEBB1225EC6080005DCF1 /* PopularCell.swift */,
@@ -657,6 +700,7 @@
 				BDBFEBA5225EBDE70005DCF1 /* CommentViewModel.swift */,
 				BDBFEBA7225EC2160005DCF1 /* PopularViewModel.swift */,
 				BDBFEBA9225EC3290005DCF1 /* UserViewModel.swift */,
+				BDF8E0FD225EF85D0026CC84 /* PhotoModel.swift */,
 			);
 			path = DetailViewModel;
 			sourceTree = "<group>";
@@ -674,12 +718,42 @@
 		BDE507EB225B5BE000A0BAE5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				BDFCCFAD226018CA0000842F /* XibView.swift */,
 				BDE507EC225B5BEC00A0BAE5 /* SearchOptionProtocol.swift */,
 				BD2A6A3E225D6E1F00B73E6D /* UIView+Blur.swift */,
 				BD1CE6E4225DFB980011C4C4 /* UIView+Gradients.swift */,
 				BD1CE6E6225DFC6B0011C4C4 /* UIColor+Random.swift */,
+				BD9086102260509600E0430A /* IconBuddyFactory.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BDFCCFA8226012EC0000842F /* LikeView */ = {
+			isa = PBXGroup;
+			children = (
+				BDFCCFA6226012A00000842F /* LikeView.swift */,
+				BDFCCFAB226015F90000842F /* LikeView.xib */,
+				BDFCCFB522601F1D0000842F /* LikesViewModel.swift */,
+			);
+			path = LikeView;
+			sourceTree = "<group>";
+		};
+		BDFCCFAF226019930000842F /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				BDFCCFB0226019B00000842F /* Popular */,
+				BDFCCFA8226012EC0000842F /* LikeView */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		BDFCCFB0226019B00000842F /* Popular */ = {
+			isa = PBXGroup;
+			children = (
+				BDFCCFB1226019C20000842F /* PopularView.swift */,
+				BDFCCFB3226019CF0000842F /* PopularView.xib */,
+			);
+			path = Popular;
 			sourceTree = "<group>";
 		};
 		CD949B182E2989BB8CDA09C6 /* Pods */ = {
@@ -820,7 +894,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDBFEBA0225EBB850005DCF1 /* photo.json in Resources */,
+				BDFCCFAC226015F90000842F /* LikeView.xib in Resources */,
 				BD44CB4522572648007C3B70 /* Readme.md in Resources */,
+				BDFCCFB4226019CF0000842F /* PopularView.xib in Resources */,
 				BDBEF922224EF3D600829E82 /* color.txt in Resources */,
 				BDBEF90C224EEE5A00829E82 /* .swiftlint.yml in Resources */,
 				BDBEF90D224EEE5A00829E82 /* swiftgen.yml in Resources */,
@@ -903,6 +979,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Flick/Pods-Flick-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ReadMoreTextView/ReadMoreTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 				"${BUILT_PRODUCTS_DIR}/XMLParsing/XMLParsing.framework",
@@ -911,6 +988,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReadMoreTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMLParsing.framework",
@@ -1068,34 +1146,41 @@
 				BD49A845225CAAA50023CA9D /* UIScrollView+Rx.swift in Sources */,
 				BD05517C2259F329000B023B /* LocationResult.swift in Sources */,
 				BD734E97225B94FD006F7772 /* PhotoDetailAnnotationAccessoryView.swift in Sources */,
+				BD908617226056E100E0430A /* DetailReactor.swift in Sources */,
 				BDC0395D225AC819006163EC /* LocationSubCell.swift in Sources */,
 				BDBEF9722250843800829E82 /* CategoryThumbnailCell.swift in Sources */,
 				BDFEC7472258AE9600FFB0E9 /* FkrGeoSearch.swift in Sources */,
 				BDBFEBAD225EC41D0005DCF1 /* UserCell.swift in Sources */,
 				BDBEF976225086E200829E82 /* SwiftNameIdentifier.swift in Sources */,
 				BDBEF9D222509DAE00829E82 /* HasContentType.swift in Sources */,
+				BDFCCFB622601F1D0000842F /* LikesViewModel.swift in Sources */,
 				BDBEF9DB22509DAE00829E82 /* FkrSearch.swift in Sources */,
 				BDC03963225AD279006163EC /* LocationSubMapViewController.swift in Sources */,
 				BD0551702259CD12000B023B /* PhotoGeoViewController.swift in Sources */,
 				BDBFEBB4225EC6D30005DCF1 /* CommentCell.swift in Sources */,
 				BDBFEBAA225EC3290005DCF1 /* UserViewModel.swift in Sources */,
+				BDFCCFA7226012A00000842F /* LikeView.swift in Sources */,
 				BDC03961225ACE19006163EC /* LocationSubSection.swift in Sources */,
 				BD5984F12252E7D2006B2F31 /* PhotoRetryCell.swift in Sources */,
 				BDBEF933224F01C200829E82 /* HasDisposeBag.swift in Sources */,
 				BD5984E0225231D9006B2F31 /* LoadingViewModel.swift in Sources */,
+				BD9086112260509600E0430A /* IconBuddyFactory.swift in Sources */,
 				BDBEF9D522509DAE00829E82 /* PhotoSection.swift in Sources */,
 				BD2A6A3F225D6E1F00B73E6D /* UIView+Blur.swift in Sources */,
 				BD055183225A13B6000B023B /* GeoSearchCell.swift in Sources */,
 				BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */,
 				BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */,
 				BD055185225A148D000B023B /* GeoSearchOption.swift in Sources */,
+				BDFCCFAE226018CA0000842F /* XibView.swift in Sources */,
 				BDFEC7432258ACD100FFB0E9 /* SortOption.swift in Sources */,
 				BDBEF961225065A100829E82 /* FlickrPhotoRepository.swift in Sources */,
 				BD5984D922522E6D006B2F31 /* CategoryPhotoSection.swift in Sources */,
 				BDBEF9F62250CC1C00829E82 /* CategoryReactor.swift in Sources */,
 				BDBEF9DE22509DAE00829E82 /* Comment.swift in Sources */,
+				BDF8E0FE225EF85D0026CC84 /* PhotoModel.swift in Sources */,
 				BDCE9D652251CDD300126DA1 /* Photo+IdentifiableType.swift in Sources */,
 				BDBEF96A22506B0F00829E82 /* Logger.swift in Sources */,
+				BD90860D22604C8F00E0430A /* CommentReactor.swift in Sources */,
 				BDBEF9D022509DAE00829E82 /* Extras.swift in Sources */,
 				BD5984D32252293A006B2F31 /* LicenceCountView.swift in Sources */,
 				BDCE9D612251CA2E00126DA1 /* PhotoDetailReactor.swift in Sources */,
@@ -1125,7 +1210,9 @@
 				BDBEF95B225062BC00829E82 /* MethodParams.swift in Sources */,
 				BDBEF96E22507FA300829E82 /* Convert+Int.swift in Sources */,
 				BDBEF915224EEFDF00829E82 /* Envoriment.swift in Sources */,
+				BD90861922605C0400E0430A /* CommentSection.swift in Sources */,
 				BDBEF8DE224EEE1A00829E82 /* Flick.xcdatamodeld in Sources */,
+				BDFCCFB2226019C20000842F /* PopularView.swift in Sources */,
 				BD5984EF2252E670006B2F31 /* LoadingThumbnailCell.swift in Sources */,
 				BD5984D722522BF0006B2F31 /* CategoryViewController+Hero.swift in Sources */,
 				BDE507ED225B5BEC00A0BAE5 /* SearchOptionProtocol.swift in Sources */,
@@ -1138,6 +1225,7 @@
 				BD5984E222523313006B2F31 /* HasHeader.swift in Sources */,
 				BDE507EF225B6F0A00A0BAE5 /* PhotoGeoCell.swift in Sources */,
 				BD1CE6E5225DFB980011C4C4 /* UIView+Gradients.swift in Sources */,
+				BD90860A22604A1500E0430A /* CommentViewController.swift in Sources */,
 				BD5984E82252E1D7006B2F31 /* RetryViewModel.swift in Sources */,
 				BDBEF9F42250CB7400829E82 /* Plist.swift in Sources */,
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
@@ -1146,6 +1234,7 @@
 				BD0551762259D12E000B023B /* GeoSearchViewController.swift in Sources */,
 				BDBEF9D922509DAE00829E82 /* Photo.swift in Sources */,
 				BDBEF9E122509DAE00829E82 /* PhotoResponse.swift in Sources */,
+				BDFCCFA52260102B0000842F /* String+DateFormat.swift in Sources */,
 				BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */,
 				BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */,
 				BDBEF9F32250CB7400829E82 /* Assets.swift in Sources */,
@@ -1169,6 +1258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDFCCFA322600DE90000842F /* DateFormatterTest.swift in Sources */,
 				BDBEF8EE224EEE1B00829E82 /* FlickTests.swift in Sources */,
 				BDBEF9E62250B69B00829E82 /* Photo+FindResolutionTest.swift in Sources */,
 				BDBEF97022507FB600829E82 /* Convert+IntTest.swift in Sources */,

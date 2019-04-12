@@ -12,7 +12,9 @@ struct FkrCommentRequest: HasPhotoId {
     let photo_id: String
     let min_comment_date: String?
     let max_comment_date: String?
-
+    let format: String = "json"
+    let nojsoncallback: String = "?"
+    
     public init(photo_id: String, min_comment_date: String? = nil, max_comment_date: String? = nil) {
         self.photo_id = photo_id
         self.min_comment_date = min_comment_date
@@ -26,5 +28,7 @@ extension FkrCommentRequest: Codable {
         case photo_id
         case min_comment_date
         case max_comment_date
+        case format
+        case nojsoncallback
     }
 }

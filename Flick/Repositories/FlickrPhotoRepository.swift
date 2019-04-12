@@ -18,7 +18,7 @@ protocol FlickrPhotoRepositoryType {
     func geoSearch(_ keyword: String, page: Int, bbox: String) -> Single<Resources<PhotoResponse>>
 //    func recent() -> Single<Resources<PhotoResponse>>
 //    func interestings() -> Single<Resources<PhotoResponse>>
-//    func getComments(photoId: String) -> Single<Resources<CommentResponse>>
+    func getComments(photoId: String) -> Single<Resources<CommentResponse>>
 //    func categories() -> Single<[ListDiffable]>
 }
 
@@ -65,9 +65,9 @@ class FlickrPhotoRepository: FlickrPhotoRepositoryType {
 //        return self.provider.rx.request(.search(FkrSearchRequest(text: keyword, page: page))).network()
 //    }
 //
-//    func getComments(photoId: String) -> Single<Resources<CommentResponse>> {
-//        return self.provider.rx.request(.getComments(FkrCommentRequest(photo_id: photoId))).network()
-//    }
+    func getComments(photoId: String) -> Single<Resources<CommentResponse>> {
+        return self.provider.rx.request(.getComments(FkrCommentRequest(photo_id: photoId))).network()
+    }
 }
 
 extension PrimitiveSequence where TraitType == SingleTrait, Element == Response {

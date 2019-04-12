@@ -14,7 +14,7 @@ import UIKit
 class PhotoDetailReactor: Reactor {
 
     let initialState: State
-
+    
     private let repository: FlickrPhotoRepositoryType
 
     init(_ repository: FlickrPhotoRepositoryType, photo: Photo) {
@@ -29,11 +29,13 @@ class PhotoDetailReactor: Reactor {
 
     struct State {
         let photo: Photo
-
+        
         public init(photo: Photo) {
             self.photo = photo
         }
 
+        var dateTaken: String?
+        var ownerName: String?
         var buddyIcon: URL?
         var title: String?
         var desc: String?
@@ -78,19 +80,17 @@ class PhotoDetailReactor: Reactor {
         case .setLoadingComment(let loading):
             newState.commentLoading = loading
         case .setLoadView(let preferViewSize):
-//            if let imageSource = self.photo.nearHeightByWidth(width: Int(preferViewSize.width)),
-//                let imageUrl = URL(string: imageSource.imageUrl) {
-//                newState.detailImage = imageUrl
-//            }
+            if let imageSource = self.photo.nearHeightByWidth(width: Int(preferViewSize.width)),
+                let imageUrl = URL(string: imageSource.imageUrl) {
+                newState.detailImage = imageUrl
+            }
 
-//            if let latitude = photo.latitude,
-//                let longitude = photo.latitude {
-//                newState.location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-//            }
             newState.licenseCount = L10n.licenseCount(photo.license ?? "")
             newState.buddyIcon = URL(string: photo.iconBuddy)
             newState.title = photo.title
             newState.desc = photo.description?.first?.value
+            newState.ownerName = photo.ownername
+            newState.dateTaken = photo.datetaken?.toDateFormat(outputFormat: L10n.dateFormatAtPhotoTaken)
         }
 
         return newState

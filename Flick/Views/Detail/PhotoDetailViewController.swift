@@ -9,6 +9,7 @@
 import Hero
 import MapKit
 import ReactorKit
+import ReadMoreTextView
 import RxDataSources
 import RxSwift
 import UIKit
@@ -16,24 +17,23 @@ import UIKit
 class PhotoDetailViewController: UIViewController {
 
     let imageView = UIImageView()
-    let descLabel = UILabel()
+    let descriptionView = ReadMoreTextView()
     let profileImageView = UIImageView()
-    let views = UIView()
-    let mapView = MKMapView()
-    let licenseView = UILabel()
-//    let mapViewContainer = PhotoLocationViewController.init(latitude: 37, longitude: 127)
-
+    let ownerName = UILabel()
+    let dateTaken = UILabel()
+    let popularView = PopularView()
     private var uiPanGesture = UIPanGestureRecognizer()
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     init(_ photo: Photo) {
         super.init(nibName: nil, bundle: nil)
         reactor = PhotoDetailReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!, photo: photo)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: Asset.icClose.image, style: .plain, target: self, action: #selector(close))
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavigationItem()
@@ -47,60 +47,79 @@ class PhotoDetailViewController: UIViewController {
         let preferHeight = view.frame.height * 0.4
         let preferSize = CGSize(width: view.frame.width, height: preferHeight)
         reactor?.action.onNext(.setLoadView(preferSize))
-        profileImageView.do {
-            view.addSubview($0)
-            $0.snp.makeConstraints({ make in
-                let width = 48
-                make.width.equalTo(width)
-                make.height.equalTo(width)
-                make.leading.equalToSuperview()
-                make.top.equalTo(safeAreaTop)
-            })
-        }
         imageView.do {
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
                 make.leading.equalToSuperview()
                 make.centerX.equalToSuperview()
-                make.top.equalTo(profileImageView.snp.bottom)
+                make.top.equalToSuperview()
                 make.height.equalTo(preferHeight)
             })
         }
-        mapView.do {
+        profileImageView.do {
+            let width = 48
             view.addSubview($0)
-            $0.setCenterCoordinate(CLLocationCoordinate2D(latitude: 37.5200, longitude: 127.0495), withZoomLevel: 50, animated: true)
             $0.snp.makeConstraints({ make in
+                make.width.equalTo(width)
+                make.height.equalTo(width)
                 make.leading.equalToSuperview()
-                make.centerX.equalToSuperview()
-                make.height.equalTo(400)
                 make.top.equalTo(imageView.snp.bottom)
             })
+            $0.layer.cornerRadius = CGFloat(width / 2)
+            $0.clipsToBounds = true
+        }
+        ownerName.do {
+            view.addSubview($0)
+            $0.snp.makeConstraints({ make in
+                make.leading.equalTo(profileImageView.snp.trailing)
+                make.top.equalTo(profileImageView.snp.top)
+            })
+        }
+        dateTaken.do {
+            view.addSubview($0)
+            $0.snp.makeConstraints({ make in
+                make.trailing.equalToSuperview()
+                make.top.equalTo(profileImageView.snp.top)
+            })
+        }
+        popularView.do {
+            view.addSubview($0)
+            $0.snp.makeConstraints({ make in
+                make.top.equalTo(profileImageView.snp.bottom)
+                make.centerX.equalToSuperview()
+                make.leading.equalToSuperview()
+            })
+            $0.setUp([
+                LikesViewModel(type: .likes, count: 12, image: Asset.icThumbUp.image),
+                LikesViewModel(type: .views, count: 14, image: Asset.icViews.image),
+                LikesViewModel(type: .comments, count: 122, image: Asset.icComments.image)
+                ])
+        }
+        descriptionView.do {
+            view.addSubview($0)
+            $0.snp.makeConstraints({ make in
+                make.top.equalTo(popularView.snp.bottom)
+                make.leading.equalToSuperview()
+                make.centerX.equalToSuperview()
+            })
+            
+            $0.shouldTrim = true
+            $0.maximumNumberOfLines = 4
+            let readMoreTextAttributes: [NSAttributedString.Key: Any] = [
+                NSAttributedString.Key.foregroundColor: view.tintColor,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
+            ]
+            $0.attributedReadMoreText = NSAttributedString(string: "...Read more", attributes: readMoreTextAttributes)
         }
         
-//        mapView.do {
-//            $0.isScrollEnabled = false
-//            $0.isZoomEnabled = false
-//            view.addSubview($0)
-//            $0.addGestureRecognizer(UITapGestureRecognizer().then {
-//                    $0.addTarget(self, action: #selector(switchMapView))
-//                })
-//        }
-//        licenseView.do {
+//        self.addViewContainer(commentViewController)
+//        commentViewController.view.do {
 //            view.addSubview($0)
 //            $0.snp.makeConstraints({ make in
 //                make.leading.equalToSuperview()
 //                make.centerX.equalToSuperview()
-//                make.top.equalTo(imageView.snp.bottom)
-//            })
-//        }
-//        descLabel.do {
-//            $0.numberOfLines = 0
-//            $0.lineBreakMode = .byWordWrapping
-//            view.addSubview($0)
-//            $0.snp.makeConstraints({ make in
-//                make.leading.equalToSuperview()
-//                make.centerX.equalToSuperview()
-//                make.top.equalTo(imageView.snp.bottom)
+//                make.top.equalTo(descriptionView.snp.bottom)
+//                make.bottom.equalTo(safeAreaBottom)
 //            })
 //        }
     }
@@ -139,20 +158,37 @@ class PhotoDetailViewController: UIViewController {
     func switchMapView() {
 
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.do {
+            $0.setBackgroundImage(UIImage(), for: .default)
+            $0.shadowImage = UIImage()
+            $0.isTranslucent = true
+            $0.tintColor = UIColor.white
+        }
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
 }
 
 extension PhotoDetailViewController: View, HasDisposeBag {
     func bind(reactor: PhotoDetailReactor) {
+
+        reactor.state.map { $0.ownerName }
+            .bind(to: ownerName.rx.text)
+            .disposed(by: disposeBag)
+
+        reactor.state.map { $0.dateTaken }
+            .bind(to: dateTaken.rx.text)
+            .disposed(by: disposeBag)
+
         reactor.state.map { $0.title }
             .bind(to: navigationItem.rx.title)
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.desc }
-            .bind(to: descLabel.rx.text)
-            .disposed(by: disposeBag)
-
-        reactor.state.map { $0.licenseCount }
-            .bind(to: licenseView.rx.text)
+            .bind(to: descriptionView.rx.text)
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.detailImage }
@@ -188,20 +224,5 @@ extension PhotoDetailViewController: View, HasDisposeBag {
                 )
             }
             .disposed(by: disposeBag)
-//            .filterNil()
-//            .drive(onNext: { [weak self] url in
-//                guard let self = self else { return }
-//                self.originalImageView.kf.setImage(
-//                    with: url,
-//                    placeholder: nil,
-//                    options: [],
-//                    progressBlock: { receivedSize, totalSize in
-//                    },
-//                    completionHandler: { result in
-//                        logger.info(result)
-//                    }
-//                )
-//            })
-//
     }
 }

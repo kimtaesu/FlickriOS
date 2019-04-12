@@ -8,7 +8,8 @@
 
 import Foundation
 
-protocol Commentable {
+
+protocol CommentableProtocol {
     var id: String { get }
     var author: String { get }
     var authorName: String { get }
@@ -20,7 +21,8 @@ protocol Commentable {
     var realname: String { get }
     var content: String { get }
 }
-struct Comment: Decodable, Equatable, Commentable {
+
+struct Comment: Decodable, Equatable, CommentableProtocol {
     let id: String
     let author: String
     let authorName: String

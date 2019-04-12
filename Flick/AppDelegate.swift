@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.userDefaultRegister()
         let photo: PhotoResponse = ResourcesLoader.loadJson("photo")
         window = UIWindow().then {
-            $0.rootViewController = PhotoDetailViewController(photo.photos.photo[0])
+            $0.rootViewController = UINavigationController(rootViewController: CommentViewController(photo.photos.photo[0].id))
             $0.backgroundColor = UIColor.white
             $0.makeKeyAndVisible()
         }
