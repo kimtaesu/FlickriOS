@@ -6,17 +6,18 @@
 //  Copyright © 2019 hucet. All rights reserved.
 //
 
+import Crashlytics
 import MapKit
 import ReactorKit
 import RxDataSources
 import UIKit
-import Crashlytics
 
 class PhotoGeoViewController: UIViewController {
     let defaultCenterLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     let mapView = MKMapView()
     let photoContainer = PhotoViewController()
     let locationManager = CLLocationManager()
+    let searchActionButton = UIButton()
     
     let dataSource = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
         configureCell: { ds, tv, ip, item in
@@ -39,7 +40,6 @@ class PhotoGeoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
         setNeedsStatusBarAppearanceUpdate()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
@@ -50,9 +50,19 @@ class PhotoGeoViewController: UIViewController {
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
-            
             let region = MKCoordinateRegion(center: locationManager.currentCoordinate, span: mapView.maxZoomSpan)
             $0.setRegion(region, animated: true)
+        }
+        searchActionButton.do {
+            view.addSubview($0)
+            $0.addTarget(self, action: #selector(showSearchViewController), for: .touchUpInside)
+            $0.setImage(Asset.icSearch.image.withRenderingMode(.alwaysTemplate), for: .normal)
+            $0.snp.makeConstraints({ make in
+                make.bottom.equalTo(safeAreaBottom).offset(-20)
+                make.trailing.equalToSuperview().offset(-20)
+            })
+            $0.hero.modifiers = [.delay(0.3), .translate(y: 250), .timingFunction(.easeIn)]
+            $0.apply(ViewStyle.floatingAction())
         }
         self.addViewContainer(photoContainer)
         photoContainer.view.do {
@@ -60,9 +70,19 @@ class PhotoGeoViewController: UIViewController {
                 make.leading.equalToSuperview()
                 make.trailing.equalToSuperview()
                 make.height.equalTo(70)
-                make.bottom.equalTo(safeAreaBottom).offset(-50)
+                make.bottom.equalTo(searchActionButton.snp.top).offset(-16)
             })
         }
+    }
+    @objc
+    func showSearchViewController() {
+        let vc = SearchViewController({
+            
+        }).then {
+            $0.hero.isEnabled = true
+            $0.searchActionButton.hero.modifiers = [.delay(0.3), .translate(y: 1000)]
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     func createDetailViewController(_ annotation: PhotoAnnotation) -> UIViewController {
         let vc = PhotoDetailViewController(annotation.photo).then {
@@ -71,6 +91,14 @@ class PhotoGeoViewController: UIViewController {
         return ChildStatusBarNavigationController(rootViewController: vc).then {
             $0.hero.isEnabled = true
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 }
 
@@ -176,11 +204,5 @@ extension PhotoGeoViewController: CLLocationManagerDelegate {
         default:
             break
         }
-    }
-}
-
-extension CLLocationManager {
-    var currentCoordinate: CLLocationCoordinate2D {
-        return self.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
 }

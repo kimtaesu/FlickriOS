@@ -12,13 +12,13 @@
 		B8559D54BB80820D61A2847F /* Pods_FlickUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC34A3988E471EE468E70D74 /* Pods_FlickUITests.framework */; };
 		BD0551702259CD12000B023B /* PhotoGeoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD05516F2259CD12000B023B /* PhotoGeoViewController.swift */; };
 		BD0551732259CD7E000B023B /* PhotoGeoReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0551722259CD7E000B023B /* PhotoGeoReactor.swift */; };
-		BD0551762259D12E000B023B /* GeoSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0551752259D12E000B023B /* GeoSearchViewController.swift */; };
-		BD0551782259D1A7000B023B /* GeoSearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0551772259D1A7000B023B /* GeoSearchReactor.swift */; };
+		BD0551762259D12E000B023B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0551752259D12E000B023B /* SearchViewController.swift */; };
+		BD0551782259D1A7000B023B /* SearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0551772259D1A7000B023B /* SearchReactor.swift */; };
 		BD05517A2259D1DE000B023B /* FlickrGeoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0551792259D1DE000B023B /* FlickrGeoRepository.swift */; };
 		BD05517C2259F329000B023B /* LocationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD05517B2259F329000B023B /* LocationResult.swift */; };
 		BD05517F225A079D000B023B /* LocationResultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD05517E225A079D000B023B /* LocationResultSet.swift */; };
 		BD055183225A13B6000B023B /* GeoSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD055182225A13B6000B023B /* GeoSearchCell.swift */; };
-		BD055185225A148D000B023B /* GeoSearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD055184225A148D000B023B /* GeoSearchOption.swift */; };
+		BD055185225A148D000B023B /* SearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD055184225A148D000B023B /* SearchOption.swift */; };
 		BD05518A225AA55F000B023B /* LocationSubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD055189225AA55F000B023B /* LocationSubSearchViewController.swift */; };
 		BD05518C225AACC3000B023B /* LocationSubSearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD05518B225AACC3000B023B /* LocationSubSearchReactor.swift */; };
 		BD0B218F2253823E00C4A5C2 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0B218E2253823E00C4A5C2 /* CategoryHeaderCell.swift */; };
@@ -29,6 +29,7 @@
 		BD1CE6E9225E0C1E0011C4C4 /* PhotoAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1CE6E8225E0C1E0011C4C4 /* PhotoAnnotationView.swift */; };
 		BD2A6A3F225D6E1F00B73E6D /* UIView+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2A6A3E225D6E1F00B73E6D /* UIView+Blur.swift */; };
 		BD2A6A84225D748C00B73E6D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2A6A83225D748C00B73E6D /* PhotoViewController.swift */; };
+		BD310A2D226188DC0084ACB4 /* AddressLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310A2C226188DC0084ACB4 /* AddressLocationView.swift */; };
 		BD44CB4522572648007C3B70 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = BD44CB4422572648007C3B70 /* Readme.md */; };
 		BD44CB4C225750F6007C3B70 /* MkMapView+ZoomLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */; };
 		BD44CB5222575773007C3B70 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */; };
@@ -52,11 +53,18 @@
 		BD90861922605C0400E0430A /* CommentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD90861822605C0400E0430A /* CommentSection.swift */; };
 		BD90865A2260A25100E0430A /* ChildStatusBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9086592260A25100E0430A /* ChildStatusBarNavigationController.swift */; };
 		BD9086612260AC8800E0430A /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9086602260AC8800E0430A /* TextSize.swift */; };
+		BD93D5612261F76900F9FEDC /* MKMapView+Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD93D5602261F76900F9FEDC /* MKMapView+Annotation.swift */; };
+		BD93D5632261F81C00F9FEDC /* SelectedLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD93D5622261F81C00F9FEDC /* SelectedLocationAnnotation.swift */; };
+		BD93D56522635CD400F9FEDC /* CLLocationManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD93D56422635CD400F9FEDC /* CLLocationManager+.swift */; };
+		BD93D56C22636A9D00F9FEDC /* ViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD93D56B22636A9D00F9FEDC /* ViewStyle.swift */; };
+		BD93D56E22636ADE00F9FEDC /* ViewStyle+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD93D56D22636ADE00F9FEDC /* ViewStyle+UIButton.swift */; };
 		BD9F6EE6225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */; };
 		BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */; };
 		BDAD9DBF225AEDF7000F8577 /* TextSubSearchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */; };
 		BDAD9DC1225AEF49000F8577 /* TextSubSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DC0225AEF49000F8577 /* TextSubSection.swift */; };
 		BDAD9DC3225AEFE9000F8577 /* TextSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD9DC2225AEFE9000F8577 /* TextSubCell.swift */; };
+		BDB4C2F02261740C008C99CB /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB4C2EF2261740C008C99CB /* RoundShadowView.swift */; };
+		BDB4C2F222617960008C99CB /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB4C2F122617960008C99CB /* PaddingLabel.swift */; };
 		BDBEF8D6224EEE1A00829E82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF8D5224EEE1A00829E82 /* AppDelegate.swift */; };
 		BDBEF8DB224EEE1A00829E82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDBEF8D9224EEE1A00829E82 /* Main.storyboard */; };
 		BDBEF8DE224EEE1A00829E82 /* Flick.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDBEF8DC224EEE1A00829E82 /* Flick.xcdatamodeld */; };
@@ -121,7 +129,6 @@
 		BDBFEBB4225EC6D30005DCF1 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBFEBB3225EC6D30005DCF1 /* CommentCell.swift */; };
 		BDC0395D225AC819006163EC /* LocationSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC0395C225AC819006163EC /* LocationSubCell.swift */; };
 		BDC03961225ACE19006163EC /* LocationSubSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC03960225ACE19006163EC /* LocationSubSection.swift */; };
-		BDC03963225AD279006163EC /* LocationSubMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC03962225AD279006163EC /* LocationSubMapViewController.swift */; };
 		BDCE9D612251CA2E00126DA1 /* PhotoDetailReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE9D602251CA2E00126DA1 /* PhotoDetailReactor.swift */; };
 		BDCE9D652251CDD300126DA1 /* Photo+IdentifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE9D642251CDD300126DA1 /* Photo+IdentifiableType.swift */; };
 		BDCE9D6A2251D2FC00126DA1 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */; };
@@ -167,13 +174,13 @@
 		6EBD8051D21904ADE4DD5606 /* Pods-FlickTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickTests.debug.xcconfig"; path = "Target Support Files/Pods-FlickTests/Pods-FlickTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD05516F2259CD12000B023B /* PhotoGeoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGeoViewController.swift; sourceTree = "<group>"; };
 		BD0551722259CD7E000B023B /* PhotoGeoReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGeoReactor.swift; sourceTree = "<group>"; };
-		BD0551752259D12E000B023B /* GeoSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoSearchViewController.swift; sourceTree = "<group>"; };
-		BD0551772259D1A7000B023B /* GeoSearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoSearchReactor.swift; sourceTree = "<group>"; };
+		BD0551752259D12E000B023B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		BD0551772259D1A7000B023B /* SearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReactor.swift; sourceTree = "<group>"; };
 		BD0551792259D1DE000B023B /* FlickrGeoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrGeoRepository.swift; sourceTree = "<group>"; };
 		BD05517B2259F329000B023B /* LocationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResult.swift; sourceTree = "<group>"; };
 		BD05517E225A079D000B023B /* LocationResultSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResultSet.swift; sourceTree = "<group>"; };
 		BD055182225A13B6000B023B /* GeoSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoSearchCell.swift; sourceTree = "<group>"; };
-		BD055184225A148D000B023B /* GeoSearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoSearchOption.swift; sourceTree = "<group>"; };
+		BD055184225A148D000B023B /* SearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOption.swift; sourceTree = "<group>"; };
 		BD055189225AA55F000B023B /* LocationSubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSubSearchViewController.swift; sourceTree = "<group>"; };
 		BD05518B225AACC3000B023B /* LocationSubSearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSubSearchReactor.swift; sourceTree = "<group>"; };
 		BD0B218E2253823E00C4A5C2 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
@@ -184,6 +191,7 @@
 		BD1CE6E8225E0C1E0011C4C4 /* PhotoAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAnnotationView.swift; sourceTree = "<group>"; };
 		BD2A6A3E225D6E1F00B73E6D /* UIView+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Blur.swift"; sourceTree = "<group>"; };
 		BD2A6A83225D748C00B73E6D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		BD310A2C226188DC0084ACB4 /* AddressLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressLocationView.swift; sourceTree = "<group>"; };
 		BD44CB4422572648007C3B70 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		BD44CB4B225750F6007C3B70 /* MkMapView+ZoomLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MkMapView+ZoomLevel.swift"; sourceTree = "<group>"; };
 		BD44CB5122575773007C3B70 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -207,11 +215,18 @@
 		BD90861822605C0400E0430A /* CommentSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSection.swift; sourceTree = "<group>"; };
 		BD9086592260A25100E0430A /* ChildStatusBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildStatusBarNavigationController.swift; sourceTree = "<group>"; };
 		BD9086602260AC8800E0430A /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
+		BD93D5602261F76900F9FEDC /* MKMapView+Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Annotation.swift"; sourceTree = "<group>"; };
+		BD93D5622261F81C00F9FEDC /* SelectedLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationAnnotation.swift; sourceTree = "<group>"; };
+		BD93D56422635CD400F9FEDC /* CLLocationManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+.swift"; sourceTree = "<group>"; };
+		BD93D56B22636A9D00F9FEDC /* ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyle.swift; sourceTree = "<group>"; };
+		BD93D56D22636ADE00F9FEDC /* ViewStyle+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewStyle+UIButton.swift"; sourceTree = "<group>"; };
 		BD9F6EE5225C25BD003AD5CA /* PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoGeoViewController+UIViewControllerPreviewingDelegate.swift"; sourceTree = "<group>"; };
 		BDAD9DBC225AEBEB000F8577 /* TextSubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchViewController.swift; sourceTree = "<group>"; };
 		BDAD9DBE225AEDF7000F8577 /* TextSubSearchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSearchReactor.swift; sourceTree = "<group>"; };
 		BDAD9DC0225AEF49000F8577 /* TextSubSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubSection.swift; sourceTree = "<group>"; };
 		BDAD9DC2225AEFE9000F8577 /* TextSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubCell.swift; sourceTree = "<group>"; };
+		BDB4C2EF2261740C008C99CB /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
+		BDB4C2F122617960008C99CB /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		BDBEF8D2224EEE1A00829E82 /* Flick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDBEF8D5224EEE1A00829E82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDBEF8DA224EEE1A00829E82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -282,7 +297,6 @@
 		BDBFEBB3225EC6D30005DCF1 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		BDC0395C225AC819006163EC /* LocationSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSubCell.swift; sourceTree = "<group>"; };
 		BDC03960225ACE19006163EC /* LocationSubSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSubSection.swift; sourceTree = "<group>"; };
-		BDC03962225AD279006163EC /* LocationSubMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSubMapViewController.swift; sourceTree = "<group>"; };
 		BDCE9D602251CA2E00126DA1 /* PhotoDetailReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailReactor.swift; sourceTree = "<group>"; };
 		BDCE9D642251CDD300126DA1 /* Photo+IdentifiableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+IdentifiableType.swift"; sourceTree = "<group>"; };
 		BDCE9D692251D2FC00126DA1 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
@@ -350,17 +364,6 @@
 			path = Geo;
 			sourceTree = "<group>";
 		};
-		BD0551742259D10A000B023B /* GeoSearch */ = {
-			isa = PBXGroup;
-			children = (
-				BD0551752259D12E000B023B /* GeoSearchViewController.swift */,
-				BD0551772259D1A7000B023B /* GeoSearchReactor.swift */,
-				BD055182225A13B6000B023B /* GeoSearchCell.swift */,
-				BD055184225A148D000B023B /* GeoSearchOption.swift */,
-			);
-			path = GeoSearch;
-			sourceTree = "<group>";
-		};
 		BD05517D2259F6E7000B023B /* Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,7 +380,7 @@
 				BD05518B225AACC3000B023B /* LocationSubSearchReactor.swift */,
 				BDC0395C225AC819006163EC /* LocationSubCell.swift */,
 				BDC03960225ACE19006163EC /* LocationSubSection.swift */,
-				BDC03962225AD279006163EC /* LocationSubMapViewController.swift */,
+				BD93D5622261F81C00F9FEDC /* SelectedLocationAnnotation.swift */,
 			);
 			path = LocationSubSearch;
 			sourceTree = "<group>";
@@ -450,12 +453,32 @@
 				BDBFEBB0225EC5EA0005DCF1 /* DetailViewModel */,
 				BD90860B22604C7B00E0430A /* Comments */,
 				BDBEF9EA2250CA0100829E82 /* Category */,
-				BD0551742259D10A000B023B /* GeoSearch */,
-				BD055188225AA54F000B023B /* LocationSubSearch */,
-				BDAD9DBB225AEBDE000F8577 /* TextSubSearch */,
 				BD5984DC2252313A006B2F31 /* ViewModel */,
 			);
 			path = NeedImplements;
+			sourceTree = "<group>";
+		};
+		BD9086632261652F00E0430A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BDAD9DBB225AEBDE000F8577 /* TextSubSearch */,
+				BD055188225AA54F000B023B /* LocationSubSearch */,
+				BD0551752259D12E000B023B /* SearchViewController.swift */,
+				BD0551772259D1A7000B023B /* SearchReactor.swift */,
+				BD055182225A13B6000B023B /* GeoSearchCell.swift */,
+				BD055184225A148D000B023B /* SearchOption.swift */,
+				BD310A2C226188DC0084ACB4 /* AddressLocationView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		BD93D56A22636A8200F9FEDC /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				BD93D56B22636A9D00F9FEDC /* ViewStyle.swift */,
+				BD93D56D22636ADE00F9FEDC /* ViewStyle+UIButton.swift */,
+			);
+			path = Style;
 			sourceTree = "<group>";
 		};
 		BDAD9DBB225AEBDE000F8577 /* TextSubSearch */ = {
@@ -642,6 +665,8 @@
 				BD1CE6E2225DF9E70011C4C4 /* UIImage+Transform.swift */,
 				BDFCCFA42260102B0000842F /* String+DateFormat.swift */,
 				BD9086602260AC8800E0430A /* TextSize.swift */,
+				BD93D5602261F76900F9FEDC /* MKMapView+Annotation.swift */,
+				BD93D56422635CD400F9FEDC /* CLLocationManager+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -649,6 +674,8 @@
 		BDBEF968225069CD00829E82 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BD93D56A22636A8200F9FEDC /* Style */,
+				BD9086632261652F00E0430A /* Search */,
 				BDFCCFAF226019930000842F /* Component */,
 				BDE507EB225B5BE000A0BAE5 /* Common */,
 				BD0551712259CD72000B023B /* Geo */,
@@ -734,6 +761,7 @@
 				BD1CE6E6225DFC6B0011C4C4 /* UIColor+Random.swift */,
 				BD9086102260509600E0430A /* IconBuddyFactory.swift */,
 				BD9086592260A25100E0430A /* ChildStatusBarNavigationController.swift */,
+				BDB4C2F122617960008C99CB /* PaddingLabel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -754,6 +782,7 @@
 				BDBFEBAB225EC40D0005DCF1 /* DetailCell */,
 				BDFCCFB0226019B00000842F /* Popular */,
 				BDFCCFA8226012EC0000842F /* LikeView */,
+				BDB4C2EF2261740C008C99CB /* RoundShadowView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1185,8 +1214,8 @@
 				BDBEF9D222509DAE00829E82 /* HasContentType.swift in Sources */,
 				BDFCCFB622601F1D0000842F /* LikesViewModel.swift in Sources */,
 				BDBEF9DB22509DAE00829E82 /* FkrSearch.swift in Sources */,
-				BDC03963225AD279006163EC /* LocationSubMapViewController.swift in Sources */,
 				BD0551702259CD12000B023B /* PhotoGeoViewController.swift in Sources */,
+				BD310A2D226188DC0084ACB4 /* AddressLocationView.swift in Sources */,
 				BDBFEBB4225EC6D30005DCF1 /* CommentCell.swift in Sources */,
 				BDBFEBAA225EC3290005DCF1 /* UserViewModel.swift in Sources */,
 				BDFCCFA7226012A00000842F /* LikeView.swift in Sources */,
@@ -1200,9 +1229,10 @@
 				BD055183225A13B6000B023B /* GeoSearchCell.swift in Sources */,
 				BD5984D1225226BE006B2F31 /* CommentResponse.swift in Sources */,
 				BDAD9DBD225AEBEB000F8577 /* TextSubSearchViewController.swift in Sources */,
-				BD055185225A148D000B023B /* GeoSearchOption.swift in Sources */,
+				BD055185225A148D000B023B /* SearchOption.swift in Sources */,
 				BDFCCFAE226018CA0000842F /* XibView.swift in Sources */,
 				BDFEC7432258ACD100FFB0E9 /* SortOption.swift in Sources */,
+				BD93D56522635CD400F9FEDC /* CLLocationManager+.swift in Sources */,
 				BDBEF961225065A100829E82 /* FlickrPhotoRepository.swift in Sources */,
 				BD5984D922522E6D006B2F31 /* CategoryPhotoSection.swift in Sources */,
 				BDBEF9F62250CC1C00829E82 /* CategoryReactor.swift in Sources */,
@@ -1232,6 +1262,7 @@
 				BDBEF9482250532D00829E82 /* Encodable+Dictionary.swift in Sources */,
 				BD05517A2259D1DE000B023B /* FlickrGeoRepository.swift in Sources */,
 				BDBEF9E022509DAE00829E82 /* Photo+CodingKeys.swift in Sources */,
+				BD93D56C22636A9D00F9FEDC /* ViewStyle.swift in Sources */,
 				BDBEF8D6224EEE1A00829E82 /* AppDelegate.swift in Sources */,
 				BDBFEBB2225EC6080005DCF1 /* PopularCell.swift in Sources */,
 				BDBEF9D122509DAE00829E82 /* HasPagableProtocol.swift in Sources */,
@@ -1240,8 +1271,10 @@
 				BDBEF96E22507FA300829E82 /* Convert+Int.swift in Sources */,
 				BDBEF915224EEFDF00829E82 /* Envoriment.swift in Sources */,
 				BD90861922605C0400E0430A /* CommentSection.swift in Sources */,
+				BD93D56E22636ADE00F9FEDC /* ViewStyle+UIButton.swift in Sources */,
 				BDBEF8DE224EEE1A00829E82 /* Flick.xcdatamodeld in Sources */,
 				BDFCCFB2226019C20000842F /* PopularView.swift in Sources */,
+				BD93D5612261F76900F9FEDC /* MKMapView+Annotation.swift in Sources */,
 				BD5984EF2252E670006B2F31 /* LoadingThumbnailCell.swift in Sources */,
 				BD5984D722522BF0006B2F31 /* CategoryViewController+Hero.swift in Sources */,
 				BDE507ED225B5BEC00A0BAE5 /* SearchOptionProtocol.swift in Sources */,
@@ -1252,6 +1285,7 @@
 				BDBEF9452250492000829E82 /* Resources.swift in Sources */,
 				BD05518A225AA55F000B023B /* LocationSubSearchViewController.swift in Sources */,
 				BD5984E222523313006B2F31 /* HasHeader.swift in Sources */,
+				BD93D5632261F81C00F9FEDC /* SelectedLocationAnnotation.swift in Sources */,
 				BDE507EF225B6F0A00A0BAE5 /* PhotoGeoCell.swift in Sources */,
 				BD1CE6E5225DFB980011C4C4 /* UIView+Gradients.swift in Sources */,
 				BD90860A22604A1500E0430A /* CommentViewController.swift in Sources */,
@@ -1259,9 +1293,11 @@
 				BD9086612260AC8800E0430A /* TextSize.swift in Sources */,
 				BDBEF9F42250CB7400829E82 /* Plist.swift in Sources */,
 				BDBEF9EC2250CA0800829E82 /* CategoryViewController.swift in Sources */,
+				BDB4C2F222617960008C99CB /* PaddingLabel.swift in Sources */,
+				BDB4C2F02261740C008C99CB /* RoundShadowView.swift in Sources */,
 				BD49A847225CAB150023CA9D /* PhotoGeoViewController+UICollectionViewDelegate.swift in Sources */,
 				BDBEF9E42250B0FF00829E82 /* UserDefaults+.swift in Sources */,
-				BD0551762259D12E000B023B /* GeoSearchViewController.swift in Sources */,
+				BD0551762259D12E000B023B /* SearchViewController.swift in Sources */,
 				BDBEF9D922509DAE00829E82 /* Photo.swift in Sources */,
 				BDBEF9E122509DAE00829E82 /* PhotoResponse.swift in Sources */,
 				BDFCCFA52260102B0000842F /* String+DateFormat.swift in Sources */,
@@ -1277,7 +1313,7 @@
 				BDE507F1225B7A2E00A0BAE5 /* PhotoAnnotations.swift in Sources */,
 				BD44CB5422575A1E007C3B70 /* UIViewController+Container.swift in Sources */,
 				BDBEF9F82250CDDB00829E82 /* UIViewController+SafeArea.swift in Sources */,
-				BD0551782259D1A7000B023B /* GeoSearchReactor.swift in Sources */,
+				BD0551782259D1A7000B023B /* SearchReactor.swift in Sources */,
 				BDBEF91E224EF29000829E82 /* FlickrApi.swift in Sources */,
 				BDBEF9DD22509DAE00829E82 /* FkrRecent.swift in Sources */,
 				BDBEF9DC22509DAE00829E82 /* FkrComments.swift in Sources */,

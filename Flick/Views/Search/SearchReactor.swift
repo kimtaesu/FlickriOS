@@ -10,23 +10,24 @@
 import ReactorKit
 import RxSwift
 
-class GeoSearchReactor: Reactor {
+class SearchReactor: Reactor {
 
     var initialState: State
 
     private let repository: FlickrPhotoRepositoryType
     private let geoRepository: FlickrGeoRepositoryType
 
-    init(_ repository: FlickrPhotoRepositoryType, geo: FlickrGeoRepositoryType, searchItems: [GeoSearchOption]) {
+    init(_ repository: FlickrPhotoRepositoryType, geo: FlickrGeoRepositoryType, searchItems: [SearchOption]) {
         self.geoRepository = geo
         self.repository = repository
         initialState = State(text: "", bbox: Enviroment.WORLD_BBOX, searchItems: searchItems)
-        initialState.searchSections = [GeoSearchOptionSection(header: "geo", items: searchItems)]
+        initialState.searchSections = [GeoSearchOptionSection(header: "geo", items: searchItems)
+        ]
     }
 
     enum Action {
         case setText(String?)
-        case setLocation(String?)
+        case setLocation(LocationResult)
         case setSearch
         case tapsSearchOption(Int)
     }
@@ -34,16 +35,16 @@ class GeoSearchReactor: Reactor {
     struct State {
         var text: String
         var bbox: String
-        var searchItems: [GeoSearchOption]
+        var searchItems: [SearchOption]
 
-        public init(text: String, bbox: String, searchItems: [GeoSearchOption]) {
+        public init(text: String, bbox: String, searchItems: [SearchOption]) {
             self.text = text
             self.bbox = bbox
             self.searchItems = searchItems
         }
 
         var photos: [Photo]?
-        var tapsSearchOption: GeoSearchOption?
+        var tapsSearchOption: SearchOption?
         var searchSections: [GeoSearchOptionSection]?
         var loading: Bool?
         var locationLoading: Bool?
@@ -54,7 +55,8 @@ class GeoSearchReactor: Reactor {
         case setLoading(Bool)
         case setSearchResults(Resources<PhotoResponse>)
         case setText(String)
-        case setBbox(String)
+        case setLocation(LocationResult)
+        
         case setLocationLoading(Bool)
         case tapsSearchOption(Int)
     }
@@ -69,9 +71,8 @@ class GeoSearchReactor: Reactor {
                 self.repository.geoSearch(currentState.text, page: 1, bbox: currentState.bbox).asObservable().map { Mutation.setSearchResults($0) },
                 Observable.just(Mutation.setLoading(false))
                 ])
-        case .setLocation(let bbox):
-            guard let bbox = bbox, bbox.isNotEmpty else { return .empty() }
-            return .just(Mutation.setBbox(bbox))
+        case .setLocation(let result):
+            return .just(Mutation.setLocation(result))
         case .setText(let text):
             guard let text = text, text.isNotEmpty else { return .empty() }
             return Observable.just(Mutation.setText(text))
@@ -87,8 +88,10 @@ class GeoSearchReactor: Reactor {
             newState.text = text
             newState.searchItems[SearchAction.text.rawValue].message = text
             newState.searchSections = [GeoSearchOptionSection(header: "geo", items: newState.searchItems)]
-        case .setBbox(let bbox):
-            newState.bbox = bbox
+        case .setLocation(let result):
+            newState.bbox = result.bbox
+            newState.searchItems[SearchAction.location.rawValue].message = result.label ?? L10n.geoSearchOptionsLocationMessage
+            newState.searchSections = [GeoSearchOptionSection(header: "geo", items: newState.searchItems)]
         case .setLoading(let loading):
             newState.loading = loading
         case .setLocationLoading(let loading):

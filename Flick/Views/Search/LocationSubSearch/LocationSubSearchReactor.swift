@@ -12,7 +12,7 @@ import RxSwift
 
 class LocationSubSearchReactor: Reactor {
 
-    let initialState = State(locationResults: [])
+    let initialState = State(locationResults: [], selectedIndex: -1)
 
     private let geoRepository: FlickrGeoRepositoryType
 
@@ -23,27 +23,26 @@ class LocationSubSearchReactor: Reactor {
     enum Action {
         case setLocation(String?)
         case selectedLocation(Int)
-        case setSwitchMap(LocationResult)
     }
 
     struct State {
-        fileprivate var locationResults: [LocationResult]
+        var locationResults: [LocationResult]
+        var selectedIndex: Int
 
-        public init(locationResults: [LocationResult]) {
+        public init(locationResults: [LocationResult], selectedIndex: Int) {
             self.locationResults = locationResults
+            self.selectedIndex = selectedIndex
         }
 
         var locationSections: [LocationSubSection]?
-        var tapsLocationResult: LocationResult?
         var selectedLocationResult: LocationResult?
+        var doneLocationResult: LocationResult?
         var loading: Bool?
         var error: Error?
-
     }
 
     enum Mutation {
         case setLoading(Bool)
-        case switchMapView(LocationResult)
         case selectedLocation(Int)
         case setLocationResults(Resources<LocationResultSet>)
     }
@@ -52,8 +51,6 @@ class LocationSubSearchReactor: Reactor {
         switch action {
         case .selectedLocation(let index):
             return Observable.just(Mutation.selectedLocation(index))
-        case .setSwitchMap(let locationResult):
-            return Observable.just(Mutation.switchMapView(locationResult))
         case .setLocation(let location):
             guard let location = location, location.isNotEmpty else { return .empty() }
             return Observable.concat([
@@ -65,12 +62,11 @@ class LocationSubSearchReactor: Reactor {
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
-        var newState = State(locationResults: state.locationResults)
+        var newState = State(locationResults: state.locationResults, selectedIndex: state.selectedIndex)
         switch mutation {
         case .selectedLocation(let index):
             newState.selectedLocationResult = state.locationResults[index]
-        case .switchMapView(let locationResult):
-            newState.tapsLocationResult = locationResult
+            newState.selectedIndex = index
         case .setLoading(let loading):
             newState.loading = loading
         case .setLocationResults(let result):

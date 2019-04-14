@@ -14,7 +14,7 @@ enum SearchAction: Int, Equatable {
     case location = 1
 }
 
-struct GeoSearchOption: IdentifiableType, Equatable {
+struct SearchOption: IdentifiableType, Equatable {
     let tickerImage: UIImage
     let title: String
     var message: String
@@ -31,7 +31,7 @@ struct GeoSearchOptionSection: Equatable {
 }
 
 extension GeoSearchOptionSection: AnimatableSectionModelType {
-    typealias Item = GeoSearchOption
+    typealias Item = SearchOption
 
     var identity: String {
         return header

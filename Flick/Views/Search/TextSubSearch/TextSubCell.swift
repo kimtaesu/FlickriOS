@@ -11,7 +11,8 @@ import UIKit
 
 class TextSubCell: UICollectionViewCell, SwiftNameIdentifier {
 
-    let keywordView = UILabel()
+    let keywordView = PaddingLabel()
+    let roundShadowView = RoundShadowView()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -19,20 +20,22 @@ class TextSubCell: UICollectionViewCell, SwiftNameIdentifier {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        keywordView.do {
+        roundShadowView.do {
+            $0.shadowOffset = CGSize(width: 0, height: 0.5)
+            $0.backgroundColor = ColorName.lightGray
             contentView.addSubview($0)
             $0.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
-            $0.sizeToFit()
+        }
+        keywordView.do {
+            $0.textColor = UIColor.black
+            roundShadowView.addSubview($0)
+            $0.snp.makeConstraints({ make in
+                make.edges.equalToSuperview()
+            })
         }
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        keywordView.frame = bounds
-    }
-    
 }
 
 extension TextSubCell {

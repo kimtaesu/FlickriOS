@@ -24,7 +24,7 @@ class GeoSearchCell: UITableViewCell, SwiftNameIdentifier {
         tickerImageView.do {
             contentView.addSubview($0)
             $0.snp.makeConstraints({ make in
-                let width = 20
+                let width = 30
                 make.width.equalTo(width)
                 make.height.equalTo(width)
                 make.leading.equalToSuperview()
@@ -35,15 +35,17 @@ class GeoSearchCell: UITableViewCell, SwiftNameIdentifier {
         titleView.do {
             contentView.addSubview($0)
             $0.textColor = UIColor.black
+            $0.setTextSize(20)
             $0.snp.makeConstraints({ make in
-                make.leading.equalTo(tickerImageView.snp.trailing)
+                make.leading.equalTo(tickerImageView.snp.trailing).offset(16)
                 make.trailing.equalToSuperview()
                 make.top.equalToSuperview()
             })
         }
         messageView.do {
             contentView.addSubview($0)
-            $0.textColor = UIColor.lightGray
+            $0.setTextSize(16)
+            $0.textColor = ColorName.placeholderGray
             $0.snp.makeConstraints({ make in
                 make.leading.equalTo(titleView.snp.leading)
                 make.top.equalTo(titleView.snp.bottom)
@@ -54,7 +56,7 @@ class GeoSearchCell: UITableViewCell, SwiftNameIdentifier {
 }
 
 extension GeoSearchCell {
-    func configCell(_ item: GeoSearchOption) {
+    func configCell(_ item: SearchOption) {
         tickerImageView.image = item.tickerImage
         titleView.text = item.title
         messageView.text = item.message

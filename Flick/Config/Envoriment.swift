@@ -14,4 +14,5 @@ class Enviroment {
     static let SECRET_KEY = "7a0deef51d58a0be"
     static let DEFAULT_PER_PAGE = 20
     static let WORLD_BBOX = "-180,-90,180,90"
+    static let PEXELS_API_KEY = "563492ad6f91700001000001d8572be4db994a3cb651ede0c29ea493"
 }

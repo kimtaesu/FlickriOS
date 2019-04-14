@@ -21,23 +21,12 @@ class TextSubSearchViewController: UIViewController, SearchOptionProtocol {
     let doneButton = UIButton(type: .system)
     let searchHandler: ((String) -> Void)!
 
-    let dataSource = RxCollectionViewSectionedAnimatedDataSource<TextSubSection>(
-        configureCell: { ds, tv, ip, item in
-            guard let cell = tv.dequeueReusableCell(withReuseIdentifier: TextSubCell.swiftIdentifier, for: ip) as? TextSubCell else {
-                return UICollectionViewCell()
-            }
-            cell.configCell(item)
-            return cell
-        }
-    )
-
-    var collectionView: UICollectionView!
-
     let keywordCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.register(TextSubCell.self, forCellWithReuseIdentifier: TextSubCell.swiftIdentifier)
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = UIColor.white
         return collectionView
     }()
 
@@ -48,66 +37,52 @@ class TextSubSearchViewController: UIViewController, SearchOptionProtocol {
     init(searchHandler: @escaping (String) -> Void) {
         self.searchHandler = searchHandler
         super.init(nibName: nil, bundle: nil)
+        view.backgroundColor = UIColor.white
         reactor = TextSubSearchReactor(keywords: [])
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tickerImageView.do {
-            view.addSubview($0)
-            $0.image = Asset.icHome.image
-            $0.snp.makeConstraints({ make in
-                let width = 20
-                make.width.equalTo(width)
-                make.height.equalTo(width)
-                make.leading.equalToSuperview().offset(20)
-                make.top.equalTo(safeAreaTop)
-            })
-        }
-        titleView.do {
-            view.addSubview($0)
-            $0.text = L10n.geoSearchOptionsTextTitle
-            $0.textColor = UIColor.black
-            $0.snp.makeConstraints({ make in
-                make.leading.equalTo(tickerImageView.snp.trailing).offset(15)
-                make.top.equalTo(tickerImageView.snp.top)
-                make.trailing.equalToSuperview().offset(20)
-            })
-        }
-        doneButton.do {
-            view.addSubview($0)
-            $0.setTitle(L10n.titleDone, for: .normal)
-            $0.snp.makeConstraints({ make in
-                make.trailing.equalToSuperview()
-                make.centerY.equalTo(titleView.snp.centerY)
-            })
-        }
+        self.setUpSearchView()
+        tickerImageView.image = Asset.icTextFormat.image
+        titleView.text = L10n.geoSearchOptionsTextTitle
+        searchFieldView.placeholder = L10n.geoSearchOptionsLocationMessage
         searchFieldView.do {
-            view.addSubview($0)
-            $0.textColor = UIColor.lightGray
-            $0.placeholder = L10n.geoSearchOptionsTextMessage
-            $0.snp.makeConstraints({ make in
-                make.leading.equalTo(titleView.snp.leading)
-                make.top.equalTo(titleView.snp.bottom)
-                make.trailing.equalTo(titleView.snp.trailing)
-            })
+            $0.attributedPlaceholder = NSAttributedString(
+                string: L10n.geoSearchOptionsTextMessage,
+                attributes: [NSAttributedString.Key.foregroundColor: ColorName.placeholderGray])
         }
         keywordCollectionView.do {
             view.addSubview($0)
             $0.snp.makeConstraints({ make in
-                make.leading.trailing.equalToSuperview()
-                make.top.equalTo(searchFieldView.snp.bottom)
+                make.trailing.equalToSuperview().offset(-20)
+                make.leading.equalTo(titleView.snp.leading)
+                make.top.equalTo(searchFieldView.snp.bottom).offset(16)
                 make.bottom.equalToSuperview()
             })
         }
-        reactor?.action.onNext(.loadKeywords(keywords))
     }
 }
 
 extension TextSubSearchViewController: View, HasDisposeBag {
     func bind(reactor: TextSubSearchReactor) {
+        let dataSource = RxCollectionViewSectionedAnimatedDataSource<TextSubSection>(
+            configureCell: { ds, tv, ip, item in
+                guard let cell = tv.dequeueReusableCell(withReuseIdentifier: TextSubCell.swiftIdentifier, for: ip) as? TextSubCell else {
+                    return UICollectionViewCell()
+                }
+                cell.configCell(item)
+                cell.hero.modifiers = [
+                        .delay(0.1),
+                        .timingFunction(.easeIn),
+                        .fade,
+                        .translate(x: 0, y: tv.frame.height, z: 0)
+                ]
+                return cell
+            }
+        )
 
+        reactor.action.onNext(.loadKeywords(keywords))
         keywordCollectionView.rx.itemSelected
             .map { Reactor.Action.tapsSuggestionKeyword($0.row) }
             .bind(to: reactor.action)
@@ -137,7 +112,7 @@ extension TextSubSearchViewController: View, HasDisposeBag {
                 self?.hero.dismissViewController()
             }
             .disposed(by: disposeBag)
-        
+
         reactor.state.map { $0.tapsSuggestionKeyword }
             .filterNil()
             .bind { [weak self] text in

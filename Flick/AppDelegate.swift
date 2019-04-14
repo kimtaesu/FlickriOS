@@ -20,7 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.userDefaultRegister()
         Fabric.with([Crashlytics.self])
         window = UIWindow().then {
-            $0.rootViewController = UINavigationController(rootViewController: PhotoGeoViewController())
+            let naviVc = ChildStatusBarNavigationController(rootViewController: PhotoGeoViewController().then {
+                $0.hero.isEnabled = true
+            })
+            naviVc.do {
+                $0.hero.isEnabled = true
+            }
+            $0.rootViewController = naviVc
             $0.backgroundColor = UIColor.white
             $0.makeKeyAndVisible()
         }

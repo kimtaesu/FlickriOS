@@ -61,7 +61,7 @@ class TextSubSearchReactor: Reactor {
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
-        var newState = state
+        var newState = State(keywords: state.keywords, searchKeyword: state.searchKeyword)
         switch mutation {
         case .tapsDone:
             newState.resultSearchKeyword = state.searchKeyword
