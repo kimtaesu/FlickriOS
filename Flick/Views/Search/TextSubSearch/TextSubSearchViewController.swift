@@ -34,7 +34,7 @@ class TextSubSearchViewController: UIViewController, SearchOptionProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(searchHandler: @escaping (String) -> Void) {
+    init(searchHandler: ((String) -> Void)? = nil) {
         self.searchHandler = searchHandler
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = UIColor.white
@@ -46,7 +46,7 @@ class TextSubSearchViewController: UIViewController, SearchOptionProtocol {
         self.setUpSearchView()
         tickerImageView.image = Asset.icTextFormat.image
         titleView.text = L10n.geoSearchOptionsTextTitle
-        searchFieldView.placeholder = L10n.geoSearchOptionsLocationMessage
+        titleView.textColor = UIColor.gray
         searchFieldView.do {
             $0.attributedPlaceholder = NSAttributedString(
                 string: L10n.geoSearchOptionsTextMessage,
@@ -60,6 +60,10 @@ class TextSubSearchViewController: UIViewController, SearchOptionProtocol {
                 make.top.equalTo(searchFieldView.snp.bottom).offset(16)
                 make.bottom.equalToSuperview()
             })
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.searchFieldView.becomeFirstResponder()
+            self?.searchFieldView.selectAll(nil)
         }
     }
 }

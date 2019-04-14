@@ -76,11 +76,11 @@ class PhotoGeoViewController: UIViewController {
     }
     @objc
     func showSearchViewController() {
-        let vc = SearchViewController({
-            
+        let vc = SearchViewController({ [weak self] req in
+            self?.reactor?.action.onNext(.setSearch(req))
         }).then {
             $0.hero.isEnabled = true
-            $0.searchActionButton.hero.modifiers = [.delay(0.3), .translate(y: 1000)]
+            $0.searchActionButton.hero.modifiers = [.delay(0.3), .translate(y: 250)]
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -104,7 +104,7 @@ class PhotoGeoViewController: UIViewController {
 
 extension PhotoGeoViewController: View, HasDisposeBag {
     func bind(reactor: PhotoGeoReactor) {
-        reactor.action.onNext(.setSearch)
+        reactor.action.onNext(.setSearch(nil))
         photoContainer.leftPagingView.rx.tap
             .map { Reactor.Action.toLeft }
             .bind(to: reactor.action)

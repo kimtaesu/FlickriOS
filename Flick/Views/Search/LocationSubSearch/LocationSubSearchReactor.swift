@@ -72,7 +72,6 @@ class LocationSubSearchReactor: Reactor {
         case .setLocationResults(let result):
             newState.locationResults = result.data?.results ?? []
             newState.locationSections = [LocationSubSection(header: "location", items: newState.locationResults)]
-
             newState.error = result.error
         }
         return newState

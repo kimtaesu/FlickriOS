@@ -21,7 +21,7 @@ class PhotoGeoReactor: Reactor {
         initialState = State(text: "", bbox: Enviroment.WORLD_BBOX, photos: [], mapAnnotations: [], nextPage: 1, isLoadingNextPage: false)
     }
     enum Action {
-        case setSearch
+        case setSearch(FkrGeoSearchReq?)
         case tapsPhoto(Int)
         case tapsAnnotationView(MKAnnotation?)
         case toRight
@@ -87,7 +87,6 @@ class PhotoGeoReactor: Reactor {
         case .tapsPhoto(let index):
             return Observable.just(Mutation.tapsPhoto(currentState.photos[currentState.startIndex + index]))
         case .setSearch:
-
             return Observable.concat([
                 .just(Mutation.setInitLoading(true)),
                 self.repository.geoSearch(currentState.text, page: 1, bbox: currentState.bbox).asObservable().map { Mutation.setSearchResultForRight($0) },

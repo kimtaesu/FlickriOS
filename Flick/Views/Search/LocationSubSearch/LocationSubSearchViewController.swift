@@ -59,6 +59,7 @@ class LocationSubSearchViewController: UIViewController, SearchOptionProtocol {
         doneButton.addTarget(self, action: #selector(done), for: .touchUpInside)
         tickerImageView.image = Asset.icLocation.image
         titleView.text = L10n.geoSearchOptionsLocationTitle
+        titleView.textColor = .gray
         searchFieldView.do {
             $0.attributedPlaceholder = NSAttributedString(
                 string: L10n.geoSearchOptionsLocationMessage,
@@ -84,15 +85,10 @@ class LocationSubSearchViewController: UIViewController, SearchOptionProtocol {
                 make.top.equalTo(locationCollectionView.snp.bottom).offset(10)
                 make.bottom.equalTo(safeAreaBottom).offset(-20)
             })
-            $0.layer.do {
-                $0.shadowColor = UIColor.black.cgColor
-                $0.shadowOpacity = 0.3
-                $0.shadowOffset = CGSize(width: 0, height: 2)
-                $0.shadowRadius = 5
-            }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.searchFieldView.becomeFirstResponder()
+            self?.searchFieldView.selectAll(nil)
         }
     }
 }

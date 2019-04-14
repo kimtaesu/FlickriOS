@@ -15,14 +15,14 @@ import UIKit
 class SearchViewController: UIViewController {
 
     let searchOptionTableView = UITableView()
-    var searchHandler: (() -> Void)?
+    var searchHandler: ((FkrGeoSearchReq) -> Void)?
     let searchActionButton = UIButton()
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(_ searchHandler: (() -> Void)? = nil) {
+    init(_ searchHandler: ((FkrGeoSearchReq) -> Void)? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.searchHandler = searchHandler
         reactor = SearchReactor(
@@ -39,7 +39,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.hero.isEnabled = true
         view.backgroundColor = UIColor.white
-        navigationItem.title = "Search"
+        navigationItem.title = L10n.titleSearch
         searchOptionTableView.do {
             view.addSubview($0)
             $0.backgroundColor = UIColor.white
@@ -60,10 +60,6 @@ class SearchViewController: UIViewController {
             $0.apply(ViewStyle.floatingAction())
         }
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        searchActionButton.layer.cornerRadius = searchActionButton.frame.width / 2
-    }
 }
 
 extension SearchViewController: View, HasDisposeBag {
@@ -73,29 +69,42 @@ extension SearchViewController: View, HasDisposeBag {
                 guard let cell = tv.dequeueReusableCell(withIdentifier: GeoSearchCell.swiftIdentifier, for: ip) as? GeoSearchCell else {
                     return UITableViewCell()
                 }
-                
+
                 cell.hero.isEnabled = true
                 cell.tickerImageView.hero.id = L10n.geoSearchOptionsImageHeroId(item.identity)
                 cell.titleView.hero.id = L10n.geoSearchOptionsTitleHeroId(item.identity)
                 cell.messageView.hero.id = L10n.geoSearchOptionsMessageHeroId(item.identity)
                 cell.configCell(item)
                 cell.selectionStyle = .none
-                
+
                 cell.hero.modifiers = [
-                    .delay(0.1),
-                    .timingFunction(.easeOut),
-                    .fade,
-                    .translate(x: 0, y: tv.frame.height, z: 0)
+                        .delay(0.1),
+                        .timingFunction(.easeOut),
+                        .fade,
+                        .translate(x: 0, y: tv.frame.height, z: 0)
                 ]
                 return cell
             }
         )
-        
+
+        searchActionButton.rx.tap
+            .map { Reactor.Action.setSearch }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+
         searchOptionTableView.rx.itemSelected
             .map { Reactor.Action.tapsSearchOption($0.row) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
 
+        reactor.state.map { $0.searchRequest }
+            .filterNil()
+            .bind { [weak self] req in
+                guard let self = self else { return }
+                self.searchHandler?(req)
+                self.hero.dismissViewController()
+            }
+            .disposed(by: disposeBag)
         reactor.state.map { $0.searchSections }
             .filterNil()
             .bind(to: searchOptionTableView.rx.items(dataSource: dataSource))
@@ -110,12 +119,19 @@ extension SearchViewController: View, HasDisposeBag {
                     vc = TextSubSearchViewController(searchHandler: { [weak self] text in
                         logger.info("selected: \(text)")
                         self?.reactor?.action.onNext(.setText(text))
-                    })
+                    }).then {
+                        $0.searchFieldView.text = reactor.currentState.text
+                    }
                 case .location:
                     vc = LocationSubSearchViewController(selectHandler: { [weak self] result in
                         logger.info("selected: \(result)")
                         self?.reactor?.action.onNext(.setLocation(result))
-                    })
+                    }).then {
+                        let locationText = reactor.currentState.locationText
+                        if locationText.isNotEmpty {
+                            $0.searchFieldView.text = reactor.currentState.searchItems[SearchAction.location.rawValue].message
+                        }
+                    }
                 }
                 if let searchOptionVC = vc as? SearchOptionProtocol {
                     searchOptionVC.tickerImageView.hero.id = L10n.geoSearchOptionsImageHeroId(item.identity)

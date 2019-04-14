@@ -20,7 +20,7 @@ class SearchReactor: Reactor {
     init(_ repository: FlickrPhotoRepositoryType, geo: FlickrGeoRepositoryType, searchItems: [SearchOption]) {
         self.geoRepository = geo
         self.repository = repository
-        initialState = State(text: "", bbox: Enviroment.WORLD_BBOX, searchItems: searchItems)
+        initialState = State(text: "", locationText: "", bbox: Enviroment.WORLD_BBOX, searchItems: searchItems)
         initialState.searchSections = [GeoSearchOptionSection(header: "geo", items: searchItems)
         ]
     }
@@ -34,11 +34,13 @@ class SearchReactor: Reactor {
 
     struct State {
         var text: String
+        var locationText :String
         var bbox: String
         var searchItems: [SearchOption]
 
-        public init(text: String, bbox: String, searchItems: [SearchOption]) {
+        public init(text: String, locationText : String, bbox: String, searchItems: [SearchOption]) {
             self.text = text
+            self.locationText  = locationText
             self.bbox = bbox
             self.searchItems = searchItems
         }
@@ -49,11 +51,12 @@ class SearchReactor: Reactor {
         var loading: Bool?
         var locationLoading: Bool?
         var error: Error?
+        var searchRequest: FkrGeoSearchReq?
     }
 
     enum Mutation {
         case setLoading(Bool)
-        case setSearchResults(Resources<PhotoResponse>)
+        case setSearch
         case setText(String)
         case setLocation(LocationResult)
         
@@ -66,11 +69,7 @@ class SearchReactor: Reactor {
         case .tapsSearchOption(let index):
             return .just(Mutation.tapsSearchOption(index))
         case .setSearch:
-            return Observable.concat([
-                Observable.just(Mutation.setLoading(true)),
-                self.repository.geoSearch(currentState.text, page: 1, bbox: currentState.bbox).asObservable().map { Mutation.setSearchResults($0) },
-                Observable.just(Mutation.setLoading(false))
-                ])
+            return .just(Mutation.setSearch)
         case .setLocation(let result):
             return .just(Mutation.setLocation(result))
         case .setText(let text):
@@ -80,7 +79,7 @@ class SearchReactor: Reactor {
     }
 
     func reduce(state: State, mutation: Mutation) -> State {
-        var newState = State(text: state.text, bbox: state.bbox, searchItems: state.searchItems)
+        var newState = State(text: state.text, locationText: state.locationText, bbox: state.bbox, searchItems: state.searchItems)
         switch mutation {
         case .tapsSearchOption(let index):
             newState.tapsSearchOption = newState.searchItems[index]
@@ -92,13 +91,13 @@ class SearchReactor: Reactor {
             newState.bbox = result.bbox
             newState.searchItems[SearchAction.location.rawValue].message = result.label ?? L10n.geoSearchOptionsLocationMessage
             newState.searchSections = [GeoSearchOptionSection(header: "geo", items: newState.searchItems)]
+            newState.locationText = result.label ?? L10n.geoSearchOptionsLocationMessage
         case .setLoading(let loading):
             newState.loading = loading
         case .setLocationLoading(let loading):
             newState.locationLoading = loading
-        case .setSearchResults(let result):
-            newState.photos = result.data?.photos.photo
-            newState.error = result.error
+        case .setSearch:
+            newState.searchRequest = FkrGeoSearchReq(text: state.text, page: 1, bbox: state.bbox)
         }
         return newState
     }
