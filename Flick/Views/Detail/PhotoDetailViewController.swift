@@ -21,15 +21,15 @@ class PhotoDetailViewController: UIViewController {
     let dateTaken = UILabel()
     let popularView = PopularView()
     private var uiPanGesture = UIPanGestureRecognizer()
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+
     init(_ photo: Photo) {
         super.init(nibName: nil, bundle: nil)
         reactor = PhotoDetailReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!, photo: photo)
@@ -93,11 +93,6 @@ class PhotoDetailViewController: UIViewController {
                 make.centerX.equalToSuperview()
                 make.leading.equalToSuperview()
             })
-            $0.setUp([
-                LikesViewModel(type: .likes, count: 12, image: Asset.icThumbUp.image),
-                LikesViewModel(type: .views, count: 14, image: Asset.icViews.image),
-                LikesViewModel(type: .comments, count: 122, image: Asset.icComments.image)
-                ])
         }
         descriptionView.do {
             view.addSubview($0)
@@ -181,7 +176,11 @@ extension PhotoDetailViewController: View, HasDisposeBag {
                 }
             }
             .disposed(by: disposeBag)
-
+        reactor.state.map { $0.likesViewModes }
+            .bind { [weak self] viewModels in
+                self?.popularView.setUp(viewModels)
+            }
+            .disposed(by: disposeBag)
         reactor.state.map { $0.detailImage }
             .distinctUntilChanged()
             .bind { [weak self] url in

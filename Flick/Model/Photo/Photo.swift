@@ -34,9 +34,9 @@ protocol PhotoType {
     var isfriend: Int { get }
     var isfamily: Int { get }
     var iconFarm: Int { get }
-    var countComments: String { get }
-    var countLikes: String { get }
-    var views: String { get }
+    var countComments: Int { get }
+    var countLikes: Int { get }
+    var views: Int { get }
     var iconServer: String { get }
     var dateupload: String? { get }
     var lastupdate: String? { get }
@@ -63,9 +63,9 @@ struct Photo: PhotoType, Decodable, Equatable, ViewModelProtocol {
     let isfriend: Int
     let isfamily: Int
     let iconFarm: Int
-    let countComments: String
-    let countLikes: String
-    let views: String
+    let countComments: Int
+    let countLikes: Int
+    let views: Int
     let iconServer: String
     let dateupload: String?
     let lastupdate: String?
@@ -97,9 +97,9 @@ extension Photo {
         ispublic = try values.decode(Int.self, forKey: .ispublic)
         isfriend = try values.decode(Int.self, forKey: .isfriend)
         isfamily = try values.decode(Int.self, forKey: .isfamily)
-        views = try values.decode(String.self, forKey: .views)
-        countComments = try values.decode(String.self, forKey: .count_comments)
-        countLikes = try values.decode(String.self, forKey: .count_faves)
+        views = (try? values.decode(String.self, forKey: .views))?.toInt ?? 0
+        countComments = (try? values.decode(String.self, forKey: .count_comments))?.toInt ?? 0
+        countLikes = (try? values.decode(String.self, forKey: .count_faves))?.toInt ?? 0
         dateupload = try? values.decode(String.self, forKey: .dateupload)
         lastupdate = try? values.decode(String.self, forKey: .lastupdate)
         datetaken = try? values.decode(String.self, forKey: .datetaken)

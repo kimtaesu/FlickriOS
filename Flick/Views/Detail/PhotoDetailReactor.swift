@@ -14,12 +14,12 @@ import UIKit
 class PhotoDetailReactor: Reactor {
 
     let initialState: State
-    
+
     private let repository: FlickrPhotoRepositoryType
 
     init(_ repository: FlickrPhotoRepositoryType, photo: Photo) {
         self.repository = repository
-        self.initialState = State(photo: photo)
+        self.initialState = State(photo: photo, likesViewModes: [])
     }
 
     enum Action {
@@ -29,9 +29,15 @@ class PhotoDetailReactor: Reactor {
 
     struct State {
         let photo: Photo
-        
-        public init(photo: Photo) {
+        let likesViewModes: [LikesViewModel]
+
+        public init(photo: Photo, likesViewModes: [LikesViewModel]) {
             self.photo = photo
+            self.likesViewModes = [
+                LikesViewModel(type: .likes, count: photo.countLikes, image: Asset.icThumbUp.image),
+                LikesViewModel(type: .views, count: photo.views, image: Asset.icViews.image),
+                LikesViewModel(type: .comments, count: photo.countComments, image: Asset.icComments.image)
+            ]
         }
 
         var dateTaken: String?
@@ -70,7 +76,7 @@ class PhotoDetailReactor: Reactor {
         }
     }
     func reduce(state: State, mutation: Mutation) -> State {
-        var newState = State(photo: state.photo)
+        var newState = State(photo: state.photo, likesViewModes: state.likesViewModes)
         switch mutation {
         case .setCommentResults(let result):
             newState.comments = result.data?.comments.comment

@@ -67,6 +67,7 @@ class PhotoGeoReactor: Reactor {
         case tapsPhoto(Photo)
         case tapsAnnotationView(PhotoAnnotation)
         case setLoadingNextPage(Bool)
+        case setSearchResult(Resources<PhotoResponse>)
         case setToLeft
     }
 
@@ -77,26 +78,30 @@ class PhotoGeoReactor: Reactor {
         case .toRight:
             guard !currentState.isLoadingNextPage else { return .empty() }
             return Observable.concat([
-                .just(Mutation.setLoadingNextPage(true)),
+                    .just(Mutation.setLoadingNextPage(true)),
                 self.repository.geoSearch(currentState.text, page: currentState.nextPage, bbox: currentState.bbox).asObservable().map { Mutation.setSearchResultForRight($0) },
-                .just(Mutation.setLoadingNextPage(false))
+                    .just(Mutation.setLoadingNextPage(false))
                 ])
         case .tapsAnnotationView(let annotation):
             guard let annotation = annotation as? PhotoAnnotation else { return .empty() }
             return Observable.just(Mutation.tapsAnnotationView(annotation))
         case .tapsPhoto(let index):
             return Observable.just(Mutation.tapsPhoto(currentState.photos[currentState.startIndex + index]))
-        case .setSearch:
-            return Observable.concat([
-                .just(Mutation.setInitLoading(true)),
-                self.repository.geoSearch(currentState.text, page: 1, bbox: currentState.bbox).asObservable().map { Mutation.setSearchResultForRight($0) },
-                .just(Mutation.setInitLoading(false))
-                ])
+        case .setSearch(let req):
+            if let req = req, (req.bbox == currentState.bbox && req.text == currentState.text) {
+                return .empty()
+            } else {
+                return Observable.concat([
+                        .just(Mutation.setInitLoading(true)),
+                    self.repository.geoSearch(currentState.text, page: 1, bbox: currentState.bbox).asObservable().map { Mutation.setSearchResult($0) },
+                        .just(Mutation.setInitLoading(false))
+                    ])
+            }
+
         }
     }
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = State(text: state.text, bbox: state.bbox, photos: state.photos, mapAnnotations: state.mapAnnotations, nextPage: state.nextPage, startIndex: state.startIndex, endIndex: state.endIndex, isLoadingNextPage: state.isLoadingNextPage)
-
         switch mutation {
         case .setToLeft:
             newState.endIndex = max(newState.stride, newState.startIndex)
@@ -114,6 +119,23 @@ class PhotoGeoReactor: Reactor {
             newState.isLoadingNextPage = loading
         case .setInitLoading(let loading):
             newState.initLoading = loading
+        case .setSearchResult(let response):
+            if let error = response.error {
+                newState.initError = error
+            } else {
+                let photos = response.data?.photos.photo ?? []
+                newState.photos = photos
+                newState.endIndex = max(newState.stride, newState.startIndex)
+                newState.startIndex = max(0, newState.startIndex - newState.stride)
+                let slice = newState.photos[newState.startIndex..<newState.endIndex]
+                let stagingPhotos = slice.compactMap { $0 }
+                newState.mapAnnotations = stagingPhotos.map { PhotoAnnotation(photo: $0) }
+                newState.photoSections = [PhotoSection(header: "photos", items: stagingPhotos)]
+                newState.nextPage = (response.data?.photos.page ?? 0) + 1
+                newState.enabledRight = !isEndPage(total: response.data?.photos.total ?? 0)
+                newState.enabledLeft = !isFirstPage(startIndex: newState.startIndex)
+                newState.refreshed = true
+            }
         case .setSearchResultForRight(let response):
             if let error = response.error {
                 newState.initError = error

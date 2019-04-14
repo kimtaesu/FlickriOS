@@ -14,12 +14,7 @@ class SearchReactor: Reactor {
 
     var initialState: State
 
-    private let repository: FlickrPhotoRepositoryType
-    private let geoRepository: FlickrGeoRepositoryType
-
-    init(_ repository: FlickrPhotoRepositoryType, geo: FlickrGeoRepositoryType, searchItems: [SearchOption]) {
-        self.geoRepository = geo
-        self.repository = repository
+    init(searchItems: [SearchOption]) {
         initialState = State(text: "", locationText: "", bbox: Enviroment.WORLD_BBOX, searchItems: searchItems)
         initialState.searchSections = [GeoSearchOptionSection(header: "geo", items: searchItems)
         ]
@@ -34,13 +29,13 @@ class SearchReactor: Reactor {
 
     struct State {
         var text: String
-        var locationText :String
+        var locationText: String
         var bbox: String
         var searchItems: [SearchOption]
 
-        public init(text: String, locationText : String, bbox: String, searchItems: [SearchOption]) {
+        public init(text: String, locationText: String, bbox: String, searchItems: [SearchOption]) {
             self.text = text
-            self.locationText  = locationText
+            self.locationText = locationText
             self.bbox = bbox
             self.searchItems = searchItems
         }
@@ -59,7 +54,7 @@ class SearchReactor: Reactor {
         case setSearch
         case setText(String)
         case setLocation(LocationResult)
-        
+
         case setLocationLoading(Bool)
         case tapsSearchOption(Int)
     }

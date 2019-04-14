@@ -25,10 +25,7 @@ class SearchViewController: UIViewController {
     init(_ searchHandler: ((FkrGeoSearchReq) -> Void)? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.searchHandler = searchHandler
-        reactor = SearchReactor(
-            rootContainer.resolve(FlickrPhotoRepositoryType.self)!,
-            geo: rootContainer.resolve(FlickrGeoRepositoryType.self)!,
-            searchItems: [
+        reactor = SearchReactor(searchItems: [
                 SearchOption(tickerImage: Asset.icTextFormat.image, title: L10n.geoSearchOptionsTextTitle, message: L10n.geoSearchOptionsTextMessage, searchAction: SearchAction.text),
                 SearchOption(tickerImage: Asset.icLocation.image, title: L10n.geoSearchOptionsLocationTitle, message: L10n.geoSearchOptionsLocationMessage, searchAction: SearchAction.location)
             ]

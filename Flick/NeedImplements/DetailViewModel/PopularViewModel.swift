@@ -17,9 +17,9 @@ class PopularViewModel: ListDiffable {
 
     init(_ photo: Photo) {
         self.id = photo.id
-        self.countComments = photo.countComments
-        self.countLikes = photo.countLikes
-        self.views = photo.views
+        self.countComments = "\(photo.countComments)"
+        self.countLikes = "\(photo.countLikes)"
+        self.views = "\(photo.views)"
     }
     func diffIdentifier() -> NSObjectProtocol {
         return "popular" as NSObjectProtocol

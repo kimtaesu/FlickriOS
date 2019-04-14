@@ -37,4 +37,8 @@ extension PhotoContext {
         total = (try values.decode(String.self, forKey: .total)).toInt
         photo = try values.decode([Photo].self, forKey: .photo)
     }
+    
+    var isFirstPage: Bool {
+        return page <= 1
+    }
 }
