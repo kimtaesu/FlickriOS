@@ -13,3 +13,12 @@ h    대형 1600, 가장 긴 면이 1600†
 k    대형 2048, 가장 긴 면이 2048†
 o    원본 이미지, 소스 형식에 따라 jpg, gif 또는png
 
+## Usage
+"""
+pod install --repo-update
+carthage update --platform iOS --no-use-binaries 2>/dev/null
+
+carthage update ReactorKit --platform iOS --no-use-binaries 2>/dev/null
+(cd Carthage/Checkouts/ReactorKit && swift package generate-xcodeproj)
+carthage build ReactorKit  --platform iOS
+"""

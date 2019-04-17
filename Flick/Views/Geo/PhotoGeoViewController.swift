@@ -18,7 +18,6 @@ class PhotoGeoViewController: UIViewController {
     let photoContainer = PhotoViewController()
     let locationManager = CLLocationManager()
     let searchActionButton = UIButton()
-    
     let dataSource = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
         configureCell: { ds, tv, ip, item in
             guard let cell = tv.dequeueReusableCell(withReuseIdentifier: PhotoGeoCell.swiftIdentifier, for: ip) as? PhotoGeoCell else {
@@ -28,7 +27,7 @@ class PhotoGeoViewController: UIViewController {
             return cell
         }
     )
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -109,12 +108,12 @@ extension PhotoGeoViewController: View, HasDisposeBag {
             .map { Reactor.Action.toLeft }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+
         photoContainer.rightPagingView.rx.tap
             .map { Reactor.Action.toRight }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+
         reactor.state.map { $0.mapAnnotations }
             .filterEmpty()
             .distinctUntilChanged()
@@ -152,12 +151,12 @@ extension PhotoGeoViewController: View, HasDisposeBag {
                 self.show(vc, sender: self)
             }
             .disposed(by: disposeBag)
-        
+
         photoContainer.photoCollectionView.rx.itemSelected
             .map { Reactor.Action.tapsPhoto($0.row) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+
         reactor.state.map { $0.photoSections }
             .filterNil()
             .bind(to: photoContainer.photoCollectionView.rx.items(dataSource: dataSource))

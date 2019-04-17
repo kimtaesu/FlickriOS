@@ -21,6 +21,7 @@
 "geo_search_options_image_hero_id" = "geo_search_options_image_hero_id_%@";
 
 "title_done" = "Done";
+"title_retry" = "재시도";
 "title_search" = "Search";
 "date_format_at_photo_taken" = "yyyy년 MM월 dd일에 촬영";
 "date_format_arg_at_photo_taken" = "%@년 %@월 %@일에 촬영";

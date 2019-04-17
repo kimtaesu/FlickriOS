@@ -1,12 +1,12 @@
-github "SnapKit/SnapKit" ~> 4.0.1
-github "ReactiveX/RxSwift" ~> 4.0
-github "RxSwiftCommunity/RxOptional" ~> 3.5.0
-github "Swinject/Swinject" ~> 2.5.0
-binary "https://github.com/kawoou/ReactorKit-Carthage/raw/master/ReactorKit"
-github "Instagram/IGListKit" ~> 3.0
+github "SnapKit/SnapKit"
+github "ReactiveX/RxSwift"
+github "RxSwiftCommunity/RxOptional"
+github "Swinject/Swinject"
+github "Instagram/IGListKit"
 github "HeroTransitions/Hero"
-github "Moya/Moya" ~> 11.0.2
-github "RxSwiftCommunity/RxDataSources" ~> 3.0
-github "onevcat/Kingfisher" ~> 5.0
+github "Moya/Moya"
+github "RxSwiftCommunity/RxDataSources"
+github "onevcat/Kingfisher"
 github "RxSwiftCommunity/RxKingfisher"
 github "devxoul/RxViewController"
+github "Brightify/Cuckoo"

@@ -26,6 +26,7 @@ class PhotoGeoReactor: Reactor {
         case tapsAnnotationView(MKAnnotation?)
         case toRight
         case toLeft
+        case retry
     }
 
     struct State {
@@ -57,7 +58,7 @@ class PhotoGeoReactor: Reactor {
         var photoSections: [PhotoSection]?
         var selectedPhoto: Photo?
         var initLoading: Bool?
-        var initError: Error?
+        var error: Error?
         var selectedAnnotation: PhotoAnnotation?
     }
 
@@ -73,6 +74,9 @@ class PhotoGeoReactor: Reactor {
 
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .retry:
+            // TODO
+            return .empty()
         case .toLeft:
             return .just(Mutation.setToLeft)
         case .toRight:
@@ -120,8 +124,9 @@ class PhotoGeoReactor: Reactor {
         case .setInitLoading(let loading):
             newState.initLoading = loading
         case .setSearchResult(let response):
+            // TODO: Refactoring
             if let error = response.error {
-                newState.initError = error
+                newState.error = error
             } else {
                 let photos = response.data?.photos.photo ?? []
                 newState.photos = photos
@@ -137,8 +142,9 @@ class PhotoGeoReactor: Reactor {
                 newState.refreshed = true
             }
         case .setSearchResultForRight(let response):
+            // TODO: Refactoring
             if let error = response.error {
-                newState.initError = error
+                newState.error = error
             } else {
                 let photos = response.data?.photos.photo ?? []
                 newState.photos += photos

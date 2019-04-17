@@ -19,7 +19,7 @@ protocol FlickrGeoRepositoryType {
 
 class FlickrGeoRepository: FlickrGeoRepositoryType {
     private let provider: MoyaProvider<FlickrApi>
-    
+
     init(_ provider: MoyaProvider<FlickrApi>) {
         self.provider = provider
     }
@@ -28,9 +28,9 @@ class FlickrGeoRepository: FlickrGeoRepositoryType {
             .filterSuccessfulStatusCodes()
             .map { try XMLDecoder().decode(LocationResultSet.self, from: $0.data) }
             .map { Resources.success($0) }
-            .catchError({ error in
+            .catchError { error in
                 logger.error(error)
                 return Single.just(Resources.error(error))
-            })
+        }
     }
 }
