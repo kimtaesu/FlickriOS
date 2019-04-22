@@ -8,7 +8,6 @@
 
 import Nimble
 import Quick
-import RxExpect
 import RxSwift
 import RxTest
 @testable import Flick
@@ -25,11 +24,6 @@ class PhotoGeoReactorTest: QuickSpec {
         
         describe("PhotoGeoReactorTest") {
             it("test", closure: {
-                let test = RxExpect()
-                let reactor = test.retain(reactor)
-                test.input(reactor.action, [
-                    next(200, .search("a"))
-                    ])
             })
         }
     }

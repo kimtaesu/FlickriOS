@@ -1,5 +1,5 @@
 included:
-- Flick
+- ${TARGET_NAME}
 
 analyzer_rules:
   - unused_import

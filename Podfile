@@ -17,16 +17,10 @@ target 'Flick' do
     pod 'Quick', '~> 1.3'
     pod 'Nimble', '~> 7.3'
     # TODO: Move carthage
-    pod 'RxExpect'
   end
   target 'FlickTests' do
     inherit! :search_paths
     # Pods for testing
     testing_pods
-  end
-
-  target 'FlickUITests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 end

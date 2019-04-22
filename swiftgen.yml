@@ -1,15 +1,15 @@
 
-input_dir: Flick
+input_dir: ${PROJECT_DIR}
 output_dir: Generated
 
 strings:
-  inputs: Base.lproj/Localizable.strings
+  inputs: ${TARGET_NAME}/Base.lproj/Localizable.strings
   outputs:
     templateName: structured-swift4
     output: L10n.swift
 
 xcassets:
-  inputs: Assets.xcassets
+  inputs: ${TARGET_NAME}/Assets.xcassets
   outputs:
     templateName: swift4
     output: Assets.swift

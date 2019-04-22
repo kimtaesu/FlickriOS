@@ -13,10 +13,6 @@ import RxMoya
 import RxSwift
 import XMLParsing
 
-protocol FlickrGeoRepositoryType {
-    func findLocation(_ location: String) -> Single<Resources<LocationResultSet>>
-}
-
 class FlickrGeoRepository: FlickrGeoRepositoryType {
     private let provider: MoyaProvider<FlickrApi>
 

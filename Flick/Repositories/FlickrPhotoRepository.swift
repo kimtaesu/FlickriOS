@@ -13,10 +13,6 @@ import Result
 import RxMoya
 import RxSwift
 
-protocol FlickrPhotoRepositoryType {
-    func geoSearch(_ keyword: String, page: Int, bbox: String) -> Single<Resources<PhotoResponse>>
-    func getComments(photoId: String) -> Single<Resources<CommentResponse>>
-}
 
 class FlickrPhotoRepository: FlickrPhotoRepositoryType {
 
