@@ -1,1 +1,12 @@
 
+colorPrimary: 311b92
+colorLight: 6746c3
+colorDark: 000063
+
+colorAccent: c62828
+
+moreText: 89CFF0
+pagingButtonNoraml: 1976d2
+pagingButtonDisable: bdbdbd
+lightGray: e0e0e0
+placeholderGray: 9e9e9e

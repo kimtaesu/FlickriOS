@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LikeView" customModule="Flick" customModuleProvider="target">
+            <connections>
+                <outlet property="countView" destination="Sqw-js-9Mq" id="RDw-Cr-AsJ"/>
+                <outlet property="imageView" destination="z6M-VC-K6s" id="9s1-IC-r1c"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqw-js-9Mq">
+                    <rect key="frame" x="166.5" y="0.0" width="42" height="58"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z6M-VC-K6s">
+                    <rect key="frame" x="177.5" y="66" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="z6M-VC-K6s" secondAttribute="height" multiplier="1:1" id="GHQ-ka-m3x"/>
+                        <constraint firstAttribute="width" constant="20" id="hYq-xr-pn1"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Sqw-js-9Mq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="0w3-yX-nsY"/>
+                <constraint firstItem="z6M-VC-K6s" firstAttribute="top" secondItem="Sqw-js-9Mq" secondAttribute="bottom" constant="8" id="MIT-KG-Rdi"/>
+                <constraint firstItem="z6M-VC-K6s" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="iPd-8y-vAe"/>
+                <constraint firstItem="Sqw-js-9Mq" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="kzF-ft-s1c"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="z6M-VC-K6s" secondAttribute="bottom" id="v0e-gh-o7b"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="24.800000000000001" y="-425.48725637181411"/>
+        </view>
+    </objects>
+</document>
