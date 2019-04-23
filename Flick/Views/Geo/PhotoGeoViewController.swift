@@ -15,7 +15,7 @@ import UIKit
 class PhotoGeoViewController: UIViewController {
     let defaultCenterLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     let mapView = MKMapView()
-    let photoContainer = PhotoViewController()
+    let photoSlideViewController: PhotoSlideViewController
     let locationManager = CLLocationManager()
     let searchActionButton = UIButton()
     let dataSource = RxCollectionViewSectionedAnimatedDataSource<PhotoSection>(
@@ -32,9 +32,12 @@ class PhotoGeoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init() {
+    init(_ reactor: PhotoGeoReactor, slideView: PhotoSlideViewController) {
+        defer {
+            self.reactor = reactor
+        }
+        self.photoSlideViewController = slideView
         super.init(nibName: nil, bundle: nil)
-        reactor = PhotoGeoReactor(rootContainer.resolve(FlickrPhotoRepositoryType.self)!)
     }
 
     override func viewDidLoad() {
@@ -63,8 +66,8 @@ class PhotoGeoViewController: UIViewController {
             $0.hero.modifiers = [.delay(0.3), .translate(y: 250), .timingFunction(.easeIn)]
             $0.apply(ViewStyle.floatingAction())
         }
-        self.addViewContainer(photoContainer)
-        photoContainer.view.do {
+        self.addViewContainer(photoSlideViewController)
+        photoSlideViewController.view.do {
             $0.snp.makeConstraints({ make in
                 make.leading.equalToSuperview()
                 make.trailing.equalToSuperview()
@@ -76,7 +79,7 @@ class PhotoGeoViewController: UIViewController {
     @objc
     func showSearchViewController() {
         let vc = SearchViewController({ [weak self] req in
-            self?.reactor?.action.onNext(.setSearch(req))
+//            self?.reactor?.action.onNext(.setSearch(req))
         }).then {
             $0.hero.isEnabled = true
             $0.searchActionButton.hero.modifiers = [.delay(0.3), .translate(y: 250)]
@@ -103,64 +106,64 @@ class PhotoGeoViewController: UIViewController {
 
 extension PhotoGeoViewController: View, HasDisposeBag {
     func bind(reactor: PhotoGeoReactor) {
-        reactor.action.onNext(.setSearch(nil))
-        photoContainer.leftPagingView.rx.tap
-            .map { Reactor.Action.toLeft }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-
-        photoContainer.rightPagingView.rx.tap
-            .map { Reactor.Action.toRight }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-
-        reactor.state.map { $0.mapAnnotations }
-            .filterEmpty()
-            .distinctUntilChanged()
-            .bind { [weak self] annotations in
-                guard let self = self else { return }
-                self.mapView.removeAnnotations(self.mapView.annotations)
-                self.mapView.addAnnotations(annotations)
-            }
-            .disposed(by: disposeBag)
-
-        reactor.state.map { $0.selectedPhoto }
-            .filterNil()
-            .bind { [weak self] photo in
-                self?.mapView.setCenterCoordinate(photo.location, withZoomLevel: 18, animated: true)
-            }
-            .disposed(by: disposeBag)
-
-        reactor.state.map { $0.enabledLeft }
-            .filterNil()
-            .distinctUntilChanged()
-            .bind(to: photoContainer.leftPagingView.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        reactor.state.map { $0.enabledRight }
-            .filterNil()
-            .distinctUntilChanged()
-            .bind(to: photoContainer.rightPagingView.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        reactor.state.map { $0.selectedAnnotation }
-            .filterNil()
-            .bind { [weak self] annotation in
-                guard let self = self else { return }
-                let vc = PhotoDetailViewController(annotation.photo)
-                self.show(vc, sender: self)
-            }
-            .disposed(by: disposeBag)
-
-        photoContainer.photoCollectionView.rx.itemSelected
-            .map { Reactor.Action.tapsPhoto($0.row) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-
-        reactor.state.map { $0.photoSections }
-            .filterNil()
-            .bind(to: photoContainer.photoCollectionView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
+//        reactor.action.onNext(.setSearch(nil))
+//        photoContainer.leftPagingView.rx.tap
+//            .map { Reactor.Action.toLeft }
+//            .bind(to: reactor.action)
+//            .disposed(by: disposeBag)
+//
+//        photoContainer.rightPagingView.rx.tap
+//            .map { Reactor.Action.toRight }
+//            .bind(to: reactor.action)
+//            .disposed(by: disposeBag)
+//
+//        reactor.state.map { $0.mapAnnotations }
+//            .filterEmpty()
+//            .distinctUntilChanged()
+//            .bind { [weak self] annotations in
+//                guard let self = self else { return }
+//                self.mapView.removeAnnotations(self.mapView.annotations)
+//                self.mapView.addAnnotations(annotations)
+//            }
+//            .disposed(by: disposeBag)
+//
+//        reactor.state.map { $0.selectedPhoto }
+//            .filterNil()
+//            .bind { [weak self] photo in
+//                self?.mapView.setCenterCoordinate(photo.location, withZoomLevel: 18, animated: true)
+//            }
+//            .disposed(by: disposeBag)
+//
+//        reactor.state.map { $0.enabledLeft }
+//            .filterNil()
+//            .distinctUntilChanged()
+//            .bind(to: photoContainer.leftPagingView.rx.isEnabled)
+//            .disposed(by: disposeBag)
+//
+//        reactor.state.map { $0.enabledRight }
+//            .filterNil()
+//            .distinctUntilChanged()
+//            .bind(to: photoContainer.rightPagingView.rx.isEnabled)
+//            .disposed(by: disposeBag)
+//
+//        reactor.state.map { $0.selectedAnnotation }
+//            .filterNil()
+//            .bind { [weak self] annotation in
+//                guard let self = self else { return }
+//                let vc = PhotoDetailViewController(annotation.photo)
+//                self.show(vc, sender: self)
+//            }
+//            .disposed(by: disposeBag)
+//
+//        photoContainer.photoCollectionView.rx.itemSelected
+//            .map { Reactor.Action.tapsPhoto($0.row) }
+//            .bind(to: reactor.action)
+//            .disposed(by: disposeBag)
+//
+//        reactor.state.map { $0.photoSections }
+//            .filterNil()
+//            .bind(to: photoContainer.photoCollectionView.rx.items(dataSource: dataSource))
+//            .disposed(by: disposeBag)
     }
 }
 

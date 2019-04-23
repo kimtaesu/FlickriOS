@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: Flick/Repositories/FlickrGeoRepositoryType.swift at 2019-04-22 12:18:21 +0000
+// MARK: - Mocks generated from file: Flick/Repositories/FlickrGeoRepositoryType.swift at 2019-04-23 04:31:18 +0000
 
 //
 //  FlickrGeoRepositoryType.swift
@@ -102,7 +102,7 @@ import RxSwift
 }
 
 
-// MARK: - Mocks generated from file: Flick/Repositories/FlickrPhotoRepositoryType.swift at 2019-04-22 12:18:21 +0000
+// MARK: - Mocks generated from file: Flick/Repositories/FlickrPhotoRepositoryType.swift at 2019-04-23 04:31:18 +0000
 
 //
 //  FlickrPhotoRepositoryType.swift

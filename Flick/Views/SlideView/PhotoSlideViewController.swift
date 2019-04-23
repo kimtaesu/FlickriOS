@@ -1,7 +1,8 @@
 import Foundation
+import ReactorKit
 import UIKit
 
-class PhotoViewController: UIViewController {
+class PhotoSlideViewController: UIViewController {
 
     let uiStackView = UIStackView()
     let leftPagingView = UIButton()
@@ -16,7 +17,8 @@ class PhotoViewController: UIViewController {
         return collectionView
     }()
 
-    init() {
+    init(_ reactor: PhotoSlideReactor) {
+        defer { self.reactor = reactor }
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -63,5 +65,11 @@ class PhotoViewController: UIViewController {
                 make.width.equalTo(30)
             })
         }
+    }
+}
+
+extension PhotoSlideViewController: View, HasDisposeBag {
+    func bind(reactor: PhotoSlideReactor) {
+
     }
 }

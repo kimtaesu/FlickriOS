@@ -20,10 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.userDefaultRegister()
         Fabric.with([Crashlytics.self])
         window = UIWindow().then {
-            let naviVc = ChildStatusBarNavigationController(rootViewController: PhotoGeoViewController().then {
+            let repository  = rootContainer.resolve(FlickrPhotoRepositoryType.self)!
+            let slideReactor = PhotoSlideReactor(repository)
+            let slideView = PhotoSlideViewController(slideReactor)
+            let geoViewController = PhotoGeoViewController(PhotoGeoReactor(), slideView: slideView).then {
                 $0.hero.isEnabled = true
-            })
-            naviVc.do {
+            }
+            let naviVc = ChildStatusBarNavigationController(rootViewController: geoViewController).then {
                 $0.hero.isEnabled = true
             }
             $0.rootViewController = naviVc
